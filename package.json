@@ -1,0 +1,36 @@
+{
+  "name": "easy-js-form-validator",
+  "files": [
+    "src",
+    "dist"
+  ],
+  "main": "./dist/validator.umd.js",
+  "module": "./dist/validator.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/validator.es.js",
+      "require": "./dist/validator.umd.js"
+    }
+  },
+  "version": "0.1.3",
+  "description": "This is a test description",
+  "private": false,
+  "license": "MIT",
+  "types": "./dist/types/Index.d.ts",
+  "author": {
+    "name": "Ali Nazari",
+    "email": "alinazari.7321@gmail.com"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "typescript": "^4.5.4",
+    "vite": "^2.8.0",
+    "path": "^0.12.7"
+  },
+  "dependencies": {
+  }
+}
