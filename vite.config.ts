@@ -1,7 +1,7 @@
 /// <reference types="vite/client" />
 
-import { resolve } from 'path'
-import { defineConfig } from 'vite'
+import { resolve } from 'path';
+import { defineConfig } from 'vite';
 
 export default defineConfig({
   // plugins: [react(), dts()],
@@ -9,7 +9,7 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, 'src/Validator.ts'),
       name: 'Validator',
-      fileName: (format) => `validator.${format}.js`
+      fileName: (format) => `validator.${format}.js`,
     },
     rollupOptions: {
       // make sure to externalize deps that shouldn't be bundled
@@ -20,11 +20,11 @@ export default defineConfig({
         // for externalized deps
         globals: {
           // react: 'React'
-        }
-      }
-    }
+        },
+      },
+    },
   },
   test: {
     // include: ['**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}']
   },
-})
+});

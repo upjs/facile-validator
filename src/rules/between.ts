@@ -24,7 +24,7 @@ function between(value: string, args: string): true | Error {
   if (valueInNumber >= min && valueInNumber <= max) {
     return true;
   }
-  
+
   return new Error(validatorErrorMessage);
 }
 

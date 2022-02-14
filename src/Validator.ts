@@ -1,6 +1,6 @@
-import * as rules from "./rules";
-import { Rules } from "./types";
-import ValidatorError from "./ValidatorError";
+import * as rules from './rules';
+import { Rules } from './types';
+import ValidatorError from './ValidatorError';
 
 class Validator {
   private invalidElements: ValidatorError[] = [];
@@ -20,14 +20,14 @@ class Validator {
           if (givenRules) {
             for (const givenRule of givenRules) {
               let rule = givenRule;
-              let args = "";
+              let args = '';
 
               if (this.ruleHasArguments(givenRule)) {
                 [rule, args] = givenRule.split(':');
               }
 
               if (rules.hasOwnProperty(rule)) {
-                const result = (rules as Rules)[rule]("test", args);
+                const result = (rules as Rules)[rule]('test', args);
 
                 if (result instanceof Error) {
                   const invalidElement = new ValidatorError(result.message, input);
@@ -48,7 +48,7 @@ class Validator {
       } catch (e: unknown) {
         console.log(e);
       }
-    }
+    };
   }
 
   private ruleHasArguments(rule: string) {
@@ -74,9 +74,9 @@ class Validator {
   }
 
   private removeErrors() {
-    document.querySelectorAll('.validator-err').forEach(el => {
+    document.querySelectorAll('.validator-err').forEach((el) => {
       el.remove();
-    })
+    });
   }
 }
 
