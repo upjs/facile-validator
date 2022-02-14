@@ -1,0 +1,137 @@
+@import 'https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap';
+@import 'https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css';
+
+.container button {
+  appearance: button;
+  background-color: #0f633c;
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: din-round, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  line-height: 20px;
+  margin: 0;
+  outline: none;
+  overflow: visible;
+  padding: 10px 16px;
+  text-align: center;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  transform: translateZ(0);
+  transition: filter 0.2s;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.container button:after {
+  background-clip: padding-box;
+  background-color: #198754;
+  border: solid transparent;
+  border-radius: 2rem;
+  border-width: 0 0 4px;
+  bottom: -4px;
+  content: '';
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: -1;
+}
+
+.container button:main,
+.container button:focus {
+  user-select: auto;
+}
+
+.container button:hover:not(:disabled) {
+  filter: brightness(1.1);
+}
+
+.container button:disabled {
+  cursor: auto;
+}
+
+body {
+  font-family: Comfortaa, cursive;
+  background-color: tomato;
+  color: #0008;
+}
+
+#app {
+  margin: 50px auto;
+  padding: 0 15px;
+}
+
+.card {
+  border-radius: 1.5rem;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.7);
+  border: none;
+}
+
+h1 {
+  text-align: center;
+  font-weight: bolder;
+  font-size: 50px;
+  margin-bottom: 50px;
+}
+
+.card-header {
+  background: transparent;
+  border: none;
+}
+
+.card-header h4 {
+  margin-top: 0.5rem;
+  font-weight: bolder;
+}
+
+input {
+  border: none !important;
+  padding: 10px !important;
+}
+
+input,
+button {
+  border-radius: 2rem !important;
+}
+
+input + .validator-err {
+  margin-top: 5px;
+}
+
+.validator-err {
+  padding: 0 5px;
+  margin: 0;
+  color: red;
+}
+
+label {
+  font-weight: 700;
+  margin-bottom: 5px;
+  margin-left: 5px;
+}
+
+button {
+  width: 100%;
+  padding: 12px !important;
+}
+
+@media (min-width: 768px) {
+  .container {
+    position: absolute;
+    margin: auto;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+}

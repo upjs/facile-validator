@@ -1,4 +1,4 @@
-import { Rule } from '../types';
+import { Rule } from '@/types';
 
 function between(value: string, args: string): true | Error {
   const splittedArgs = args.split(',');
@@ -24,7 +24,7 @@ function between(value: string, args: string): true | Error {
   if (valueInNumber >= min && valueInNumber <= max) {
     return true;
   }
-  
+
   return new Error(validatorErrorMessage);
 }
 

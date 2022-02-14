@@ -1,6 +1,6 @@
-import * as rules from "./rules";
-import { Rules } from "./types";
-import ValidatorError from "./ValidatorError";
+import * as rules from '@/rules';
+import { Rules } from '@/types';
+import ValidatorError from '@/ValidatorError';
 
 class Validator {
   private invalidElements: ValidatorError[] = [];
@@ -12,22 +12,22 @@ class Validator {
       try {
         this.removeErrors();
         this.invalidElements = [];
-        const inputs = form.querySelectorAll('[v-rules]');
+        const inputs = form.querySelectorAll('[data-rules]');
 
         Array.prototype.forEach.call(inputs, (input: HTMLInputElement) => {
-          const givenRules = input.getAttribute('v-rules')?.split('|');
+          const givenRules = input.getAttribute('data-rules')?.split('|');
 
           if (givenRules) {
             for (const givenRule of givenRules) {
               let rule = givenRule;
-              let args = "";
+              let args = '';
 
               if (this.ruleHasArguments(givenRule)) {
                 [rule, args] = givenRule.split(':');
               }
 
-              if (rules.hasOwnProperty(rule)) {
-                const result = (rules as Rules)[rule]("test", args);
+              if (rule in rules) {
+                const result = (rules as Rules)[rule](input.value, args);
 
                 if (result instanceof Error) {
                   const invalidElement = new ValidatorError(result.message, input);
@@ -46,9 +46,10 @@ class Validator {
           this.displayErrors();
         }
       } catch (e: unknown) {
-        console.log(e);
+        console.error(e);
+        event.preventDefault();
       }
-    }
+    };
   }
 
   private ruleHasArguments(rule: string) {
@@ -74,9 +75,9 @@ class Validator {
   }
 
   private removeErrors() {
-    document.querySelectorAll('.validator-err').forEach(el => {
+    document.querySelectorAll('.validator-err').forEach((el) => {
       el.remove();
-    })
+    });
   }
 }
 

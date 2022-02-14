@@ -1,4 +1,4 @@
-import { Rule } from '../types';
+import { Rule } from '@/types';
 
 function max(value: string, max: string): true | Error {
   const maxInNumber = Number(max);

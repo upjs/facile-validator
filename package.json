@@ -1,9 +1,22 @@
 {
   "name": "easy-html-form-validator",
-  "files": [
-    "src",
-    "dist"
+  "version": "0.2.0",
+  "description": "Easy HTML form validator written in TypeScript with tree-shaking",
+  "repository": "AliN11/easy-html-form-validator",
+  "homepage": "https://github.com/AliN11/easy-html-form-validator",
+  "license": "MIT",
+  "keywords": [
+    "html",
+    "from",
+    "validation",
+    "input",
+    "javascript",
+    "typescript"
   ],
+  "author": {
+    "name": "Ali Nazari",
+    "email": "alinazari.7321@gmail.com"
+  },
   "main": "./dist/validator.umd.js",
   "module": "./dist/validator.es.js",
   "exports": {
@@ -12,26 +25,37 @@
       "require": "./dist/validator.umd.js"
     }
   },
-  "version": "0.2.0",
-  "description": "This is a test description",
-  "homepage": "https://github.com/AliN11/easy-html-form-validator",
-  "private": false,
-  "license": "MIT",
-  "types": "./dist/types/Index.d.ts",
-  "author": {
-    "name": "Ali Nazari",
-    "email": "alinazari.7321@gmail.com"
-  },
+  "files": [
+    "src",
+    "dist"
+  ],
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --config ./playground/vite.config.ts",
     "build": "tsc && vite build",
     "preview": "vite preview",
+    "lint": "eslint --ext .ts,vue --ignore-path .gitignore .",
     "test": "vitest",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "prepare": "husky install",
+    "release": "yarn test && npx standard-version && git push --follow-tags && npm publish"
+  },
+  "lint-staged": {
+    "*.ts": "eslint --fix",
+    "*": "prettier -w -u"
   },
   "devDependencies": {
+    "@types/node": "^17.0.17",
+    "@typescript-eslint/eslint-plugin": "^5.11.0",
+    "@typescript-eslint/parser": "^5.11.0",
+    "eslint": "^8.9.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "husky": ">=6",
     "jsdom": "^19.0.0",
+    "lint-staged": ">=10",
     "path": "^0.12.7",
+    "prettier": "^2.5.1",
+    "standard-version": "^9.3.2",
     "typescript": "^4.5.4",
     "vite": "^2.8.0",
     "vitest": "^0.3.5"
