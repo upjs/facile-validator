@@ -28,21 +28,27 @@
     "preview": "vite preview",
     "lint": "eslint --ext .ts,vue --ignore-path .gitignore .",
     "test": "vitest",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "*.ts": "eslint --fix",
+    "*": "prettier -w -u",
+    "*.{ts,vue}": "eslint --cache --fix"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.11.0",
     "@typescript-eslint/parser": "^5.11.0",
     "eslint": "^8.9.0",
+    "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "husky": ">=6",
     "jsdom": "^19.0.0",
+    "lint-staged": ">=10",
     "path": "^0.12.7",
     "prettier": "^2.5.1",
     "typescript": "^4.5.4",
     "vite": "^2.8.0",
     "vitest": "^0.3.5"
-  },
-  "dependencies": {
-    "eslint-config-prettier": "^8.3.0"
   }
 }
