@@ -1,9 +1,7 @@
-import ValidatorError from '../ValidatorError';
+import { Rule } from '../types';
 
-export default function (input: HTMLInputElement): true|ValidatorError {
-  if (input.value === String(Number(input.value))) {
-    return true;
-  }
-
-  return new ValidatorError(`Please enter a valid number`, input);
+function number(value: string): true | Error {
+  return String(Number(value)) === value || new Error('Please enter a valid number');
 }
+
+export default number as Rule;

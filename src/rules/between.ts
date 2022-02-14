@@ -1,21 +1,31 @@
-import ValidatorError from '../ValidatorError';
+import { Rule } from '../types';
 
-export default function (input: HTMLInputElement, args: string): true|ValidatorError {
+function between(value: string, args: string): true | Error {
   const splittedArgs = args.split(',');
-  const min = parseInt(splittedArgs[0]);
-  const max = parseInt(splittedArgs[1]);
 
-  if (!isNaN(min) && !isNaN(max)) {
-    const value = parseInt(input.value);
-    if (!isNaN(value)) {
-      if (value >= min && value <= max) {
-        return true;
-      }
-    }
+  if (splittedArgs.length !== 2) {
+    throw new Error('between rule expects exactly two arguments');
   }
 
-  return new ValidatorError(
-    `Please enter a number between ${min} and ${max}`,
-    input
-  );
+  const min = Number(splittedArgs[0]);
+  const max = Number(splittedArgs[1]);
+
+  if (Number.isNaN(min) || Number.isNaN(max)) {
+    throw new Error('between rule expects two numbers as arguments');
+  }
+
+  const valueInNumber = Number(value);
+  const validatorErrorMessage = `Please enter a number between ${min} and ${max}`;
+
+  if (Number.isNaN(valueInNumber)) {
+    return new Error(validatorErrorMessage);
+  }
+
+  if (valueInNumber >= min && valueInNumber <= max) {
+    return true;
+  }
+  
+  return new Error(validatorErrorMessage);
 }
+
+export default between as Rule;

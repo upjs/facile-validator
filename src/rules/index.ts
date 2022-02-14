@@ -1,16 +1,7 @@
-import required from "./required";
-import min from "./min";
-import email from "./email";
-import between from "./between";
-import number from "./number";
-import int from "./int";
-
-export default {
-  ['required' as string]: required,
-  ['min' as string]: min,
-  ['email' as string]: email,
-  ['between' as string]: between,
-  ['number' as string]: number,
-  ['int' as string]: int,
-  ['integer' as string]: int,
-}
+export { default as required } from "./required";
+export { default as min } from "./min";
+export { default as max } from "./min";
+export { default as email } from "./email";
+export { default as between } from "./between";
+export { default as number } from "./number";
+export { default as int } from "./int";

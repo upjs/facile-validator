@@ -1,9 +1,13 @@
-import ValidatorError from "../ValidatorError";
+import { Rule } from '../types';
 
-export default function (element: HTMLInputElement, value: any): true|ValidatorError {
-  if (element.value.length < parseInt(value)) {
-    return new ValidatorError(`Min length is ${value}`, element);
+function min(value: string, min: string): true | Error {
+  const minInNumber = Number(min);
+
+  if (Number.isNaN(minInNumber)) {
+    throw new Error('min rule expects a number as argument');
   }
 
-  return true;
+  return value.length >= minInNumber || new Error(`Min length is ${min}`);
 }
+
+export default min as Rule;

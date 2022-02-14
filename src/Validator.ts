@@ -1,4 +1,5 @@
-import rules from "./rules";
+import * as rules from "./rules";
+import { Rules } from "./types";
 import ValidatorError from "./ValidatorError";
 
 class Validator {
@@ -26,10 +27,11 @@ class Validator {
               }
 
               if (rules.hasOwnProperty(rule)) {
-                const result = rules[rule](input, args);
+                const result = (rules as Rules)[rule]("test", args);
 
-                if (result instanceof ValidatorError) {
-                  this.invalidElements.unshift(result);
+                if (result instanceof Error) {
+                  const invalidElement = new ValidatorError(result.message, input);
+                  this.invalidElements.unshift(invalidElement);
                   if (this.shouldStopOnFirstFailure(givenRules)) {
                     break;
                   }
