@@ -12,10 +12,10 @@ class Validator {
       try {
         this.removeErrors();
         this.invalidElements = [];
-        const inputs = form.querySelectorAll('[v-rules]');
+        const inputs = form.querySelectorAll('[data-rules]');
 
         Array.prototype.forEach.call(inputs, (input: HTMLInputElement) => {
-          const givenRules = input.getAttribute('v-rules')?.split('|');
+          const givenRules = input.getAttribute('data-rules')?.split('|');
 
           if (givenRules) {
             for (const givenRule of givenRules) {
