@@ -46,7 +46,8 @@ class Validator {
           this.displayErrors();
         }
       } catch (e: unknown) {
-        console.log(e);
+        console.error(e);
+        event.preventDefault();
       }
     };
   }

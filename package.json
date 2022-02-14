@@ -23,7 +23,7 @@
     "email": "alinazari.7321@gmail.com"
   },
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --config ./playground/vite.config.ts",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint --ext .ts,vue --ignore-path .gitignore .",
@@ -37,6 +37,7 @@
     "*": "prettier -w -u"
   },
   "devDependencies": {
+    "@types/node": "^17.0.17",
     "@typescript-eslint/eslint-plugin": "^5.11.0",
     "@typescript-eslint/parser": "^5.11.0",
     "eslint": "^8.9.0",

@@ -12,7 +12,12 @@
     "noEmit": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noImplicitReturns": true
+    "noImplicitReturns": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "~/*": ["./playground/*"]
+    }
   },
-  "include": ["src"]
+  "include": ["src", "playground"]
 }

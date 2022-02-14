@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <title>Vite App</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-lg-4 mx-auto">
+          <form action="" class="card shadow">
+            <div class="card-header text-center">
+              <h4 class="">Form Validator</h4>
+            </div>
+
+            <div class="card-body">
+              <div class="mb-4">
+                <label>Email</label>
+                <input class="form-control" type="text" v-rules="email" />
+              </div>
+              <div class="mb-4">
+                <label>Age</label>
+                <small>(Between 3-100)</small>
+                <input class="form-control" type="text" v-rules="required|number|between:3,100" />
+              </div>
+
+              <div class="mb-4">
+                <label>Password</label>
+                <input class="form-control" type="password" v-rules="required|string|min:5" />
+              </div>
+              <button>Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>
