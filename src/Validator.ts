@@ -27,7 +27,7 @@ class Validator {
               }
 
               if (rule in rules) {
-                const result = (rules as Rules)[rule]('test', args);
+                const result = (rules as Rules)[rule](input.value, args);
 
                 if (result instanceof Error) {
                   const invalidElement = new ValidatorError(result.message, input);
