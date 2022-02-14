@@ -1,4 +1,4 @@
-# Easy JavaScript Form Validator
+# Easy HTML Form Validator
 *This documentation is being completed...*
 
 Laravel-inspired validation for HTML forms:
