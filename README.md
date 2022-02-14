@@ -78,7 +78,7 @@ Here only numbers like `1` or `2`  are accepted.
 
 
 #### `integer`
-The same as [#int](int)
+The same as `int`.
 
 #### `bail`
 If a set of rules contains `bail` rule, the validation for the input will be stopped as soon as a rule fails, and then other rules will not be processed.
