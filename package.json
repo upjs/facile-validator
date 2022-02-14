@@ -34,7 +34,8 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint --ext .ts,vue --ignore-path .gitignore .",
-    "test": "vitest",
+    "test": "vitest --run",
+    "test:watch": "vitest --watch",
     "coverage": "vitest run --coverage",
     "prepare": "husky install",
     "release": "yarn test && npx standard-version && git push --follow-tags && npm publish"
