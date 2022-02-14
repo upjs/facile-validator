@@ -1,9 +1,22 @@
 {
   "name": "easy-html-form-validator",
-  "files": [
-    "src",
-    "dist"
+  "version": "0.2.0",
+  "description": "Easy HTML form validator written in TypeScript with tree-shaking",
+  "repository": "AliN11/easy-html-form-validator",
+  "homepage": "https://github.com/AliN11/easy-html-form-validator",
+  "license": "MIT",
+  "keywords": [
+    "html",
+    "from",
+    "validation",
+    "input",
+    "javascript",
+    "typescript"
   ],
+  "author": {
+    "name": "Ali Nazari",
+    "email": "alinazari.7321@gmail.com"
+  },
   "main": "./dist/validator.umd.js",
   "module": "./dist/validator.es.js",
   "exports": {
@@ -12,16 +25,10 @@
       "require": "./dist/validator.umd.js"
     }
   },
-  "version": "0.2.0",
-  "description": "This is a test description",
-  "homepage": "https://github.com/AliN11/easy-html-form-validator",
-  "private": false,
-  "license": "MIT",
-  "types": "./dist/types/Index.d.ts",
-  "author": {
-    "name": "Ali Nazari",
-    "email": "alinazari.7321@gmail.com"
-  },
+  "files": [
+    "src",
+    "dist"
+  ],
   "scripts": {
     "dev": "vite --config ./playground/vite.config.ts",
     "build": "tsc && vite build",
