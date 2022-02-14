@@ -26,7 +26,7 @@ class Validator {
                 [rule, args] = givenRule.split(':');
               }
 
-              if (rules.hasOwnProperty(rule)) {
+              if (rule in rules) {
                 const result = (rules as Rules)[rule]('test', args);
 
                 if (result instanceof Error) {
