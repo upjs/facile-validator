@@ -1,4 +1,4 @@
-import { Rule } from '../types';
+import { Rule } from '@/types';
 
 function between(value: string, args: string): true | Error {
   const splittedArgs = args.split(',');

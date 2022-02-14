@@ -1,6 +1,6 @@
-import * as rules from './rules';
-import { Rules } from './types';
-import ValidatorError from './ValidatorError';
+import * as rules from '@/rules';
+import { Rules } from '@/types';
+import ValidatorError from '@/ValidatorError';
 
 class Validator {
   private invalidElements: ValidatorError[] = [];

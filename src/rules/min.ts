@@ -1,4 +1,4 @@
-import { Rule } from '../types';
+import { Rule } from '@/types';
 
 function min(value: string, min: string): true | Error {
   const minInNumber = Number(min);
