@@ -1,6 +1,8 @@
 # Easy HTML Form Validator
 *This documentation is being completed...*
 
+**[DEMO](https://alin11.github.io/misc/easy-html-form-validator/)**
+
 Laravel-inspired validation for HTML forms:
 ```html
 <form>
