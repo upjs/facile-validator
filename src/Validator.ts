@@ -30,6 +30,9 @@ class Validator {
 
                 if (result instanceof ValidatorError) {
                   this.invalidElements.unshift(result);
+                  if (this.shouldStopOnFirstFailure(givenRules)) {
+                    break;
+                  }
                 }
               }
             }
@@ -50,6 +53,9 @@ class Validator {
     return rule.split(':').length === 2;
   }
 
+  private shouldStopOnFirstFailure(givenRules: Array<string>) {
+    return givenRules.includes('bail');
+  }
 
   private displayErrors() {
     for (const error of this.invalidElements) {
