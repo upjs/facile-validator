@@ -22,7 +22,7 @@ $ npm i easy-html-form-validator
 ## Usage:
 HTML:
 ```html
-<form>
+<form id="my-form">
   <input v-rules="bail|required|number|between:1,10">
 </form>
 ```
