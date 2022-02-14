@@ -1,9 +1,7 @@
-import ValidatorError from '../ValidatorError';
+import { Rule } from '../types';
 
-export default function (element: HTMLInputElement): true|ValidatorError {
-  if (element.value.trim() === '') {
-    return new ValidatorError('Input value is required', element);
-  }
-
-  return true;
+function required(value: string): true | Error {
+  return value.trim().length > 0 || new Error('Required');
 }
+
+export default required as Rule;

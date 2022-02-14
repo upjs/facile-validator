@@ -1,7 +1,6 @@
 import { Rule } from '../types';
-import ValidatorError from '../ValidatorError';
 
-function between(value: string, args: string): true | ValidatorError {
+function between(value: string, args: string): true | Error {
   const splittedArgs = args.split(',');
 
   if (splittedArgs.length !== 2) {
@@ -17,17 +16,16 @@ function between(value: string, args: string): true | ValidatorError {
 
   const valueInNumber = Number(value);
   const validatorErrorMessage = `Please enter a number between ${min} and ${max}`;
+
   if (Number.isNaN(valueInNumber)) {
-    return new ValidatorError(validatorErrorMessage);
-  } else {
-    if (valueInNumber >= min && valueInNumber <= max) {
-      return true;
-    } else {
-      return new ValidatorError(validatorErrorMessage);
-    }
+    return new Error(validatorErrorMessage);
   }
 
+  if (valueInNumber >= min && valueInNumber <= max) {
+    return true;
+  }
   
+  return new Error(validatorErrorMessage);
 }
 
 export default between as Rule;

@@ -1,9 +1,8 @@
-import ValidatorError from '../ValidatorError';
+import { Rule } from '../types';
+import {integerRegex} from '../utils/regex';
 
-export default function (input: HTMLInputElement): true|ValidatorError {
-  if (/^[0-9]+$/.test(input.value)) {
-    return true;
-  }
-
-  return new ValidatorError(`The value must be a valid integer`, input);
+function int(value: string): true | Error {
+  return integerRegex.test(value) || new Error('The value must be a valid integer');
 }
+
+export default int as Rule;
