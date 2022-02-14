@@ -94,5 +94,5 @@ In this example, at first `required` rule will be processed and if it fails, oth
 - Localization
 - Test
 
-## Lisence
+## License
 MIT
