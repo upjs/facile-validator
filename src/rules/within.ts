@@ -2,7 +2,7 @@ import { Rule } from '@/types';
 import { throwErrorIfArgsNotProvided } from '@/utils/checker';
 
 function within(value: string, args: string): true | Error {
-  throwErrorIfArgsNotProvided(args, 'between rule expects at least one argument');
+  throwErrorIfArgsNotProvided(args, 'within rule expects at least one argument');
 
   const list = args.split(',');
 
