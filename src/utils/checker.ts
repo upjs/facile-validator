@@ -1,5 +1,5 @@
-export function throwErrorIfArgsNotProvided(value: string, message: string): void {
-  if (typeof value === 'undefined' || value === null || value === '') {
+export function throwErrorIfArgsNotProvided(args: string, message: string): void {
+  if (typeof args === 'undefined' || args === null || args === '') {
     throw new Error(message);
   }
 }

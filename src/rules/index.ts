@@ -5,3 +5,4 @@ export { default as email } from './email';
 export { default as between } from './between';
 export { default as number } from './number';
 export { default as int } from './int';
+export { default as within } from './within';
