@@ -1,9 +1,8 @@
 import { Rule } from '@/types';
+import { throwErrorIfArgsNotProvided } from '@/utils/checker';
 
 function between(value: string, args: string): true | Error {
-  if (args === '') {
-    throw new Error('between rule expects at least one argument');
-  }
+  throwErrorIfArgsNotProvided(args, 'between rule expects at least one argument');
 
   const splittedArgs = args.split(',');
 
