@@ -1,6 +1,7 @@
 import * as rules from '@/rules';
 import { Rules } from '@/types';
 import ValidatorError from '@/ValidatorError';
+import { toCamelCase } from './utils/helpers';
 
 class Validator {
   private invalidElements: ValidatorError[] = [];
@@ -25,6 +26,8 @@ class Validator {
               if (this.ruleHasArguments(givenRule)) {
                 [rule, args] = givenRule.split(':');
               }
+
+              rule = toCamelCase(rule);
 
               if (rule in rules) {
                 const result = (rules as Rules)[rule](input.value, args);
