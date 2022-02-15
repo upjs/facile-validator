@@ -8,7 +8,7 @@ function max(value: string, max: string): true | Error {
   }
 
   if (maxInNumber < 0) {
-    throw new Error('min rule expects a positive number as argument');
+    throw new Error('max rule expects a positive number as argument');
   }
 
   return value.length <= maxInNumber || new Error(`Max length is ${max}`);
