@@ -9,3 +9,4 @@ export { default as accepted } from './accepted';
 export { default as within } from './within';
 export { default as startsWith } from './starts-with';
 export { default as endsWith } from './ends-with';
+export { default as digits } from './digits';
