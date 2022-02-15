@@ -1,14 +1,14 @@
 import { Rule } from '@/types';
 
 function between(value: string, args: string): true | Error {
-  const splittedArgs = args.split(',');
-
-  if (splittedArgs.length !== 2) {
-    throw new Error('between rule expects exactly two arguments');
+  if (args === '') {
+    throw new Error('between rule expects at least one argument');
   }
 
-  const min = Number(splittedArgs[0]);
-  const max = Number(splittedArgs[1]);
+  const splittedArgs = args.split(',');
+
+  const min = splittedArgs[0] === '' ? Number.NEGATIVE_INFINITY : Number(splittedArgs[0]);
+  const max = splittedArgs[1] === '' ? Number.POSITIVE_INFINITY : Number(splittedArgs[1]);
 
   if (Number.isNaN(min) || Number.isNaN(max)) {
     throw new Error('between rule expects two numbers as arguments');
