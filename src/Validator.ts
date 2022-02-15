@@ -19,6 +19,8 @@ class Validator {
           const givenRules = input.getAttribute('data-rules')?.split('|');
 
           if (givenRules) {
+            const inputValue = getValue(input);
+
             for (const givenRule of givenRules) {
               let rule = givenRule;
               let args = '';
@@ -28,10 +30,9 @@ class Validator {
               }
 
               rule = toCamelCase(rule);
-              const value = getValue(input);
 
               if (rule in rules) {
-                const result = (rules as Rules)[rule](value, args);
+                const result = (rules as Rules)[rule](inputValue, args);
 
                 if (result instanceof Error) {
                   const invalidElement = new ValidatorError(result.message, input);
