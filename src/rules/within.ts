@@ -6,7 +6,7 @@ function within(value: string, args: string): true | Error {
 
   const list = args.split(',');
 
-  return list.includes(value) || new Error('The value must be a valid integer');
+  return list.includes(value) || new Error('The value is incorrect');
 }
 
 export default within as Rule;

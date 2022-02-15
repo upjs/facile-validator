@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { startsWith } from '@/rules';
 
-describe('rules: startsWith', () => {
+describe('rules: starts-with', () => {
   it('should accept value with correct input', () => {
     expect(startsWith('abc', 'abc')).toBe(true);
     expect(startsWith('abcdef', 'abc')).toBe(true);
