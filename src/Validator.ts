@@ -22,12 +22,8 @@ class Validator {
             const value = getValue(input);
 
             for (const givenRule of givenRules) {
-              let rule = givenRule;
-              let args = '';
-
-              if (this.ruleHasArguments(givenRule)) {
-                [rule, args] = givenRule.split(':');
-              }
+              // eslint-disable-next-line prefer-const
+              let [rule, args = ''] = givenRule.split(':');
 
               rule = toCamelCase(rule);
 
@@ -55,10 +51,6 @@ class Validator {
         event.preventDefault();
       }
     };
-  }
-
-  private ruleHasArguments(rule: string) {
-    return rule.split(':').length === 2;
   }
 
   private shouldStopOnFirstFailure(givenRules: Array<string>) {
