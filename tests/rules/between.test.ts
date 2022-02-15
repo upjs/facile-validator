@@ -78,6 +78,8 @@ describe('rules: between', () => {
 
   it('should throw error on invalid argument', () => {
     expect(() => between('1', '')).toThrowError();
+    expect(() => between('1', '2,1')).toThrowError();
+    expect(() => between('1', '-1,-2')).toThrowError();
     expect(() => between('1', 'test')).toThrowError();
     expect(() => between('1', 'test,')).toThrowError();
     expect(() => between('1', ',test')).toThrowError();

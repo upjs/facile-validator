@@ -14,6 +14,10 @@ function between(value: string, args: string): true | Error {
     throw new Error('between rule expects two numbers as arguments');
   }
 
+  if (min > max) {
+    throw new Error('between rule expects first argument to be less than or equal to second argument');
+  }
+
   const valueInNumber = Number(value);
   const validatorErrorMessage = `Please enter a number between ${min} and ${max}`;
 
