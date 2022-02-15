@@ -21,10 +21,17 @@
                 <label>Email</label>
                 <input class="form-control" type="text" data-rules="email" />
               </div>
+
               <div class="mb-4">
                 <label>Age</label>
                 <small>(Between 3-100)</small>
                 <input class="form-control" type="text" data-rules="required|number|between:3,100" />
+              </div>
+
+              <div class="mb-4">
+                <label>National code</label>
+                <small>(10 Digits)</small>
+                <input class="form-control" type="text" data-rules="required|digits:10" />
               </div>
 
               <div class="mb-4">
