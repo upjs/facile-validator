@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { minLength } from '@/rules';
 
-describe('rules: minLength', () => {
+describe('rules: min-length', () => {
   it('should accept value with correct input', () => {
     expect(minLength('abc', '2')).toBe(true);
     expect(minLength('abc', '3')).toBe(true);

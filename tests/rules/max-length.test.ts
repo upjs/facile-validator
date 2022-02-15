@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { maxLength } from '@/rules';
 
-describe('rules: maxLength', () => {
+describe('rules: max-length', () => {
   it('should accept value with correct input', () => {
     expect(maxLength('abc', '4')).toBe(true);
     expect(maxLength('abc', '5')).toBe(true);
