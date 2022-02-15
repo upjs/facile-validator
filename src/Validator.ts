@@ -19,20 +19,16 @@ class Validator {
           const givenRules = input.getAttribute('data-rules')?.split('|');
 
           if (givenRules) {
-            const inputValue = getValue(input);
+            const value = getValue(input);
 
             for (const givenRule of givenRules) {
-              let rule = givenRule;
-              let args = '';
-
-              if (this.ruleHasArguments(givenRule)) {
-                [rule, args] = givenRule.split(':');
-              }
+              // eslint-disable-next-line prefer-const
+              let [rule, args = ''] = givenRule.split(':');
 
               rule = toCamelCase(rule);
 
               if (rule in rules) {
-                const result = (rules as Rules)[rule](inputValue, args);
+                const result = (rules as Rules)[rule](value, args);
 
                 if (result instanceof Error) {
                   const invalidElement = new ValidatorError(result.message, input);
@@ -55,10 +51,6 @@ class Validator {
         event.preventDefault();
       }
     };
-  }
-
-  private ruleHasArguments(rule: string) {
-    return rule.split(':').length === 2;
   }
 
   private shouldStopOnFirstFailure(givenRules: Array<string>) {
