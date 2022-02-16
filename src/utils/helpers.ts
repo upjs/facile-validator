@@ -1,4 +1,4 @@
-import Language from '@/modules/locale';
+import Language from '@/modules/language';
 import { TYPE_CHECKBOX, TYPE_RADIO } from '@/types/element-type';
 
 export function toCamelCase(value: string) {
@@ -17,6 +17,13 @@ export function format(message: string, ...toReplace: string[]) {
   return message.replace(/\$(\d)/g, (_, index) => toReplace?.[index - 1] || '');
 }
 
-export function lang(key: string, ...args: string[]) {
-  return format(Language.get()[key] ?? key, ...args);
+export function lang(key: string, ...args: string[]): string {
+  const languages = Language.get();
+  let item = key;
+
+  if (Object.prototype.hasOwnProperty.call(languages, key)) {
+    item = languages[key];
+  }
+
+  return format(item, ...args);
 }
