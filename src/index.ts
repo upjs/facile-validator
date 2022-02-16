@@ -1,2 +1,2 @@
 export { default as Validator } from '@/validator';
-export { en, fa } from '@/locales';
+export { en as enLocale, fa as faLocale } from '@/locales';
