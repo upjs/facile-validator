@@ -1,6 +1,6 @@
 import { RuleError } from './modules/rule-error';
 
-export interface ValidatorOption {
+export interface ValidatorOptions {
   locale?: LocalizeObject;
 }
 

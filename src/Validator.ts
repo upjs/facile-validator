@@ -1,12 +1,12 @@
 import * as rules from '@/rules';
-import { Rules, ValidatorOption } from '@/types';
+import { Rules, ValidatorOptions } from '@/types';
 import ValidatorError from '@/modules/validator-error';
 import { getValue, toCamelCase } from '@/utils/helpers';
 
 class Validator {
   private validatorError: ValidatorError;
 
-  constructor(el: string, options?: ValidatorOption) {
+  constructor(el: string, options?: ValidatorOptions) {
     const form = document.querySelector(el) as HTMLFormElement;
     this.validatorError = new ValidatorError(options?.locale);
 
