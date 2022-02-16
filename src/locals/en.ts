@@ -6,7 +6,7 @@ export default {
   [causes.MIN_LENGTH]: 'Min length is $1',
   [causes.NUMBER]: 'Please enter a valid number',
   [causes.BETWEEN]: 'Please enter a number between $1 and $2',
-  [causes.GRATER_EQUAL]: 'Please enter a number greater or equal to $1',
+  [causes.GREATER_EQUAL]: 'Please enter a number greater or equal to $1',
   [causes.LESS_EQUAL]: 'Please enter a number less or equal to $1',
   [causes.DIGITS]: 'The value must be a $1-digits number',
   [causes.EMAIL]: 'Please enter a valid email address',
