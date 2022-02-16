@@ -1,6 +1,8 @@
 import { Rule } from '@/types';
+import { RuleError } from '@/modules/rule-error';
+import { MAX_LENGTH } from '@/types/error-cause';
 
-function max(value: string, max: string): true | Error {
+function maxLength(value: string, max: string): true | RuleError {
   const maxInNumber = Number(max);
 
   if (max === '' || Number.isNaN(maxInNumber)) {
@@ -11,7 +13,7 @@ function max(value: string, max: string): true | Error {
     throw new Error('max rule expects a positive number as argument');
   }
 
-  return value.length <= maxInNumber || new Error(`Max length is ${max}`);
+  return value.length <= maxInNumber || new RuleError('max-length', MAX_LENGTH, max);
 }
 
-export default max as Rule;
+export default maxLength as Rule;

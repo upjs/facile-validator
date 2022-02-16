@@ -1,11 +1,13 @@
+import { RuleError } from '@/modules/rule-error';
 import { Rule } from '@/types';
+import { ACCEPTED } from '@/types/error-cause';
 
-function accepted(value: string): true | Error {
+function accepted(value: string): true | RuleError {
   if (value === 'true') {
     return true;
   }
 
-  return new Error('Please accept this input');
+  return new RuleError('accepted', ACCEPTED);
 }
 
 export default accepted as Rule;
