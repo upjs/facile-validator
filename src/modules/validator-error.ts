@@ -1,12 +1,12 @@
-import { ErrorDetails, LocalizeObject } from '@/types';
+import { ErrorDetails, LocaleObject } from '@/types';
 import { RuleError } from './rule-error';
 
 export default class ValidatorError {
-  public localizeObject: LocalizeObject | undefined;
+  public locale: LocaleObject | undefined;
   public errorsList: ErrorDetails[][];
 
-  constructor(localizeObject?: LocalizeObject) {
-    this.localizeObject = localizeObject;
+  constructor(locale?: LocaleObject) {
+    this.locale = locale;
     this.errorsList = [];
   }
 
@@ -18,7 +18,7 @@ export default class ValidatorError {
       this.errorsList.push(errors);
     }
 
-    let errorMessage = this.localizeObject?.[ruleError.message] || ruleError.message;
+    let errorMessage = this.locale?.[ruleError.message] || ruleError.message;
     errorMessage = errorMessage.replace(/\$(\d)/g, (_, index) => ruleError.args?.[index - 1] || '');
 
     const errorDetails: ErrorDetails = {
