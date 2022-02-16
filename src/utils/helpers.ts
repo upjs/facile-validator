@@ -1,4 +1,4 @@
-import { TYPE_CHECKBOX, TYPE_RADIO } from './elementTypes';
+import { TYPE_CHECKBOX, TYPE_RADIO } from '@/types/element-type';
 
 export function toCamelCase(value: string) {
   return value.replace(/-./g, (match) => match[1].toUpperCase());
