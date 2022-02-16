@@ -1,4 +1,4 @@
-import Locale from '@/modules/locale';
+import Language from '@/modules/locale';
 import { TYPE_CHECKBOX, TYPE_RADIO } from '@/types/element-type';
 
 export function toCamelCase(value: string) {
@@ -18,5 +18,5 @@ export function format(message: string, ...toReplace: string[]) {
 }
 
 export function lang(key: string, ...args: string[]) {
-  return format(Locale.getLanguage()[key], ...args);
+  return format(Language.get()[key], ...args);
 }

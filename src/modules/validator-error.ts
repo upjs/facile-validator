@@ -1,6 +1,6 @@
 import { ErrorDetail, LangObject } from '@/types';
 import { format } from '@/utils/helpers';
-import Locale from './locale';
+import Language from './locale';
 import { RuleError } from './rule-error';
 
 export default class ValidatorError {
@@ -8,7 +8,7 @@ export default class ValidatorError {
   public errorsList: ErrorDetail[][];
 
   constructor() {
-    this.lang = Locale.getLanguage();
+    this.lang = Language.get();
     this.errorsList = [];
   }
 

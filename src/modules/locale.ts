@@ -1,14 +1,14 @@
 import { LangObject } from '@/types';
 import { en } from '@/locales';
 
-export default class Locale {
-  private static locale: LangObject;
+export default class Language {
+  private static lang: LangObject;
 
-  static registerLanguage(locale?: LangObject) {
-    this.locale = locale ?? en;
+  static set(lang?: LangObject) {
+    this.lang = lang ?? en;
   }
 
-  static getLanguage() {
-    return this.locale;
+  static get() {
+    return this.lang;
   }
 }

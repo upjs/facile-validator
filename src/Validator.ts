@@ -2,14 +2,14 @@ import * as rules from '@/rules';
 import { Rules, ValidatorOptions } from '@/types';
 import ValidatorError from '@/modules/validator-error';
 import { getValue, toCamelCase } from '@/utils/helpers';
-import Locale from './modules/locale';
+import Language from './modules/locale';
 
 class Validator {
   private validatorError: ValidatorError;
 
   constructor(el: string, options?: ValidatorOptions) {
     const form = document.querySelector(el) as HTMLFormElement;
-    Locale.registerLanguage(options?.lang);
+    Language.set(options?.lang);
     this.validatorError = new ValidatorError();
 
     form.onsubmit = (event: SubmitEvent) => {
