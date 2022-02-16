@@ -16,7 +16,7 @@ export interface LocaleObject {
   [key: string]: string;
 }
 
-export interface ErrorDetails {
+export interface ErrorDetail {
   element: HTMLElement;
   rule: string;
   cause: string;

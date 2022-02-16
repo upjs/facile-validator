@@ -1,9 +1,9 @@
-import { ErrorDetails, LocaleObject } from '@/types';
+import { ErrorDetail, LocaleObject } from '@/types';
 import { RuleError } from './rule-error';
 
 export default class ValidatorError {
   public locale: LocaleObject | undefined;
-  public errorsList: ErrorDetails[][];
+  public errorsList: ErrorDetail[][];
 
   constructor(locale?: LocaleObject) {
     this.locale = locale;
@@ -21,7 +21,7 @@ export default class ValidatorError {
     let errorMessage = this.locale?.[ruleError.message] || ruleError.message;
     errorMessage = errorMessage.replace(/\$(\d)/g, (_, index) => ruleError.args?.[index - 1] || '');
 
-    const errorDetails: ErrorDetails = {
+    const errorDetail: ErrorDetail = {
       message: errorMessage,
       element,
       rule: ruleError.rule,
@@ -29,14 +29,14 @@ export default class ValidatorError {
       args: ruleError.args,
     };
 
-    errors.push(errorDetails);
+    errors.push(errorDetail);
   }
 
   public get hasError(): boolean {
     return Object.keys(this.errorsList).length > 0;
   }
 
-  public get errors(): ErrorDetails[][] {
+  public get errors(): ErrorDetail[][] {
     return this.errorsList;
   }
 
