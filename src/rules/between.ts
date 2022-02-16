@@ -1,13 +1,15 @@
 import { Rule } from '@/types';
+import { RuleError } from '@/modules/rule-error';
+import { BETWEEN, GREATER_EQUAL, LESS_EQUAL, NUMBER } from '@/types/error-cause';
 import { throwErrorIfArgsNotProvided } from '@/utils/checker';
 
-function between(value: string, args: string): true | Error {
+function between(value: string, args: string): true | RuleError {
   throwErrorIfArgsNotProvided(args, 'between rule expects at least one argument');
 
-  const splittedArgs = args.split(',');
+  const [minArg, maxArg] = args.split(',');
 
-  const min = splittedArgs[0] === '' ? Number.NEGATIVE_INFINITY : Number(splittedArgs[0]);
-  const max = splittedArgs[1] === '' ? Number.POSITIVE_INFINITY : Number(splittedArgs[1]);
+  const min = minArg === '' ? Number.NEGATIVE_INFINITY : Number(minArg);
+  const max = maxArg === '' ? Number.POSITIVE_INFINITY : Number(maxArg);
 
   if (Number.isNaN(min) || Number.isNaN(max)) {
     throw new Error('between rule expects two numbers as arguments');
@@ -18,17 +20,19 @@ function between(value: string, args: string): true | Error {
   }
 
   const valueInNumber = Number(value);
-  const validatorErrorMessage = `Please enter a number between ${min} and ${max}`;
-
-  if (Number.isNaN(valueInNumber)) {
-    return new Error(validatorErrorMessage);
-  }
-
-  if (valueInNumber >= min && valueInNumber <= max) {
+  if (!Number.isNaN(valueInNumber) && valueInNumber >= min && valueInNumber <= max) {
     return true;
   }
 
-  return new Error(validatorErrorMessage);
+  if (min === Number.NEGATIVE_INFINITY && max === Number.POSITIVE_INFINITY) {
+    return new RuleError('between', NUMBER);
+  } else if (min === Number.NEGATIVE_INFINITY) {
+    return new RuleError('between', GREATER_EQUAL, maxArg);
+  } else if (max === Number.POSITIVE_INFINITY) {
+    return new RuleError('between', LESS_EQUAL, minArg);
+  } else {
+    return new RuleError('between', BETWEEN, minArg, maxArg);
+  }
 }
 
 export default between as Rule;

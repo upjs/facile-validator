@@ -1,8 +1,10 @@
 import { Rule } from '@/types';
+import { RuleError } from '@/modules/rule-error';
+import { INTEGER } from '@/types/error-cause';
 import { integerRegex } from '@/utils/regex';
 
-function int(value: string): true | Error {
-  return integerRegex.test(value) || new Error('The value must be a valid integer');
+function int(value: string): true | RuleError {
+  return integerRegex.test(value) || new RuleError('int', INTEGER);
 }
 
 export default int as Rule;
