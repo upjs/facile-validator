@@ -1,4 +1,4 @@
-import { RuleError } from './modules/rule-error';
+import { RuleError } from '@/modules/rule-error';
 
 export interface ValidatorOptions {
   locale?: LocaleObject;
