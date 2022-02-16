@@ -14,9 +14,13 @@ export default defineConfig({
   },
   build: {
     lib: {
-      entry: resolve(__dirname, 'src/Validator.ts'),
-      name: 'Validator',
-      fileName: (format) => `validator.${format}.js`,
+      entry: resolve(__dirname, 'src/index.ts'),
+      formats: ['es', 'cjs'],
+      fileName: (format) => {
+        if (format === 'es') return `validator.mjs`;
+        if (format === 'cjs') return `validator.cjs`;
+        return `validator.${format}.js`;
+      },
     },
   },
   test: {
