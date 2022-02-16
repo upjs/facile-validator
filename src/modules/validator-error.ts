@@ -19,8 +19,7 @@ export default class ValidatorError {
     }
 
     let errorMessage = this.localizeObject?.[ruleError.message] || ruleError.message;
-    let argIndex = 0;
-    errorMessage = errorMessage.replace(/\$\d/g, () => ruleError.args?.[argIndex++] || '');
+    errorMessage = errorMessage.replace(/\$(\d)/g, (_, index) => ruleError.args?.[index - 1] || '');
 
     const errorDetails: ErrorDetails = {
       message: errorMessage,
