@@ -21,7 +21,6 @@ export default class ValidatorError {
     }
 
     const errorMessage = lang(ruleError.message, ...ruleError.args);
-    // errorMessage = format(errorMessage, ...ruleError.args);
 
     const errorDetail: ErrorDetail = {
       message: errorMessage,
