@@ -1,7 +1,7 @@
 import { RuleError } from '@/modules/rule-error';
 
 export interface ValidatorOptions {
-  locale?: LocaleObject;
+  lang?: LangObject;
 }
 
 export interface Rule {
@@ -12,7 +12,7 @@ export interface Rules {
   [key: string]: Rule;
 }
 
-export interface LocaleObject {
+export interface LangObject {
   [key: string]: string;
 }
 

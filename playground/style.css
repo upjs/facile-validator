@@ -75,6 +75,7 @@ body {
   overflow: hidden;
   background: rgba(255, 255, 255, 0.7);
   border: none;
+  margin: 50px 0;
 }
 
 h1 {
@@ -123,15 +124,4 @@ label {
 button {
   width: 100%;
   padding: 12px !important;
-}
-
-@media (min-width: 768px) {
-  .container {
-    position: absolute;
-    margin: auto;
-    left: 50%;
-    top: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-  }
 }

@@ -1,3 +1,4 @@
+import Language from '@/modules/locale';
 import { TYPE_CHECKBOX, TYPE_RADIO } from '@/types/element-type';
 
 export function toCamelCase(value: string) {
@@ -10,4 +11,12 @@ export function getValue(element: HTMLInputElement): string {
   }
 
   return element.value;
+}
+
+export function format(message: string, ...toReplace: string[]) {
+  return message.replace(/\$(\d)/g, (_, index) => toReplace?.[index - 1] || '');
+}
+
+export function lang(key: string, ...args: string[]) {
+  return format(Language.get()[key] ?? key, ...args);
 }
