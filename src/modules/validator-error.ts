@@ -1,12 +1,14 @@
-import { ErrorDetail, LocaleObject } from '@/types';
+import { ErrorDetail, LangObject } from '@/types';
+import { format } from '@/utils/helpers';
+import Locale from './locale';
 import { RuleError } from './rule-error';
 
 export default class ValidatorError {
-  public locale: LocaleObject | undefined;
+  public lang: LangObject;
   public errorsList: ErrorDetail[][];
 
-  constructor(locale?: LocaleObject) {
-    this.locale = locale;
+  constructor() {
+    this.lang = Locale.getLanguage();
     this.errorsList = [];
   }
 
@@ -18,8 +20,8 @@ export default class ValidatorError {
       this.errorsList.push(errors);
     }
 
-    let errorMessage = this.locale?.[ruleError.message] || ruleError.message;
-    errorMessage = errorMessage.replace(/\$(\d)/g, (_, index) => ruleError.args?.[index - 1] || '');
+    let errorMessage = this.lang?.[ruleError.message] || ruleError.message;
+    errorMessage = format(errorMessage, ...ruleError.args);
 
     const errorDetail: ErrorDetail = {
       message: errorMessage,
@@ -29,7 +31,7 @@ export default class ValidatorError {
       args: ruleError.args,
     };
 
-    errors.push(errorDetail);
+    errors.unshift(errorDetail);
   }
 
   public get hasError(): boolean {
