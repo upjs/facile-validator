@@ -1,5 +1,4 @@
 import './style.css';
-import Validator from '@/Validator';
-import { en } from '@/locales';
+import { Validator, enLocale } from '@/index';
 
-new Validator('form', { lang: en });
+new Validator('form', { locale: enLocale });
