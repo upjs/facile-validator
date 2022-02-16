@@ -1,18 +1,19 @@
 import * as rules from '@/rules';
-import { Rules } from '@/types';
-import ValidatorError from '@/ValidatorError';
-import { getValue, toCamelCase } from './utils/helpers';
+import { Rules, ValidatorOption } from '@/types';
+import ValidatorError from '@/modules/validator-error';
+import { getValue, toCamelCase } from '@/utils/helpers';
 
 class Validator {
-  private invalidElements: ValidatorError[] = [];
+  private validatorError: ValidatorError;
 
-  constructor(el: string) {
+  constructor(el: string, options?: ValidatorOption) {
     const form = document.querySelector(el) as HTMLFormElement;
+    this.validatorError = new ValidatorError(options?.localizeObject);
 
     form.onsubmit = (event: SubmitEvent) => {
       try {
         this.removeErrors();
-        this.invalidElements = [];
+        this.validatorError.clearErrors();
         const inputs = form.querySelectorAll('[data-rules]');
 
         Array.prototype.forEach.call(inputs, (input: HTMLInputElement) => {
@@ -31,8 +32,7 @@ class Validator {
                 const result = (rules as Rules)[rule](value, args);
 
                 if (result instanceof Error) {
-                  const invalidElement = new ValidatorError(result.message, input);
-                  this.invalidElements.unshift(invalidElement);
+                  this.validatorError.setError(input, result);
                   if (this.shouldStopOnFirstFailure(givenRules)) {
                     break;
                   }
@@ -42,7 +42,7 @@ class Validator {
           }
         });
 
-        if (this.invalidElements.length > 0) {
+        if (this.validatorError.hasError) {
           event.preventDefault();
           this.displayErrors();
         }
@@ -58,17 +58,17 @@ class Validator {
   }
 
   private displayErrors() {
-    for (const error of this.invalidElements) {
-      const input = error.element;
+    this.validatorError.errors.forEach((errors) => {
+      errors.forEach((error) => {
+        const messageElement = document.createElement('p');
+        messageElement.classList.add('validator-err');
+        messageElement.innerHTML = error.message;
 
-      const message = document.createElement('p');
-      message.classList.add('validator-err');
-      message.innerHTML = error.message;
-
-      if (input.parentNode) {
-        input.parentNode.insertBefore(message, input.nextSibling);
-      }
-    }
+        if (error.element.parentNode) {
+          error.element.parentNode.insertBefore(messageElement, error.element.nextSibling);
+        }
+      });
+    });
   }
 
   private removeErrors() {
