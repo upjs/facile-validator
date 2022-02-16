@@ -8,7 +8,7 @@ class Validator {
 
   constructor(el: string, options?: ValidatorOption) {
     const form = document.querySelector(el) as HTMLFormElement;
-    this.validatorError = new ValidatorError(options?.localizeObject);
+    this.validatorError = new ValidatorError(options?.locale);
 
     form.onsubmit = (event: SubmitEvent) => {
       try {
