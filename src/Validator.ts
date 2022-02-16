@@ -13,44 +13,44 @@ class Validator {
     this.validatorError = new ValidatorError();
 
     form.onsubmit = (event: SubmitEvent) => {
-      try {
-        this.removeErrors();
-        this.validatorError.clearErrors();
-        const inputs = form.querySelectorAll('[data-rules]');
+      this.removeErrors();
+      this.validatorError.clearErrors();
 
-        Array.prototype.forEach.call(inputs, (input: HTMLInputElement) => {
-          const givenRules = input.getAttribute('data-rules')?.split('|');
+      const fields = form.querySelectorAll('[data-rules]');
 
-          if (givenRules) {
-            const value = getValue(input);
+      Array.prototype.forEach.call(fields, (input: HTMLInputElement) => {
+        const fieldRules = input.getAttribute('data-rules')?.split('|');
 
-            for (const givenRule of givenRules) {
-              // eslint-disable-next-line prefer-const
-              let [rule, args = ''] = givenRule.split(':');
+        if (fieldRules) {
+          const value = getValue(input);
 
-              rule = toCamelCase(rule);
+          for (const fieldRule of fieldRules) {
+            // eslint-disable-next-line prefer-const
+            let [rule, args = ''] = fieldRule.split(':');
 
-              if (rule in rules) {
+            rule = toCamelCase(rule);
+
+            if (rule in rules) {
+              try {
                 const result = (rules as Rules)[rule](value, args);
-
                 if (result instanceof Error) {
                   this.validatorError.setError(input, result);
-                  if (this.shouldStopOnFirstFailure(givenRules)) {
+                  if (this.shouldStopOnFirstFailure(fieldRules)) {
                     break;
                   }
                 }
+              } catch (e) {
+                console.error(e);
+                event.preventDefault();
               }
             }
           }
-        });
-
-        if (this.validatorError.hasError) {
-          event.preventDefault();
-          this.displayErrors();
         }
-      } catch (e: unknown) {
-        console.error(e);
+      });
+
+      if (this.validatorError.hasError) {
         event.preventDefault();
+        this.displayErrors();
       }
     };
   }
