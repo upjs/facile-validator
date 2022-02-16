@@ -1,5 +1,5 @@
 import { ErrorDetail, LangObject } from '@/types';
-import { format } from '@/utils/helpers';
+import { format, lang } from '@/utils/helpers';
 import Language from './locale';
 import { RuleError } from './rule-error';
 
@@ -20,8 +20,8 @@ export default class ValidatorError {
       this.errorsList.push(errors);
     }
 
-    let errorMessage = this.lang?.[ruleError.message] || ruleError.message;
-    errorMessage = format(errorMessage, ...ruleError.args);
+    const errorMessage = lang(ruleError.message, ...ruleError.args);
+    // errorMessage = format(errorMessage, ...ruleError.args);
 
     const errorDetail: ErrorDetail = {
       message: errorMessage,

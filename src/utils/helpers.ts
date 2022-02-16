@@ -18,5 +18,5 @@ export function format(message: string, ...toReplace: string[]) {
 }
 
 export function lang(key: string, ...args: string[]) {
-  return format(Language.get()[key], ...args);
+  return format(Language.get()[key] ?? key, ...args);
 }
