@@ -12,7 +12,7 @@ class Validator {
   constructor(el: string, options?: ValidatorOptions) {
     Language.set(options?.lang);
     this.validatorError = new ValidatorError();
-    this.events = new EventBus();
+    this.events = new EventBus(options?.on);
     const form = document.querySelector(el) as HTMLFormElement;
 
     form.onsubmit = (event: SubmitEvent) => {

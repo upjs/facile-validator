@@ -1,17 +1,20 @@
-import { ErrorDetail } from '@/types';
+import { EventsOption, ArrayOfValues } from '@/types';
 export type EventsName = keyof Events;
 
-interface Events {
-  'validate:start'?: (() => void)[];
-  'validate:end'?: (() => void)[];
-  'error:field'?: ((element: HTMLElement, errors: ErrorDetail[]) => void)[];
-}
+type Events = ArrayOfValues<EventsOption>;
 
 export default class EventBus {
   private events: Events;
 
-  constructor() {
+  constructor(events?: EventsOption) {
     this.events = {};
+
+    if (typeof events !== 'undefined' && Object.keys(events).length) {
+      Object.keys(events).forEach(<K extends EventsName>(key: string) => {
+        this.events[key as K] = [];
+        this.events[key as K].push(events[key as K]);
+      });
+    }
   }
 
   public on(event: EventsName, callback: unknown): void {
