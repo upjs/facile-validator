@@ -15,4 +15,5 @@ export default {
   [causes.INTEGER]: 'The value must be a valid integer',
   [causes.REQUIRED]: 'This field is required',
   [causes.WITHIN]: 'The value is incorrect',
+  [causes.ALPHA]: 'Please enter only alphabetic characters',
 };

@@ -15,4 +15,5 @@ export default {
   [causes.INTEGER]: 'مقدار این فیلد باید یک عدد صحیح باشد',
   [causes.REQUIRED]: 'این فیلد الزامی است',
   [causes.WITHIN]: 'مقدار این فیلد نادرست است',
+  [causes.ALPHA]: 'لطفاً فقط حروف الفبا وارد کنید',
 };
