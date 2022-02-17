@@ -1,23 +1,20 @@
-import { EventsOption, ArrayOfValues } from '@/types';
-export type EventsName = keyof Events;
-
-type Events = ArrayOfValues<EventsOption>;
+import { Event, EventList, EventName } from '@/types';
 
 export default class EventBus {
-  private events: Events;
+  private events: EventList;
 
-  constructor(events?: EventsOption) {
+  constructor(events?: Event) {
     this.events = {};
 
     if (typeof events !== 'undefined' && Object.keys(events).length) {
-      Object.keys(events).forEach(<K extends EventsName>(key: string) => {
+      Object.keys(events).forEach(<K extends EventName>(key: string) => {
         this.events[key as K] = [];
         this.events[key as K].push(events[key as K]);
       });
     }
   }
 
-  public on(event: EventsName, callback: unknown): void {
+  public on(event: EventName, callback: unknown): void {
     if (typeof this.events[event] === 'undefined') {
       this.events[event] = [];
     }
@@ -26,7 +23,7 @@ export default class EventBus {
     events.push(callback);
   }
 
-  public off(event: EventsName, callback: unknown): void {
+  public off(event: EventName, callback: unknown): void {
     if (typeof this.events[event] === 'undefined') {
       return;
     }
@@ -39,7 +36,7 @@ export default class EventBus {
     }
   }
 
-  public call(event: EventsName, ...args: unknown[]): void {
+  public call(event: EventName, ...args: unknown[]): void {
     if (typeof this.events[event] !== 'undefined') {
       const events = this.events[event] as unknown[];
       events.forEach((callback: unknown) => {

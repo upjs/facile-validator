@@ -5,8 +5,8 @@ export type ArrayOfValues<T> = {
 };
 
 export interface ValidatorOptions {
-  lang?: LangObject;
-  on?: EventsOption;
+  lang?: Record<string, string>;
+  on?: Event;
 }
 
 export interface Rule {
@@ -17,10 +17,6 @@ export interface Rules {
   [key: string]: Rule;
 }
 
-export interface LangObject {
-  [key: string]: string;
-}
-
 export interface ErrorDetail {
   element: HTMLElement;
   rule: string;
@@ -29,8 +25,11 @@ export interface ErrorDetail {
   args: string[];
 }
 
-export interface EventsOption {
+export interface Event {
   'validate:start'?: () => void;
   'validate:end'?: () => void;
   'error:field'?: (element: HTMLElement, errors: ErrorDetail[]) => void;
 }
+
+export type EventList = ArrayOfValues<Event>;
+export type EventName = keyof EventList;
