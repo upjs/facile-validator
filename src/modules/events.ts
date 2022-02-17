@@ -1,34 +1,35 @@
-import { Event, EventList, EventName } from '@/types';
+import { Events, EventsList, EventsName, EventsOption } from '@/types';
 
 export default class EventBus {
-  private events: EventList;
+  private events: EventsList;
 
-  constructor(events?: Event) {
+  constructor(events: EventsOption = {}) {
     this.events = {};
 
-    if (typeof events !== 'undefined' && Object.keys(events).length) {
-      Object.keys(events).forEach(<K extends EventName>(key: string) => {
-        this.events[key as K] = [];
-        this.events[key as K].push(events[key as K]);
-      });
-    }
+    const keys = Object.keys(events) as EventsName[];
+    keys.forEach(<K extends EventsName>(key: K) => {
+      if (typeof events[key] === 'function') {
+        this.events[key] = [];
+        (this.events[key] as Events[K][]).push(events[key] as Events[K]);
+      }
+    });
   }
 
-  public on(event: EventName, callback: unknown): void {
-    if (typeof this.events[event] === 'undefined') {
+  public on<K extends EventsName>(event: K, callback: Events[K]): void {
+    if (!this.events[event]) {
       this.events[event] = [];
     }
 
-    const events = this.events[event] as unknown[];
+    const events = this.events[event] as Events[K][];
     events.push(callback);
   }
 
-  public off(event: EventName, callback: unknown): void {
+  public off<K extends EventsName>(event: K, callback: Events[K]): void {
     if (typeof this.events[event] === 'undefined') {
       return;
     }
 
-    const events = this.events[event] as unknown[];
+    const events = this.events[event] as Events[K][];
     const index = events.indexOf(callback);
 
     if (index !== -1) {
@@ -36,11 +37,12 @@ export default class EventBus {
     }
   }
 
-  public call(event: EventName, ...args: unknown[]): void {
+  public call<K extends EventsName>(event: K, ...args: Parameters<Events[K]>): void {
     if (typeof this.events[event] !== 'undefined') {
-      const events = this.events[event] as unknown[];
-      events.forEach((callback: unknown) => {
-        (callback as (...args: unknown[]) => void)(...args);
+      const events = this.events[event] as ((...args: Parameters<Events[K]>) => void)[];
+
+      events.forEach((callback) => {
+        callback(...args);
       });
     }
   }

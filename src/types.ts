@@ -6,7 +6,7 @@ export type ArrayOfValues<T> = {
 
 export interface ValidatorOptions {
   lang?: Record<string, string>;
-  on?: Event;
+  on?: Events;
 }
 
 export interface Rule {
@@ -21,11 +21,14 @@ export interface ErrorDetail {
   args: string[];
 }
 
-export interface Event {
-  'validate:start'?: () => void;
-  'validate:end'?: () => void;
-  'error:field'?: (element: HTMLElement, errors: ErrorDetail[]) => void;
+export interface Events {
+  'validate:start': () => void;
+  'validate:end': () => void;
+  'error:field': (element: HTMLElement, errors: ErrorDetail[]) => void;
 }
 
-export type EventList = ArrayOfValues<Event>;
-export type EventName = keyof EventList;
+export type EventsName = keyof Events;
+export type EventsOption = Partial<Events>;
+export type EventsList = {
+  [P in EventsName]?: Events[P][];
+};

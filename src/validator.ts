@@ -1,5 +1,5 @@
 import * as rules from '@/rules';
-import { ValidatorOptions, EventName } from '@/types';
+import { ValidatorOptions, EventsName, Events } from '@/types';
 import ValidatorError from '@/modules/validator-error';
 import { getValue, toCamelCase } from '@/utils/helpers';
 import EventBus from './modules/events';
@@ -62,11 +62,11 @@ class Validator {
     };
   }
 
-  public on(event: EventName, callback: unknown): void {
+  public on<K extends EventsName>(event: K, callback: Events[K]): void {
     this.events.on(event, callback);
   }
 
-  public off(event: EventName, callback: unknown): void {
+  public off<K extends EventsName>(event: K, callback: Events[K]): void {
     this.events.off(event, callback);
   }
 
