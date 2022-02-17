@@ -8,11 +8,9 @@ class Validator {
   private validatorError: ValidatorError;
 
   constructor(el: string, options?: ValidatorOptions) {
-    const form = document.querySelector(el) as HTMLFormElement;
-    if (options?.lang) {
-      Language.set(options.lang);
-    }
     this.validatorError = new ValidatorError();
+    Language.set(options?.lang);
+    const form = document.querySelector(el) as HTMLFormElement;
 
     form.onsubmit = (event: SubmitEvent) => {
       this.removeErrors();
