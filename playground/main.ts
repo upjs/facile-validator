@@ -1,8 +1,8 @@
 import './style.css';
-import { Validator, enLocale } from '@/index';
+import { Validator, enLang } from '@/index';
 import { ErrorDetail } from '@/types';
 
-const validator = new Validator('form', { lang: enLocale });
+const validator = new Validator('form', { lang: enLang });
 
 validator.on('validate:start', () => {
   document.querySelectorAll('.validator-err').forEach((el) => {
