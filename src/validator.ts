@@ -8,11 +8,9 @@ class Validator {
   private validatorError: ValidatorError;
 
   constructor(el: string, options?: ValidatorOptions) {
-    const form = document.querySelector(el) as HTMLFormElement;
-    if (options?.lang) {
-      Language.set(options.lang);
-    }
+    Language.set(options?.lang);
     this.validatorError = new ValidatorError();
+    const form = document.querySelector(el) as HTMLFormElement;
 
     form.onsubmit = (event: SubmitEvent) => {
       this.removeErrors();
@@ -63,7 +61,7 @@ class Validator {
 
   private displayErrors() {
     this.validatorError.errors.forEach((errors) => {
-      errors.forEach((error) => {
+      errors.reverse().forEach((error) => {
         const messageElement = document.createElement('p');
         messageElement.classList.add('validator-err');
         messageElement.innerHTML = error.message;
