@@ -1,13 +1,15 @@
 import { LangObject } from '@/types';
 
-export default class Language {
-  private static lang?: LangObject;
+class Language {
+  private lang?: LangObject;
 
-  static set(lang?: LangObject) {
+  public set(lang?: LangObject) {
     this.lang = lang;
   }
 
-  static get() {
+  public get() {
     return this.lang ?? {};
   }
 }
+
+export default new Language();
