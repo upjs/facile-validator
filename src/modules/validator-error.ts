@@ -30,7 +30,7 @@ export default class ValidatorError {
       args: ruleError.args,
     };
 
-    errors.unshift(errorDetail);
+    errors.push(errorDetail);
   }
 
   public get hasError(): boolean {

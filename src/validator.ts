@@ -61,7 +61,7 @@ class Validator {
 
   private displayErrors() {
     this.validatorError.errors.forEach((errors) => {
-      errors.forEach((error) => {
+      errors.reverse().forEach((error) => {
         const messageElement = document.createElement('p');
         messageElement.classList.add('validator-err');
         messageElement.innerHTML = error.message;
