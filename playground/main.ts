@@ -2,7 +2,7 @@ import './style.css';
 import { Validator, enLocale } from '@/index';
 import { ErrorDetail } from '@/types';
 
-const validator = new Validator('form', { locale: enLocale });
+const validator = new Validator('form', { lang: enLocale });
 
 validator.on('validate:start', () => {
   document.querySelectorAll('.validator-err').forEach((el) => {

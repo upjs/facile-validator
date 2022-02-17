@@ -36,7 +36,12 @@
 
               <div class="mb-4">
                 <label>Password</label>
-                <input class="form-control" type="password" data-rules="required|string|min-length:5" />
+                <input id="password" class="form-control" type="password" data-rules="required|string|min-length:5" />
+              </div>
+
+              <div class="mb-4">
+                <label>Password Confirmation</label>
+                <input class="form-control" type="password" data-rules="required-if:password|string|min-length:5" />
               </div>
 
               <div class="mb-4">

@@ -3,15 +3,16 @@ import { Rules, ValidatorOptions } from '@/types';
 import ValidatorError from '@/modules/validator-error';
 import { getValue, toCamelCase } from '@/utils/helpers';
 import EventBus, { EventsName } from './modules/events';
+import Language from './modules/language';
 
 class Validator {
   private validatorError: ValidatorError;
   private events: EventBus;
 
   constructor(el: string, options?: ValidatorOptions) {
-    this.validatorError = new ValidatorError(options?.locale);
+    Language.set(options?.lang);
+    this.validatorError = new ValidatorError();
     this.events = new EventBus();
-
     const form = document.querySelector(el) as HTMLFormElement;
 
     form.onsubmit = (event: SubmitEvent) => {
