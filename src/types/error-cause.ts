@@ -12,4 +12,4 @@ export const ENDS_WITH = 'ends-with';
 export const INTEGER = 'integer';
 export const REQUIRED = 'required';
 export const WITHIN = 'within';
-export const REQUIRED_IF = 'required-if';
+export const ALPHA = 'alpha';
