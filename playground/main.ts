@@ -13,7 +13,7 @@ validator.on('validate:start', () => {
 validator.on('error:field', (element: HTMLElement, errors: ErrorDetail[]) => {
   const elem = element as HTMLInputElement;
 
-  errors.forEach((error) => {
+  errors.reverse().forEach((error) => {
     const messageElement = document.createElement('p');
     messageElement.classList.add('validator-err');
     messageElement.innerHTML = error.message;
