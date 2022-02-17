@@ -2,18 +2,21 @@ import * as rules from '@/rules';
 import { Rules, ValidatorOptions } from '@/types';
 import ValidatorError from '@/modules/validator-error';
 import { getValue, toCamelCase } from '@/utils/helpers';
+import EventBus, { EventsName } from './modules/events';
 import Language from './modules/language';
 
 class Validator {
   private validatorError: ValidatorError;
+  private events: EventBus;
 
   constructor(el: string, options?: ValidatorOptions) {
     Language.set(options?.lang);
     this.validatorError = new ValidatorError();
+    this.events = new EventBus(options?.on);
     const form = document.querySelector(el) as HTMLFormElement;
 
     form.onsubmit = (event: SubmitEvent) => {
-      this.removeErrors();
+      this.events.call('validate:start');
       this.validatorError.clearErrors();
 
       const fields = form.querySelectorAll('[data-rules]');
@@ -50,32 +53,30 @@ class Validator {
 
       if (this.validatorError.hasError) {
         event.preventDefault();
-        this.displayErrors();
+        this.errorEventTrigger();
       }
+
+      this.events.call('validate:end');
     };
+  }
+
+  public on(event: EventsName, callback: unknown): void {
+    this.events.on(event, callback);
+  }
+
+  public off(event: EventsName, callback: unknown): void {
+    this.events.off(event, callback);
   }
 
   private shouldStopOnFirstFailure(givenRules: Array<string>) {
     return givenRules.includes('bail');
   }
 
-  private displayErrors() {
+  private errorEventTrigger() {
     this.validatorError.errors.forEach((errors) => {
-      errors.reverse().forEach((error) => {
-        const messageElement = document.createElement('p');
-        messageElement.classList.add('validator-err');
-        messageElement.innerHTML = error.message;
+      if (errors.length === 0) return;
 
-        if (error.element.parentNode) {
-          error.element.parentNode.insertBefore(messageElement, error.element.nextSibling);
-        }
-      });
-    });
-  }
-
-  private removeErrors() {
-    document.querySelectorAll('.validator-err').forEach((el) => {
-      el.remove();
+      this.events.call('error:field', errors[0].element, errors);
     });
   }
 }

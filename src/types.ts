@@ -1,7 +1,12 @@
 import { RuleError } from '@/modules/rule-error';
 
+export type ArrayOfValues<T> = {
+  [P in keyof T]: T[P][];
+};
+
 export interface ValidatorOptions {
   lang?: LangObject;
+  on?: EventsOption;
 }
 
 export interface Rule {
@@ -22,4 +27,10 @@ export interface ErrorDetail {
   cause: string;
   message: string;
   args: string[];
+}
+
+export interface EventsOption {
+  'validate:start'?: () => void;
+  'validate:end'?: () => void;
+  'error:field'?: (element: HTMLElement, errors: ErrorDetail[]) => void;
 }
