@@ -27,9 +27,9 @@ function between(value: string, args: string): true | RuleError {
   if (min === Number.NEGATIVE_INFINITY && max === Number.POSITIVE_INFINITY) {
     return new RuleError('between', NUMBER);
   } else if (min === Number.NEGATIVE_INFINITY) {
-    return new RuleError('between', GREATER_EQUAL, maxArg);
+    return new RuleError('between', LESS_EQUAL, maxArg);
   } else if (max === Number.POSITIVE_INFINITY) {
-    return new RuleError('between', LESS_EQUAL, minArg);
+    return new RuleError('between', GREATER_EQUAL, minArg);
   } else {
     return new RuleError('between', BETWEEN, minArg, maxArg);
   }
