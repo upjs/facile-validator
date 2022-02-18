@@ -11,3 +11,4 @@ export { default as startsWith } from './starts-with';
 export { default as endsWith } from './ends-with';
 export { default as digits } from './digits';
 export { default as alpha } from './alpha';
+export { default as image } from './image';

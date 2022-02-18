@@ -7,6 +7,7 @@ export type ArrayOfValues<T> = {
 export interface ValidatorOptions {
   lang?: LangObject;
   on?: EventsOption;
+  autoSubmit?: boolean;
 }
 
 export interface Rule {
@@ -32,5 +33,6 @@ export interface ErrorDetail {
 export interface EventsOption {
   'validate:start'?: () => void;
   'validate:end'?: () => void;
+  'validate:success'?: (element: HTMLElement, errors: ErrorDetail[]) => void;
   'error:field'?: (element: HTMLElement, errors: ErrorDetail[]) => void;
 }

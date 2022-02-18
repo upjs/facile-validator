@@ -2,12 +2,19 @@ import './style.css';
 import { Validator, enLocale } from '@/index';
 import { ErrorDetail } from '@/types';
 
-const validator = new Validator('form', { lang: enLocale });
+const validator = new Validator('form', {
+  lang: enLocale,
+  autoSubmit: false,
+});
 
 validator.on('validate:start', () => {
   document.querySelectorAll('.validator-err').forEach((el) => {
     el.remove();
   });
+});
+
+validator.on('validate:success', () => {
+  alert('Success! Form validated with no errors');
 });
 
 validator.on('error:field', (element: HTMLElement, errors: ErrorDetail[]) => {

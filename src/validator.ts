@@ -8,29 +8,53 @@ import Language from './modules/language';
 class Validator {
   private validatorError: ValidatorError;
   private events: EventBus;
+  private options?: ValidatorOptions;
 
   constructor(el: string, options?: ValidatorOptions) {
+    this.options = options;
     Language.set(options?.lang);
     this.validatorError = new ValidatorError();
     this.events = new EventBus(options?.on);
-    const form = document.querySelector(el) as HTMLFormElement;
+    const form = document.querySelector(el);
 
-    form.onsubmit = (event: SubmitEvent) => {
-      this.events.call('validate:start');
-      this.validatorError.clearErrors();
+    if (form !== null && form instanceof HTMLFormElement) {
+      form.addEventListener('submit', this.handleSubmit.bind(this));
+    }
+  }
 
-      const fields = form.querySelectorAll('[data-rules]');
+  private async handleSubmit(event: SubmitEvent) {
+    event.preventDefault();
+    this.events.call('validate:start');
+    this.validatorError.clearErrors();
+    const form = event.target as HTMLFormElement;
+    await this.validate(form);
 
-      Array.prototype.forEach.call(fields, (input: HTMLInputElement) => {
+    if (this.validatorError.hasError) {
+      this.errorEventTrigger();
+    } else {
+      this.events.call('validate:success');
+      if (this.options?.autoSubmit !== false) {
+        form.submit();
+      }
+    }
+
+    this.events.call('validate:end');
+  }
+
+  private async validate(form: HTMLFormElement) {
+    const fields = form.querySelectorAll('[data-rules]') as NodeListOf<HTMLInputElement>;
+    let processedFields = 0;
+
+    return new Promise((resolve) => {
+      fields.forEach(async (input: HTMLInputElement) => {
         const fieldRules = input.getAttribute('data-rules')?.split('|');
 
         if (fieldRules) {
-          const value = getValue(input);
-
+          const value = await getValue(input);
+          processedFields++;
           for (const fieldRule of fieldRules) {
             // eslint-disable-next-line prefer-const
             let [rule, args = ''] = fieldRule.split(':');
-
             rule = toCamelCase(rule);
 
             if (rule in rules) {
@@ -44,20 +68,15 @@ class Validator {
                 }
               } catch (e) {
                 console.error(e);
-                event.preventDefault();
               }
             }
           }
         }
+        if (processedFields === fields.length) {
+          resolve('');
+        }
       });
-
-      if (this.validatorError.hasError) {
-        event.preventDefault();
-        this.errorEventTrigger();
-      }
-
-      this.events.call('validate:end');
-    };
+    });
   }
 
   public on(event: EventsName, callback: unknown): void {
