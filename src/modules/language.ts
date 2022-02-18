@@ -1,9 +1,7 @@
-import { LangObject } from '@/types';
-
 class Language {
-  private lang?: LangObject;
+  private lang?: Record<string, string>;
 
-  public set(lang?: LangObject) {
+  public set(lang?: Record<string, string>) {
     this.lang = lang;
   }
 

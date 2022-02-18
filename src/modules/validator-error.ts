@@ -1,10 +1,10 @@
-import { ErrorDetail, LangObject } from '@/types';
+import { ErrorDetail } from '@/types';
 import { lang } from '@/utils/helpers';
 import Language from './language';
 import { RuleError } from './rule-error';
 
 export default class ValidatorError {
-  public lang: LangObject;
+  public lang: Record<string, string>;
   public errorsList: ErrorDetail[][];
 
   constructor() {

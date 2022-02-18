@@ -5,21 +5,13 @@ export type ArrayOfValues<T> = {
 };
 
 export interface ValidatorOptions {
-  lang?: LangObject;
-  on?: EventsOption;
+  lang?: Record<string, string>;
+  on?: Events;
   autoSubmit?: boolean;
 }
 
 export interface Rule {
   (value: string, args?: string): true | RuleError;
-}
-
-export interface Rules {
-  [key: string]: Rule;
-}
-
-export interface LangObject {
-  [key: string]: string;
 }
 
 export interface ErrorDetail {
@@ -30,9 +22,15 @@ export interface ErrorDetail {
   args: string[];
 }
 
-export interface EventsOption {
-  'validate:start'?: () => void;
-  'validate:end'?: () => void;
-  'validate:success'?: (element: HTMLElement, errors: ErrorDetail[]) => void;
-  'error:field'?: (element: HTMLElement, errors: ErrorDetail[]) => void;
+export interface Events {
+  'validate:start': () => void;
+  'validate:end': () => void;
+  'validate:success': () => void;
+  'error:field': (element: HTMLElement, errors: ErrorDetail[]) => void;
 }
+
+export type EventsName = keyof Events;
+export type EventsOption = Partial<Events>;
+export type EventsList = {
+  [P in EventsName]?: Events[P][];
+};

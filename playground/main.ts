@@ -1,5 +1,5 @@
 import './style.css';
-import { Validator, enLocale } from '@/index';
+import { Validator, enLang } from '@/index';
 import { ErrorDetail } from '@/types';
 
 const validator = new Validator('form', {
