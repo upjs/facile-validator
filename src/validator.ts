@@ -23,19 +23,21 @@ class Validator {
     Language.set(this.options.lang);
     this.validatorError = new ValidatorError();
     this.events = new EventBus(this.options.on);
+
     const form = document.querySelector(el);
-
-    this.eventHandler = (event: SubmitEvent) => {
-      event.preventDefault();
-      this.validate().then(({ status, form }) => status === 'success' && this.options.autoSubmit && form.submit());
-    };
-
     if (form === null || !(form instanceof HTMLFormElement)) {
-      throw new Error('Form element not found');
-    } else {
-      this.form = form;
-      this.form.addEventListener('submit', this.eventHandler);
+      throw new Error('Invalid form element');
     }
+
+    this.eventHandler = async (event: SubmitEvent) => {
+      event.preventDefault();
+      const { status, form } = await this.validate();
+      if (status === 'success' && this.options.autoSubmit) {
+        form.submit();
+      }
+    };
+    form.addEventListener('submit', this.eventHandler);
+    this.form = form;
   }
 
   public revoke() {
@@ -52,16 +54,18 @@ class Validator {
       await this.validateFields(fields);
     }
 
+    let status: ValidateResponse['status'];
     if (this.validatorError.hasError) {
-      this.events.call('validate:failed', this.form);
+      status = 'failed';
       this.errorEventTrigger(this.validatorError.errors);
-      this.events.call('validate:end', this.form);
-      return Promise.resolve({ status: 'failed', form: this.form });
     } else {
-      this.events.call('validate:success', this.form);
-      this.events.call('validate:end', this.form);
-      return Promise.resolve({ status: 'success', form: this.form });
+      status = 'success';
     }
+
+    this.events.call(`validate:${status}`, this.form);
+    this.events.call('validate:end', this.form);
+
+    return Promise.resolve({ status, form: this.form });
   }
 
   public on<K extends EventsName>(event: K, callback: Events[K]): void {
