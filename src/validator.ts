@@ -23,15 +23,18 @@ class Validator {
     Language.set(this.options.lang);
     this.validatorError = new ValidatorError();
     this.events = new EventBus(this.options.on);
-    const form = document.querySelector(el);
 
-    this.eventHandler = (event: SubmitEvent) => {
+    this.eventHandler = async (event: SubmitEvent) => {
       event.preventDefault();
-      this.validate().then(({ status, form }) => status === 'success' && this.options.autoSubmit && form.submit());
+      const { status, form } = await this.validate();
+      if (status === 'success' && this.options.autoSubmit) {
+        form.submit();
+      }
     };
 
+    const form = document.querySelector(el);
     if (form === null || !(form instanceof HTMLFormElement)) {
-      throw new Error('Form element not found');
+      throw new Error('Invalid form element');
     } else {
       this.form = form;
       this.form.addEventListener('submit', this.eventHandler);
