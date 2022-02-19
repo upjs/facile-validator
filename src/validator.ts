@@ -24,6 +24,11 @@ class Validator {
     this.validatorError = new ValidatorError();
     this.events = new EventBus(this.options.on);
 
+    const form = document.querySelector(el);
+    if (form === null || !(form instanceof HTMLFormElement)) {
+      throw new Error('Invalid form element');
+    }
+
     this.eventHandler = async (event: SubmitEvent) => {
       event.preventDefault();
       const { status, form } = await this.validate();
@@ -31,14 +36,8 @@ class Validator {
         form.submit();
       }
     };
-
-    const form = document.querySelector(el);
-    if (form === null || !(form instanceof HTMLFormElement)) {
-      throw new Error('Invalid form element');
-    } else {
-      this.form = form;
-      this.form.addEventListener('submit', this.eventHandler);
-    }
+    form.addEventListener('submit', this.eventHandler);
+    this.form = form;
   }
 
   public revoke() {
