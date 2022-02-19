@@ -3,8 +3,8 @@ import { Validator, enLang } from '@/index';
 import { ErrorDetail } from '@/types';
 
 const validator = new Validator('form', {
-  lang: enLocale,
-  autoSubmit: false,
+  lang: enLang,
+  autoSubmit: true,
 });
 
 validator.on('validate:start', () => {
