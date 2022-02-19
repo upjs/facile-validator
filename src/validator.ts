@@ -52,16 +52,18 @@ class Validator {
       await this.validateFields(fields);
     }
 
+    let status: ValidateResponse['status'];
     if (this.validatorError.hasError) {
-      this.events.call('validate:failed', this.form);
+      status = 'failed';
       this.errorEventTrigger(this.validatorError.errors);
-      this.events.call('validate:end', this.form);
-      return Promise.resolve({ status: 'failed', form: this.form });
     } else {
-      this.events.call('validate:success', this.form);
-      this.events.call('validate:end', this.form);
-      return Promise.resolve({ status: 'success', form: this.form });
+      status = 'success';
     }
+
+    this.events.call(`validate:${status}`, this.form);
+    this.events.call('validate:end', this.form);
+
+    return Promise.resolve({ status, form: this.form });
   }
 
   public on<K extends EventsName>(event: K, callback: Events[K]): void {
