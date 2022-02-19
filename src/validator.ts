@@ -1,5 +1,5 @@
 import * as rules from '@/rules';
-import { ValidatorOptions, EventsName, Events } from '@/types';
+import { ValidatorOptions, EventsName, Events, ErrorDetail } from '@/types';
 import ValidatorError from '@/modules/validator-error';
 import { getValue, toCamelCase } from '@/utils/helpers';
 import EventBus from './modules/events';
@@ -15,6 +15,8 @@ class Validator {
   private validatorError: ValidatorError;
   private events: EventBus;
   private options: ValidatorOptions;
+  private eventHandler: (e: SubmitEvent) => void;
+  private form: HTMLFormElement;
 
   constructor(el: string, options: ValidatorOptions = {}) {
     this.options = Object.assign(defaultOptions, options);
@@ -23,40 +25,59 @@ class Validator {
     this.events = new EventBus(this.options.on);
     const form = document.querySelector(el);
 
-    if (form !== null && form instanceof HTMLFormElement) {
-      form.addEventListener('submit', this.handleSubmit.bind(this));
+    this.eventHandler = function (this: Validator, event: SubmitEvent) {
+      event.preventDefault();
+      this.handleSubmit();
+    }.bind(this);
+
+    if (form === null || !(form instanceof HTMLFormElement)) {
+      throw new Error('Form element not found');
+    } else {
+      this.form = form;
+      this.form.addEventListener('submit', this.eventHandler);
     }
   }
 
-  private async handleSubmit(event: SubmitEvent) {
-    event.preventDefault();
+  public revoke() {
+    this.form.removeEventListener('submit', this.eventHandler);
+  }
+
+  public async validate(): Promise<HTMLFormElement> {
     this.events.call('validate:start');
     this.validatorError.clearErrors();
-    const form = event.target as HTMLFormElement;
-    await this.validate(form);
+
+    const fields = this.form.querySelectorAll<HTMLInputElement>('[data-rules]');
+
+    if (fields.length > 0) {
+      await this.validateFields(fields);
+    }
 
     if (this.validatorError.hasError) {
       this.events.call('validate:failed');
-      this.errorEventTrigger();
+      this.errorEventTrigger(this.validatorError.errors);
+      return Promise.reject(this.validatorError.errors);
     } else {
       this.events.call('validate:success');
+      return Promise.resolve(this.form);
+    }
+  }
+
+  private handleSubmit() {
+    return this.validate().then((form) => {
       if (this.options.autoSubmit) {
         form.submit();
       }
-    }
-
-    this.events.call('validate:end');
+    });
   }
 
-  private async validate(form: HTMLFormElement) {
-    const fields = form.querySelectorAll('[data-rules]') as NodeListOf<HTMLInputElement>;
-    let processedFields = 0;
-
+  private async validateFields(fields: NodeListOf<HTMLInputElement>): Promise<void> {
     return new Promise((resolve) => {
-      fields.forEach(async (input: HTMLInputElement) => {
+      let processedFields = 0;
+
+      fields.forEach(async (input) => {
         const fieldRules = input.getAttribute('data-rules')?.split('|');
 
-        if (fieldRules) {
+        if (fieldRules && fieldRules.length > 0) {
           const value = await getValue(input);
 
           for (const fieldRule of fieldRules) {
@@ -95,8 +116,8 @@ class Validator {
     return givenRules.includes('bail');
   }
 
-  private errorEventTrigger() {
-    this.validatorError.errors.forEach((errors) => {
+  private errorEventTrigger(errors: ErrorDetail[][]) {
+    errors.forEach((errors) => {
       if (errors.length === 0) return;
 
       this.events.call('error:field', errors[0].element, errors);
