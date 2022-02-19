@@ -22,6 +22,11 @@ export interface ErrorDetail {
   args: string[];
 }
 
+export interface ValidateResponse {
+  form: HTMLFormElement;
+  status: 'failed' | 'success';
+}
+
 export interface Events {
   'validate:start': () => void;
   'validate:end': () => void;

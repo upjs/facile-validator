@@ -1,5 +1,5 @@
 import * as rules from '@/rules';
-import { ValidatorOptions, EventsName, Events, ErrorDetail } from '@/types';
+import { ValidatorOptions, EventsName, Events, ErrorDetail, ValidateResponse } from '@/types';
 import ValidatorError from '@/modules/validator-error';
 import { getValue, toCamelCase } from '@/utils/helpers';
 import EventBus from './modules/events';
@@ -25,10 +25,10 @@ class Validator {
     this.events = new EventBus(this.options.on);
     const form = document.querySelector(el);
 
-    this.eventHandler = function (this: Validator, event: SubmitEvent) {
+    this.eventHandler = (event: SubmitEvent) => {
       event.preventDefault();
-      this.handleSubmit();
-    }.bind(this);
+      this.validate().then(({ status, form }) => status === 'success' && this.options.autoSubmit && form.submit());
+    };
 
     if (form === null || !(form instanceof HTMLFormElement)) {
       throw new Error('Form element not found');
@@ -42,7 +42,7 @@ class Validator {
     this.form.removeEventListener('submit', this.eventHandler);
   }
 
-  public async validate(): Promise<HTMLFormElement> {
+  public async validate(): Promise<ValidateResponse> {
     this.events.call('validate:start');
     this.validatorError.clearErrors();
 
@@ -55,19 +55,21 @@ class Validator {
     if (this.validatorError.hasError) {
       this.events.call('validate:failed');
       this.errorEventTrigger(this.validatorError.errors);
-      return Promise.reject(this.validatorError.errors);
+      this.events.call('validate:end');
+      return Promise.resolve({ status: 'failed', form: this.form });
     } else {
       this.events.call('validate:success');
-      return Promise.resolve(this.form);
+      this.events.call('validate:end');
+      return Promise.resolve({ status: 'success', form: this.form });
     }
   }
 
-  private handleSubmit() {
-    return this.validate().then((form) => {
-      if (this.options.autoSubmit) {
-        form.submit();
-      }
-    });
+  public on<K extends EventsName>(event: K, callback: Events[K]): void {
+    this.events.on(event, callback);
+  }
+
+  public off<K extends EventsName>(event: K, callback: Events[K]): void {
+    this.events.off(event, callback);
   }
 
   private async validateFields(fields: NodeListOf<HTMLInputElement>): Promise<void> {
@@ -102,14 +104,6 @@ class Validator {
         }
       });
     });
-  }
-
-  public on<K extends EventsName>(event: K, callback: Events[K]): void {
-    this.events.on(event, callback);
-  }
-
-  public off<K extends EventsName>(event: K, callback: Events[K]): void {
-    this.events.off(event, callback);
   }
 
   private shouldStopOnFirstFailure(givenRules: Array<string>) {
