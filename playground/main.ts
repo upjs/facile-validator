@@ -17,7 +17,7 @@ validator.on('validate:success', () => {
   alert('Success! Form validated with no errors');
 });
 
-validator.on('error:field', (element: HTMLElement, errors: ErrorDetail[]) => {
+validator.on('error:field', (_form: HTMLFormElement, element: HTMLElement, errors: ErrorDetail[]) => {
   const elem = element as HTMLInputElement;
 
   errors.reverse().forEach((error) => {
