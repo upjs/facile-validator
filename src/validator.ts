@@ -32,6 +32,7 @@ class Validator {
     await this.validate(form);
 
     if (this.validatorError.hasError) {
+      this.events.call('validate:failed');
       this.errorEventTrigger();
     } else {
       this.events.call('validate:success');

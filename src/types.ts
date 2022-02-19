@@ -26,6 +26,7 @@ export interface Events {
   'validate:start': () => void;
   'validate:end': () => void;
   'validate:success': () => void;
+  'validate:failed': () => void;
   'error:field': (element: HTMLElement, errors: ErrorDetail[]) => void;
 }
 
