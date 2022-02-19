@@ -40,7 +40,7 @@ class Validator {
       this.errorEventTrigger();
     } else {
       this.events.call('validate:success');
-      if (this.options.autoSubmit !== false) {
+      if (this.options.autoSubmit) {
         form.submit();
       }
     }
