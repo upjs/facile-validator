@@ -2,7 +2,10 @@ import './style.css';
 import { Validator, enLang } from '@/index';
 import { ErrorDetail } from '@/types';
 
-const validator = new Validator('form', { lang: enLang });
+const validator = new Validator('form', {
+  lang: enLang,
+  autoSubmit: true,
+});
 
 validator.on('validate:start', () => {
   document.querySelectorAll('.validator-err').forEach((el) => {
@@ -10,7 +13,11 @@ validator.on('validate:start', () => {
   });
 });
 
-validator.on('error:field', (element: HTMLElement, errors: ErrorDetail[]) => {
+validator.on('validate:success', () => {
+  alert('Success! Form validated with no errors');
+});
+
+validator.on('error:field', (_form: HTMLFormElement, element: HTMLElement, errors: ErrorDetail[]) => {
   const elem = element as HTMLInputElement;
 
   errors.reverse().forEach((error) => {

@@ -7,6 +7,7 @@ export type ArrayOfValues<T> = {
 export interface ValidatorOptions {
   lang?: Record<string, string>;
   on?: Events;
+  autoSubmit?: boolean;
 }
 
 export interface Rule {
@@ -21,10 +22,17 @@ export interface ErrorDetail {
   args: string[];
 }
 
+export interface ValidateResponse {
+  form: HTMLFormElement;
+  status: 'failed' | 'success';
+}
+
 export interface Events {
-  'validate:start': () => void;
-  'validate:end': () => void;
-  'error:field': (element: HTMLElement, errors: ErrorDetail[]) => void;
+  'validate:start': (form: HTMLFormElement) => void;
+  'validate:end': (form: HTMLFormElement) => void;
+  'validate:success': (form: HTMLFormElement) => void;
+  'validate:failed': (form: HTMLFormElement) => void;
+  'error:field': (form: HTMLFormElement, element: HTMLElement, errors: ErrorDetail[]) => void;
 }
 
 export type EventsName = keyof Events;
