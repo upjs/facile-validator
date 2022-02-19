@@ -7,16 +7,20 @@ import Language from './modules/language';
 
 type RuleKey = keyof typeof rules;
 
+const defaultOptions: ValidatorOptions = {
+  autoSubmit: true,
+};
+
 class Validator {
   private validatorError: ValidatorError;
   private events: EventBus;
-  private options?: ValidatorOptions;
+  private options: ValidatorOptions;
 
-  constructor(el: string, options?: ValidatorOptions) {
-    this.options = options;
-    Language.set(options?.lang);
+  constructor(el: string, options: ValidatorOptions = {}) {
+    this.options = Object.assign(defaultOptions, options);
+    Language.set(this.options.lang);
     this.validatorError = new ValidatorError();
-    this.events = new EventBus(options?.on);
+    this.events = new EventBus(this.options.on);
     const form = document.querySelector(el);
 
     if (form !== null && form instanceof HTMLFormElement) {
@@ -36,7 +40,7 @@ class Validator {
       this.errorEventTrigger();
     } else {
       this.events.call('validate:success');
-      if (this.options?.autoSubmit !== false) {
+      if (this.options.autoSubmit !== false) {
         form.submit();
       }
     }
