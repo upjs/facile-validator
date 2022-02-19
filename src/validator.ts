@@ -54,29 +54,26 @@ class Validator {
 
         if (fieldRules) {
           const value = await getValue(input);
-          processedFields++;
+
           for (const fieldRule of fieldRules) {
             // eslint-disable-next-line prefer-const
             let [rule, args = ''] = fieldRule.split(':');
             rule = toCamelCase(rule);
 
             if (rule in rules) {
-              try {
-                const result = rules[rule as RuleKey](value, args);
-                if (result instanceof Error) {
-                  this.validatorError.setError(input, result);
-                  if (this.shouldStopOnFirstFailure(fieldRules)) {
-                    break;
-                  }
+              const result = rules[rule as RuleKey](value, args);
+              if (result instanceof Error) {
+                this.validatorError.setError(input, result);
+                if (this.shouldStopOnFirstFailure(fieldRules)) {
+                  break;
                 }
-              } catch (e) {
-                console.error(e);
               }
             }
           }
         }
-        if (processedFields === fields.length) {
-          resolve('');
+
+        if (++processedFields === fields.length) {
+          resolve(undefined);
         }
       });
     });
