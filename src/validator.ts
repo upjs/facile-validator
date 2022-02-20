@@ -1,5 +1,5 @@
 import * as rules from '@/rules';
-import { ValidatorOptions, EventsName, Events, ErrorDetail, ValidateResponse } from '@/types';
+import { ValidatorOptions, EventsName, Events, ValidateResponse } from '@/types';
 import ValidatorError from '@/modules/validator-error';
 import { getValue, toCamelCase } from '@/utils/helpers';
 import EventBus from './modules/events';
@@ -29,6 +29,12 @@ class Validator {
     this.validatorError = new ValidatorError();
     this.events = new EventBus(this.options.on);
 
+    // reset errors on validate:start
+    this.events.on('validate:start', () => this.validatorError.clearErrors());
+
+    // manage errors on validate:failed
+    this.events.on('validate:failed', () => this.errorEventTrigger());
+
     this.eventHandler = async (event: SubmitEvent) => {
       event.preventDefault();
       const { status, form } = await this.validate();
@@ -46,22 +52,13 @@ class Validator {
 
   public async validate(): Promise<ValidateResponse> {
     this.events.call('validate:start', this.form);
-    this.validatorError.clearErrors();
 
     const fields = this.form.querySelectorAll<HTMLInputElement>('[data-rules]');
-
     if (fields.length > 0) {
       await this.validateFields(fields);
     }
 
-    let status: ValidateResponse['status'];
-    if (this.validatorError.hasError) {
-      status = 'failed';
-      this.errorEventTrigger(this.validatorError.errors);
-    } else {
-      status = 'success';
-    }
-
+    const status = this.validatorError.hasError ? 'failed' : 'success';
     this.events.call(`validate:${status}`, this.form);
     this.events.call('validate:end', this.form, status);
 
@@ -114,7 +111,9 @@ class Validator {
     return givenRules.includes('bail');
   }
 
-  private errorEventTrigger(errors: ErrorDetail[][]) {
+  private errorEventTrigger() {
+    const errors = this.validatorError.errors;
+
     errors.forEach((errors) => {
       if (errors.length === 0) return;
 
