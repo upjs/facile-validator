@@ -77,11 +77,11 @@ class Validator {
     return new Promise((resolve) => {
       let processedFields = 0;
 
-      fields.forEach(async (input) => {
-        const fieldRules = input.getAttribute('data-rules')?.split('|');
+      fields.forEach(async (field) => {
+        const fieldRules = field.getAttribute('data-rules')?.split('|');
 
         if (fieldRules && fieldRules.length > 0) {
-          const value = await getValue(input);
+          const value = await getValue(field);
 
           for (const fieldRule of fieldRules) {
             // eslint-disable-next-line prefer-const
@@ -91,7 +91,7 @@ class Validator {
             if (rule in rules) {
               const result = rules[rule as RuleKey](value, args);
               if (result instanceof Error) {
-                this.validatorError.setError(input, result);
+                this.validatorError.setError(field, result);
                 if (this.shouldStopOnFirstFailure(fieldRules)) {
                   break;
                 }
