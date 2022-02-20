@@ -15,6 +15,8 @@ describe('rules: gte', () => {
     expect(gte('1', '2')).instanceOf(Error);
     expect(gte('-200', '-100')).instanceOf(Error);
     expect(gte('0', '1')).instanceOf(Error);
+    expect(gte('', '10')).instanceOf(Error);
+    expect(gte('', '-10')).instanceOf(Error);
   });
 
   it('should throw error on invalid argument', () => {
