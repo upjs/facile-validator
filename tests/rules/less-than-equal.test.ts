@@ -15,6 +15,8 @@ describe('rules: lte', () => {
     expect(lte('1', '0')).instanceOf(Error);
     expect(lte('-200', '-1000')).instanceOf(Error);
     expect(lte('0', '-1')).instanceOf(Error);
+    expect(lte('', '10')).instanceOf(Error);
+    expect(lte('', '-10')).instanceOf(Error);
   });
 
   it('should throw error on invalid argument', () => {
