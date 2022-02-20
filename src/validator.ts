@@ -19,15 +19,15 @@ class Validator {
   private form: HTMLFormElement;
 
   constructor(el: string, options: ValidatorOptions = {}) {
-    this.options = Object.assign(defaultOptions, options);
-    Language.set(this.options.lang);
-    this.validatorError = new ValidatorError();
-    this.events = new EventBus(this.options.on);
-
     const form = document.querySelector(el);
     if (form === null || !(form instanceof HTMLFormElement)) {
       throw new Error('Invalid form element');
     }
+
+    this.options = Object.assign(defaultOptions, options);
+    Language.set(this.options.lang);
+    this.validatorError = new ValidatorError();
+    this.events = new EventBus(this.options.on);
 
     this.eventHandler = async (event: SubmitEvent) => {
       event.preventDefault();
