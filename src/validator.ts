@@ -63,7 +63,7 @@ class Validator {
     }
 
     this.events.call(`validate:${status}`, this.form);
-    this.events.call('validate:end', this.form);
+    this.events.call('validate:end', this.form, status);
 
     return Promise.resolve({ status, form: this.form });
   }

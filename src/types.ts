@@ -29,7 +29,7 @@ export interface ValidateResponse {
 
 export interface Events {
   'validate:start': (form: HTMLFormElement) => void;
-  'validate:end': (form: HTMLFormElement) => void;
+  'validate:end': (form: HTMLFormElement, status: ValidateResponse['status']) => void;
   'validate:success': (form: HTMLFormElement) => void;
   'validate:failed': (form: HTMLFormElement) => void;
   'error:field': (form: HTMLFormElement, element: HTMLElement, errors: ErrorDetail[]) => void;
