@@ -12,5 +12,6 @@ export { default as endsWith } from './ends-with';
 export { default as digits } from './digits';
 export { default as alpha } from './alpha';
 export { default as image } from './image';
-export { default as lessThanEqual, default as lte } from './less-than-equal';
+export { default as greaterThan, default as gt } from './greater-than';
 export { default as greaterThanEqual, default as gte } from './greater-than-equal';
+export { default as lessThanEqual, default as lte } from './less-than-equal';

@@ -3,6 +3,7 @@ export const MAX_LENGTH = 'max-length';
 export const MIN_LENGTH = 'min-length';
 export const NUMBER = 'number';
 export const BETWEEN = 'between';
+export const GREATER = 'greater';
 export const GREATER_EQUAL = 'greater-equal';
 export const LESS_EQUAL = 'less-equal';
 export const DIGITS = 'digits';
