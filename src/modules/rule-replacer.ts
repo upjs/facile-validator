@@ -1,16 +1,17 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
 import { required } from '@/rules';
+import { ReplacerFn } from '@/types';
 import { getSyncValue } from '@/utils/helpers';
 
-export function replaceRule(rule: string, rules: string[], _form: HTMLFormElement): string {
-  if (rule.includes('size:')) {
-    return replaceSizeRule(rule, rules);
-  } else if (rule.includes('required-if:')) {
-    return replaceRequiredIfRule(rule);
-  }
+const mapMethods: Record<string, ReplacerFn> = {
+  requiredIf: replaceRequiredIfRule,
+  size: replaceSizeRule,
+};
 
-  return rule;
+export function replaceRule(rule: string, rules: string[], form: HTMLFormElement): string {
+  const ruleName = rule.split(':')[0];
+  return mapMethods[ruleName]?.(rule, rules, form) || rule;
 }
 
 function processRule(rule: string): { name: string; args: string[] } {
@@ -22,8 +23,8 @@ function processRule(rule: string): { name: string; args: string[] } {
   };
 }
 
-function replaceSizeRule(rule: string, rules: string[]): string {
-  const RULE = processRule(rule);
+function replaceSizeRule(rule: string, rules: string[], _form: HTMLFormElement): string {
+  const { name: NAME, args: ARGS } = processRule(rule);
 
   const indexOfRule = rules.indexOf(rule);
   const rulesBeforeRule = rules.slice(0, indexOfRule);
@@ -33,17 +34,17 @@ function replaceSizeRule(rule: string, rules: string[]): string {
     type = 'number';
   }
 
-  return `${RULE.name}:${type},${RULE.args.join(',')}`;
+  return `${NAME}:${type},${ARGS.join(',')}`;
 }
 
-function replaceRequiredIfRule(rule: string): string {
-  const RULE = processRule(rule);
+function replaceRequiredIfRule(rule: string, _rules: string[], _form: HTMLFormElement): string {
+  const { name: NAME, args: ARGS } = processRule(rule);
 
-  if (RULE.args.length === 0) return `${RULE.name}`;
+  if (ARGS.length === 0) return NAME;
 
-  const field = document.getElementById(RULE.args[0]);
+  const field = document.getElementById(ARGS[0]);
   const fieldValue = getSyncValue(field as HTMLInputElement) || '';
   const hasValue = required(fieldValue);
 
-  return hasValue === true ? `${RULE.name}:true` : `${RULE.name}:false`;
+  return hasValue === true ? `${NAME}:true` : `${NAME}:false`;
 }

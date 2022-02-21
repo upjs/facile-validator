@@ -40,3 +40,5 @@ export type EventsOption = Partial<Events>;
 export type EventsList = {
   [P in EventsName]?: Events[P][];
 };
+
+export type ReplacerFn = (rule: string, rules: string[], form: HTMLFormElement) => string;
