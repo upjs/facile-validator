@@ -6,18 +6,22 @@ export function toCamelCase(value: string) {
   return value.replace(/-./g, (match) => match[1].toUpperCase());
 }
 
-export async function getValue(element: HTMLInputElement): Promise<string> {
+export function getSyncValue(element: HTMLInputElement): string {
   if (element.type === TYPE_CHECKBOX || element.type === TYPE_RADIO) {
     return String(element.checked);
   }
 
+  return element.value;
+}
+
+export async function getValue(element: HTMLInputElement): Promise<string> {
   if (element.type === TYPE_FILE && element.files) {
     const value = await fileToString(element.files[0]);
 
     return value;
+  } else {
+    return getSyncValue(element);
   }
-
-  return element.value;
 }
 
 export function format(message: string, ...toReplace: string[]) {

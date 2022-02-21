@@ -1,8 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
+import { required } from '@/rules';
+import { getSyncValue } from '@/utils/helpers';
+
 export function replaceRule(rule: string, rules: string[], _form: HTMLFormElement): string {
   if (rule.includes('size:')) {
     return replaceSizeRule(rule, rules);
+  } else if (rule.includes('required-if:')) {
+    return replaceRequiredIfRule(rule);
   }
 
   return rule;
@@ -29,4 +34,16 @@ function replaceSizeRule(rule: string, rules: string[]): string {
   }
 
   return `${RULE.name}:${type},${RULE.args.join(',')}`;
+}
+
+function replaceRequiredIfRule(rule: string): string {
+  const RULE = processRule(rule);
+
+  if (RULE.args.length === 0) return `${RULE.name}`;
+
+  const field = document.getElementById(RULE.args[0]);
+  const fieldValue = getSyncValue(field as HTMLInputElement) || '';
+  const hasValue = required(fieldValue);
+
+  return hasValue === true ? `${RULE.name}:true` : `${RULE.name}:false`;
 }

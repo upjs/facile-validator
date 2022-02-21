@@ -1,4 +1,5 @@
 export { default as required } from './required';
+export { default as requiredIf } from './required-if';
 export { default as minLength } from './min-length';
 export { default as maxLength } from './max-length';
 export { default as email } from './email';
