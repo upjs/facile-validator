@@ -16,3 +16,4 @@ export { default as greaterThan, default as gt } from './greater-than';
 export { default as greaterThanEqual, default as gte } from './greater-than-equal';
 export { default as lessThanEqual, default as lte } from './less-than-equal';
 export { default as lessThan, default as lt } from './less-than';
+export { default as size } from './size';

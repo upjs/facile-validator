@@ -5,6 +5,7 @@ import { getValue, toCamelCase } from '@/utils/helpers';
 import EventBus from './modules/events';
 import Language from './modules/language';
 import { RuleError } from './modules/rule-error';
+import { replaceRule } from './modules/rule-replacer';
 
 type RuleKey = keyof typeof rules;
 
@@ -84,8 +85,9 @@ class Validator {
         if (fieldRules && fieldRules.length > 0) {
           const value = await getValue(field);
           const shouldStopOnFirstFailure = this.shouldStopOnFirstFailure(fieldRules);
+          const computedFieldRules = this.getComputedFieldRules(fieldRules);
 
-          for (const fieldRule of fieldRules) {
+          for (const fieldRule of computedFieldRules) {
             // eslint-disable-next-line prefer-const
             let [rule, args = ''] = fieldRule.split(':');
             rule = toCamelCase(rule);
@@ -112,6 +114,10 @@ class Validator {
 
   private shouldStopOnFirstFailure(givenRules: Array<string>) {
     return givenRules.includes('bail');
+  }
+
+  private getComputedFieldRules(givenRules: string[]): string[] {
+    return givenRules.map((rule) => replaceRule(rule, givenRules, this.form));
   }
 
   private errorEventTrigger() {
