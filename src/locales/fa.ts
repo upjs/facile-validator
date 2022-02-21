@@ -18,4 +18,6 @@ export default {
   [causes.REQUIRED]: 'این فیلد الزامی است',
   [causes.WITHIN]: 'مقدار این فیلد نادرست است',
   [causes.ALPHA]: 'لطفاً فقط حروف الفبا وارد کنید',
+  [causes.SIZE_NUMBER]: 'مقدار این فیلد باید $1 باشد',
+  [causes.SIZE_STRING]: 'مقدار این فیلد باید $1 حرف باشد',
 };

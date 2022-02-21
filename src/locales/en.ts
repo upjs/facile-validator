@@ -18,4 +18,6 @@ export default {
   [causes.REQUIRED]: 'This field is required',
   [causes.WITHIN]: 'The value is incorrect',
   [causes.ALPHA]: 'Please enter only alphabetic characters',
+  [causes.SIZE_NUMBER]: 'The value must be equal to $1',
+  [causes.SIZE_STRING]: 'The value must have $1 characters',
 };

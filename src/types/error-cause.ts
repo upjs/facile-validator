@@ -15,3 +15,5 @@ export const INTEGER = 'integer';
 export const REQUIRED = 'required';
 export const WITHIN = 'within';
 export const ALPHA = 'alpha';
+export const SIZE_NUMBER = 'size-number';
+export const SIZE_STRING = 'size-string';

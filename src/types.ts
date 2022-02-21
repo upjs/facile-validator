@@ -22,14 +22,11 @@ export interface ErrorDetail {
   args: string[];
 }
 
-export interface ValidateResponse {
-  form: HTMLFormElement;
-  status: 'failed' | 'success';
-}
+export type ValidateResponse = 'failed' | 'success';
 
 export interface Events {
   'validate:start': (form: HTMLFormElement) => void;
-  'validate:end': (form: HTMLFormElement, status: ValidateResponse['status']) => void;
+  'validate:end': (form: HTMLFormElement, status: ValidateResponse) => void;
   'validate:success': (form: HTMLFormElement) => void;
   'validate:failed': (form: HTMLFormElement) => void;
   'error:field': (form: HTMLFormElement, element: HTMLElement, errors: ErrorDetail[]) => void;
@@ -40,3 +37,5 @@ export type EventsOption = Partial<Events>;
 export type EventsList = {
   [P in EventsName]?: Events[P][];
 };
+
+export type ReplacerFn = (rule: string, rules: string[], form: HTMLFormElement) => string;
