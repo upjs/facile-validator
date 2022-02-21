@@ -3,20 +3,20 @@ import { RuleError } from '@/modules/rule-error';
 import { throwErrorIfArgsNotProvided } from '@/utils/checker';
 import { GREATER } from '@/types/error-cause';
 
-function greaterThanEqual(value: string, args: string): true | RuleError {
+function greaterThan(value: string, args: string): true | RuleError {
   throwErrorIfArgsNotProvided(args, 'gt (greater-than) rule expects exactly one argument');
 
-  const max = Number(args);
+  const min = Number(args);
 
-  if (Number.isNaN(max)) {
+  if (Number.isNaN(min)) {
     throw new Error('gt (greater-than) rule expects a number as argument');
   }
 
-  if (value !== '' && Number(value) > max) {
+  if (value !== '' && Number(value) > min) {
     return true;
   }
 
   return new RuleError('greater-than', GREATER, args);
 }
 
-export default greaterThanEqual as Rule;
+export default greaterThan as Rule;

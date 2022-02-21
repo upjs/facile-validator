@@ -6,13 +6,13 @@ import { GREATER_EQUAL } from '@/types/error-cause';
 function greaterThanEqual(value: string, args: string): true | RuleError {
   throwErrorIfArgsNotProvided(args, 'gte (greater-than-equal) rule expects exactly one argument');
 
-  const max = Number(args);
+  const min = Number(args);
 
-  if (Number.isNaN(max)) {
+  if (Number.isNaN(min)) {
     throw new Error('gte (greater-than-equal) rule expects a number as argument');
   }
 
-  if (value !== '' && Number(value) >= max) {
+  if (value !== '' && Number(value) >= min) {
     return true;
   }
 
