@@ -4,6 +4,7 @@ import ValidatorError from '@/modules/validator-error';
 import { getValue, toCamelCase } from '@/utils/helpers';
 import EventBus from './modules/events';
 import Language from './modules/language';
+import { RuleError } from './modules/rule-error';
 
 type RuleKey = keyof typeof rules;
 
@@ -91,7 +92,8 @@ class Validator {
 
             if (rule in rules) {
               const result = rules[rule as RuleKey](value, args);
-              if (result instanceof Error) {
+
+              if (result instanceof RuleError) {
                 this.validatorError.setError(field, result);
 
                 // stop on first failure when 'bail' is set
