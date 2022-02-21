@@ -17,6 +17,12 @@ describe('rules: size', () => {
     expect(size('abc', 'string,2')).instanceOf(Error);
     expect(size('abc', 'string,4')).instanceOf(Error);
     expect(size('', 'string,1')).instanceOf(Error);
+
+    expect(size('123', 'number,0')).instanceOf(Error);
+    expect(size('123', 'number,124')).instanceOf(Error);
+    expect(size('123', 'number,1234')).instanceOf(Error);
+    expect(size('123', 'number,-123')).instanceOf(Error);
+    expect(size('-123', 'number,123')).instanceOf(Error);
   });
 
   it('should throw error on invalid argument', () => {

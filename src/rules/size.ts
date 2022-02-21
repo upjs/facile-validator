@@ -9,7 +9,7 @@ function size(value: string, args: string): true | RuleError {
   const [type, size] = args.split(',');
 
   const sizeInNumber = Number(size);
-  if (Number.isNaN(sizeInNumber) || sizeInNumber < 0) {
+  if (Number.isNaN(sizeInNumber) || (type === 'string' && sizeInNumber < 0)) {
     throw new Error('size rule expects a positive number as its argument');
   }
 
