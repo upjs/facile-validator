@@ -82,6 +82,7 @@ class Validator {
 
         if (fieldRules && fieldRules.length > 0) {
           const value = await getValue(field);
+          const shouldStopOnFirstFailure = this.shouldStopOnFirstFailure(fieldRules);
 
           for (const fieldRule of fieldRules) {
             // eslint-disable-next-line prefer-const
@@ -92,9 +93,9 @@ class Validator {
               const result = rules[rule as RuleKey](value, args);
               if (result instanceof Error) {
                 this.validatorError.setError(field, result);
-                if (this.shouldStopOnFirstFailure(fieldRules)) {
-                  break;
-                }
+
+                // stop on first failure when 'bail' is set
+                if (shouldStopOnFirstFailure) break;
               }
             }
           }
