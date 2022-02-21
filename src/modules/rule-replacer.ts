@@ -2,7 +2,7 @@
 
 import { required } from '@/rules';
 import { ReplacerFn } from '@/types';
-import { getSyncValue } from '@/utils/helpers';
+import { getValue } from '@/utils/helpers';
 
 const mapMethods: Record<string, ReplacerFn> = {
   requiredIf: replaceRequiredIfRule,
@@ -43,7 +43,7 @@ function replaceRequiredIfRule(rule: string, _rules: string[], _form: HTMLFormEl
   if (ARGS.length === 0) return NAME;
 
   const field = document.getElementById(ARGS[0]);
-  const fieldValue = getSyncValue(field as HTMLInputElement) || '';
+  const fieldValue = getValue(field as HTMLInputElement);
   const hasValue = required(fieldValue);
 
   return hasValue === true ? `${NAME}:true` : `${NAME}:false`;

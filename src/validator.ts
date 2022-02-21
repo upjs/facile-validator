@@ -37,13 +37,7 @@ class Validator {
     // manage errors on validate:failed
     this.events.on('validate:failed', () => this.errorEventTrigger());
 
-    this.eventHandler = async (event: SubmitEvent) => {
-      event.preventDefault();
-      const { status, form } = await this.validate();
-      if (status === 'success' && this.options.autoSubmit) {
-        form.submit();
-      }
-    };
+    this.eventHandler = (event: SubmitEvent) => this.validate() === 'failed' && event.preventDefault();
     form.addEventListener('submit', this.eventHandler);
     this.form = form;
   }
@@ -52,19 +46,25 @@ class Validator {
     this.form.removeEventListener('submit', this.eventHandler);
   }
 
-  public async validate(): Promise<ValidateResponse> {
+  public validate(): ValidateResponse {
     this.events.call('validate:start', this.form);
 
     const fields = this.form.querySelectorAll<HTMLInputElement>('[data-rules]');
+    let isSuccessful = true;
     if (fields.length > 0) {
-      await this.validateFields(fields);
+      try {
+        isSuccessful = this.validateFields(Array.from(fields));
+      } catch (error) {
+        console.error(error);
+        return 'failed';
+      }
     }
 
-    const status = this.validatorError.hasError ? 'failed' : 'success';
+    const status = isSuccessful ? 'success' : 'failed';
     this.events.call(`validate:${status}`, this.form);
     this.events.call('validate:end', this.form, status);
 
-    return Promise.resolve({ status, form: this.form });
+    return status;
   }
 
   public on<K extends EventsName>(event: K, callback: Events[K]): void {
@@ -75,41 +75,35 @@ class Validator {
     this.events.off(event, callback);
   }
 
-  private async validateFields(fields: NodeListOf<HTMLInputElement>): Promise<void> {
-    return new Promise((resolve) => {
-      let processedFields = 0;
+  private validateFields(fields: HTMLInputElement[]): boolean {
+    for (const field of fields) {
+      const fieldRules = field.getAttribute('data-rules')?.split('|');
 
-      fields.forEach(async (field) => {
-        const fieldRules = field.getAttribute('data-rules')?.split('|');
+      if (fieldRules && fieldRules.length > 0) {
+        const value = getValue(field);
+        const shouldStopOnFirstFailure = this.shouldStopOnFirstFailure(fieldRules);
+        const computedFieldRules = this.getComputedFieldRules(fieldRules);
 
-        if (fieldRules && fieldRules.length > 0) {
-          const value = await getValue(field);
-          const shouldStopOnFirstFailure = this.shouldStopOnFirstFailure(fieldRules);
-          const computedFieldRules = this.getComputedFieldRules(fieldRules);
+        for (const fieldRule of computedFieldRules) {
+          // eslint-disable-next-line prefer-const
+          let [rule, args = ''] = fieldRule.split(':');
+          rule = toCamelCase(rule);
 
-          for (const fieldRule of computedFieldRules) {
-            // eslint-disable-next-line prefer-const
-            let [rule, args = ''] = fieldRule.split(':');
-            rule = toCamelCase(rule);
+          if (rule in rules) {
+            const result = rules[rule as RuleKey](value, args);
 
-            if (rule in rules) {
-              const result = rules[rule as RuleKey](value, args);
+            if (result instanceof RuleError) {
+              this.validatorError.setError(field, result);
 
-              if (result instanceof RuleError) {
-                this.validatorError.setError(field, result);
-
-                // stop on first failure when 'bail' is set
-                if (shouldStopOnFirstFailure) break;
-              }
+              // stop on first failure when 'bail' is set
+              if (shouldStopOnFirstFailure) break;
             }
           }
         }
+      }
+    }
 
-        if (++processedFields === fields.length) {
-          resolve(undefined);
-        }
-      });
-    });
+    return !this.validatorError.hasError;
   }
 
   private shouldStopOnFirstFailure(givenRules: Array<string>) {
