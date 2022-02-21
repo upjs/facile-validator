@@ -8,6 +8,7 @@ export default {
   [causes.BETWEEN]: 'Please enter a number between $1 and $2',
   [causes.GREATER]: 'Please enter a number greater than $1',
   [causes.GREATER_EQUAL]: 'Please enter a number greater than or equal to $1',
+  [causes.LESS]: 'Please enter a number less than $1',
   [causes.LESS_EQUAL]: 'Please enter a number less than or equal to $1',
   [causes.DIGITS]: 'The value must be a $1-digits number',
   [causes.EMAIL]: 'Please enter a valid email address',
