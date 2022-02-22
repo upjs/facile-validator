@@ -24,7 +24,7 @@ export interface ErrorDetail {
 
 export interface Events {
   'validate:start': (form: HTMLFormElement) => void;
-  'validate:end': (form: HTMLFormElement, status: boolean) => void;
+  'validate:end': (form: HTMLFormElement, isSuccessful: boolean) => void;
   'validate:success': (form: HTMLFormElement) => void;
   'validate:failed': (form: HTMLFormElement) => void;
   'error:field': (form: HTMLFormElement, element: HTMLElement, errors: ErrorDetail[]) => void;
