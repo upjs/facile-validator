@@ -1,6 +1,6 @@
 import { Rule } from '@/types';
 import { RuleError } from '@/modules/rule-error';
-import { throwErrorWhen } from '@/utils/checker';
+import { throwErrorWhen } from '@/utils/helpers';
 import { BETWEEN, GREATER_EQUAL, LESS_EQUAL, NUMBER } from '@/types/error-cause';
 import { MUST_NUMBER, MUST_PROVIDED } from '@/types/error-dev';
 

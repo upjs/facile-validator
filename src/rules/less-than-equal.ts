@@ -1,7 +1,7 @@
 import { Rule } from '@/types';
 import { RuleError } from '@/modules/rule-error';
 import between from './between';
-import { throwErrorWhen } from '@/utils/checker';
+import { throwErrorWhen } from '@/utils/helpers';
 import { MUST_PROVIDED } from '@/types/error-dev';
 
 function lessThanEqual(value: string, max = ''): true | RuleError {

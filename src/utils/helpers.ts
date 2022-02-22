@@ -26,3 +26,9 @@ export function lang(key: string, ...args: string[]): string {
 
   return format(item, ...args);
 }
+
+export function throwErrorWhen(condition: boolean, message: string): void {
+  if (condition) {
+    throw new Error(message);
+  }
+}

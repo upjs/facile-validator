@@ -1,6 +1,6 @@
 import { Rule } from '@/types';
 import { RuleError } from '@/modules/rule-error';
-import { throwErrorWhen } from '@/utils/checker';
+import { throwErrorWhen } from '@/utils/helpers';
 import { REQUIRED } from '@/types/error-cause';
 import { MUST_PROVIDED } from '@/types/error-dev';
 

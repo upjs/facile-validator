@@ -1,7 +1,7 @@
 import { Rule } from '@/types';
 import { RuleError } from '@/modules/rule-error';
 import { int as isInteger } from '@/rules';
-import { throwErrorWhen } from '@/utils/checker';
+import { throwErrorWhen } from '@/utils/helpers';
 import { DIGITS } from '@/types/error-cause';
 import { MUST_INTEGER, MUST_PROVIDED } from '@/types/error-dev';
 
