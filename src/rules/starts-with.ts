@@ -1,12 +1,13 @@
 import { Rule } from '@/types';
 import { RuleError } from '@/modules/rule-error';
+import { throwErrorWhen } from '@/utils/checker';
 import { STARTS_WITH } from '@/types/error-cause';
-import { throwErrorIfArgsNotProvided } from '@/utils/checker';
+import { MUST_PROVIDED } from '@/types/error-dev';
 
-function startsWith(value: string, args: string): true | RuleError {
-  throwErrorIfArgsNotProvided(args, 'starts-with rule expects one argument');
+function startsWith(value: string, start = ''): true | RuleError {
+  throwErrorWhen(start === '', MUST_PROVIDED);
 
-  return value.startsWith(args) || new RuleError(STARTS_WITH, args);
+  return value.startsWith(start) || new RuleError(STARTS_WITH, start);
 }
 
 export default startsWith as Rule;

@@ -22,11 +22,9 @@ export interface ErrorDetail {
   args: string[];
 }
 
-export type ValidateResponse = 'failed' | 'success';
-
 export interface Events {
   'validate:start': (form: HTMLFormElement) => void;
-  'validate:end': (form: HTMLFormElement, status: ValidateResponse) => void;
+  'validate:end': (form: HTMLFormElement, status: boolean) => void;
   'validate:success': (form: HTMLFormElement) => void;
   'validate:failed': (form: HTMLFormElement) => void;
   'error:field': (form: HTMLFormElement, element: HTMLElement, errors: ErrorDetail[]) => void;

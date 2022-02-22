@@ -1,5 +1,5 @@
-import { RuleError } from '@/modules/rule-error';
 import { Rule } from '@/types';
+import { RuleError } from '@/modules/rule-error';
 import { REQUIRED } from '@/types/error-cause';
 
 function required(value: string): true | RuleError {

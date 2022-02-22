@@ -1,32 +1,40 @@
 import { Rule } from '@/types';
 import { RuleError } from '@/modules/rule-error';
+import { throwErrorWhen } from '@/utils/checker';
 import { SIZE_NUMBER, SIZE_STRING } from '@/types/error-cause';
-import { throwErrorIfArgsNotProvided } from '@/utils/checker';
+import { MUST_NUMBER, MUST_POSITIVE, MUST_PROVIDED } from '@/types/error-dev';
 
-function size(value: string, args: string): true | RuleError {
-  throwErrorIfArgsNotProvided(args, 'size rule expects exactly one argument');
+function size(value: string, args = ''): true | RuleError {
+  throwErrorWhen(args === '', MUST_PROVIDED);
 
   const [type, size] = args.split(',');
 
   const sizeInNumber = Number(size);
-  if (Number.isNaN(sizeInNumber) || (type === 'string' && sizeInNumber < 0)) {
-    throw new Error('size rule expects a positive number as its argument');
-  }
+  throwErrorWhen(Number.isNaN(sizeInNumber), MUST_NUMBER);
+  throwErrorWhen(type === 'string' && sizeInNumber < 0, MUST_POSITIVE);
 
   if (type === 'number') {
-    const valueInNumber = Number(value);
-    if (!Number.isNaN(valueInNumber) && valueInNumber === sizeInNumber) {
-      return true;
-    }
-
-    return new RuleError(SIZE_NUMBER, size);
+    return sizeForNumber(value, sizeInNumber);
   } else {
-    if (value.length === sizeInNumber) {
-      return true;
-    }
-
-    return new RuleError(SIZE_STRING, size);
+    return sizeForString(value, sizeInNumber);
   }
+}
+
+function sizeForNumber(value: string, size: number): true | RuleError {
+  const valueInNumber = Number(value);
+  if (!Number.isNaN(valueInNumber) && valueInNumber === size) {
+    return true;
+  }
+
+  return new RuleError(SIZE_NUMBER, String(size));
+}
+
+function sizeForString(value: string, size: number): true | RuleError {
+  if (value.length === size) {
+    return true;
+  }
+
+  return new RuleError(SIZE_STRING, String(size));
 }
 
 export default size as Rule;

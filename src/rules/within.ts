@@ -1,13 +1,13 @@
 import { Rule } from '@/types';
 import { RuleError } from '@/modules/rule-error';
+import { throwErrorWhen } from '@/utils/checker';
 import { WITHIN } from '@/types/error-cause';
-import { throwErrorIfArgsNotProvided } from '@/utils/checker';
+import { MUST_PROVIDED } from '@/types/error-dev';
 
-function within(value: string, args: string): true | RuleError {
-  throwErrorIfArgsNotProvided(args, 'within rule expects at least one argument');
+function within(value: string, values: string): true | RuleError {
+  throwErrorWhen(values === '', MUST_PROVIDED);
 
-  const list = args.split(',');
-
+  const list = values.split(',');
   return list.includes(value) || new RuleError(WITHIN);
 }
 

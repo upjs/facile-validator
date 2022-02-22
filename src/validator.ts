@@ -1,5 +1,5 @@
 import * as rules from '@/rules';
-import { ValidatorOptions, EventsName, Events, ValidateResponse } from '@/types';
+import { ValidatorOptions, EventsName, Events } from '@/types';
 import ValidatorError from '@/modules/validator-error';
 import { getValue, toCamelCase } from '@/utils/helpers';
 import EventBus from './modules/events';
@@ -37,7 +37,7 @@ class Validator {
     // manage errors on validate:failed
     this.events.on('validate:failed', () => this.errorEventTrigger());
 
-    this.eventHandler = (event: SubmitEvent) => this.validate() === 'failed' && event.preventDefault();
+    this.eventHandler = (event: SubmitEvent) => !this.validate() && event.preventDefault();
     form.addEventListener('submit', this.eventHandler);
     this.form = form;
   }
@@ -46,25 +46,18 @@ class Validator {
     this.form.removeEventListener('submit', this.eventHandler);
   }
 
-  public validate(): ValidateResponse {
+  public validate(): boolean {
     this.events.call('validate:start', this.form);
 
     const fields = this.form.querySelectorAll<HTMLInputElement>('[data-rules]');
-    let isSuccessful = true;
-    if (fields.length > 0) {
-      try {
-        isSuccessful = this.validateFields(Array.from(fields));
-      } catch (error) {
-        console.error(error);
-        return 'failed';
-      }
-    }
+    if (fields.length === 0) return true;
 
+    const isSuccessful = this.validateFields(Array.from(fields));
     const status = isSuccessful ? 'success' : 'failed';
     this.events.call(`validate:${status}`, this.form);
-    this.events.call('validate:end', this.form, status);
+    this.events.call('validate:end', this.form, isSuccessful);
 
-    return status;
+    return isSuccessful;
   }
 
   public on<K extends EventsName>(event: K, callback: Events[K]): void {
@@ -90,13 +83,18 @@ class Validator {
           rule = toCamelCase(rule);
 
           if (rule in rules) {
-            const result = rules[rule as RuleKey](value, args);
+            try {
+              const result = rules[rule as RuleKey](value, args);
 
-            if (result instanceof RuleError) {
-              this.validatorError.setError(field, rule, result);
+              if (result instanceof RuleError) {
+                this.validatorError.setError(field, rule, result);
 
-              // stop on first failure when 'bail' is set
-              if (shouldStopOnFirstFailure) break;
+                // stop on first failure when 'bail' is set
+                if (shouldStopOnFirstFailure) break;
+              }
+            } catch (error) {
+              console.error(new Error(`${rule}: ${(error as Error).message}`));
+              return false;
             }
           }
         }

@@ -1,5 +1,5 @@
-import { RuleError } from '@/modules/rule-error';
 import { Rule } from '@/types';
+import { RuleError } from '@/modules/rule-error';
 import { ACCEPTED } from '@/types/error-cause';
 
 function accepted(value: string): true | RuleError {

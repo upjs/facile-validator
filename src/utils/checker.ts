@@ -3,3 +3,9 @@ export function throwErrorIfArgsNotProvided(args: string, message: string): void
     throw new Error(message);
   }
 }
+
+export function throwErrorWhen(condition: boolean, message: string): void {
+  if (condition) {
+    throw new Error(message);
+  }
+}

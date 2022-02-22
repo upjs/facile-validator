@@ -1,22 +1,20 @@
 import { Rule } from '@/types';
 import { RuleError } from '@/modules/rule-error';
-import { throwErrorIfArgsNotProvided } from '@/utils/checker';
+import { throwErrorWhen } from '@/utils/checker';
 import { GREATER } from '@/types/error-cause';
+import { MUST_NUMBER, MUST_PROVIDED } from '@/types/error-dev';
 
-function greaterThan(value: string, args: string): true | RuleError {
-  throwErrorIfArgsNotProvided(args, 'gt (greater-than) rule expects exactly one argument');
+function greaterThan(value: string, min = ''): true | RuleError {
+  throwErrorWhen(min === '', MUST_PROVIDED);
 
-  const min = Number(args);
+  const minNumber = Number(min);
+  throwErrorWhen(Number.isNaN(minNumber), MUST_NUMBER);
 
-  if (Number.isNaN(min)) {
-    throw new Error('gt (greater-than) rule expects a number as argument');
-  }
-
-  if (value !== '' && Number(value) > min) {
+  if (value !== '' && Number(value) > minNumber) {
     return true;
   }
 
-  return new RuleError(GREATER, args);
+  return new RuleError(GREATER, min);
 }
 
 export default greaterThan as Rule;

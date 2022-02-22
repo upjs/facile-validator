@@ -1,17 +1,15 @@
 import { Rule } from '@/types';
 import { RuleError } from '@/modules/rule-error';
+import { throwErrorWhen } from '@/utils/checker';
 import { MAX_LENGTH } from '@/types/error-cause';
+import { MUST_NUMBER, MUST_POSITIVE, MUST_PROVIDED } from '@/types/error-dev';
 
-function maxLength(value: string, max: string): true | RuleError {
+function maxLength(value: string, max = ''): true | RuleError {
+  throwErrorWhen(max === '', MUST_PROVIDED);
+
   const maxInNumber = Number(max);
-
-  if (max === '' || Number.isNaN(maxInNumber)) {
-    throw new Error('max rule expects a number as argument');
-  }
-
-  if (maxInNumber < 0) {
-    throw new Error('max rule expects a positive number as argument');
-  }
+  throwErrorWhen(Number.isNaN(maxInNumber), MUST_NUMBER);
+  throwErrorWhen(maxInNumber < 0, MUST_POSITIVE);
 
   return value.length <= maxInNumber || new RuleError(MAX_LENGTH, max);
 }

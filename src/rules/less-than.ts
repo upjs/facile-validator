@@ -1,22 +1,20 @@
 import { Rule } from '@/types';
 import { RuleError } from '@/modules/rule-error';
-import { throwErrorIfArgsNotProvided } from '@/utils/checker';
+import { throwErrorWhen } from '@/utils/checker';
 import { LESS } from '@/types/error-cause';
+import { MUST_NUMBER, MUST_PROVIDED } from '@/types/error-dev';
 
-function lessThan(value: string, args: string): true | RuleError {
-  throwErrorIfArgsNotProvided(args, 'lt (less-than) rule expects exactly one argument');
+function lessThan(value: string, max = ''): true | RuleError {
+  throwErrorWhen(max === '', MUST_PROVIDED);
 
-  const max = Number(args);
+  const maxNumber = Number(max);
+  throwErrorWhen(Number.isNaN(maxNumber), MUST_NUMBER);
 
-  if (Number.isNaN(max)) {
-    throw new Error('lt (less-than) rule expects a number as argument');
-  }
-
-  if (value !== '' && Number(value) < max) {
+  if (value !== '' && Number(value) < maxNumber) {
     return true;
   }
 
-  return new RuleError(LESS, args);
+  return new RuleError(LESS, max);
 }
 
 export default lessThan as Rule;

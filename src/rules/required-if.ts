@@ -1,10 +1,11 @@
-import { RuleError } from '@/modules/rule-error';
 import { Rule } from '@/types';
+import { RuleError } from '@/modules/rule-error';
+import { throwErrorWhen } from '@/utils/checker';
 import { REQUIRED } from '@/types/error-cause';
-import { throwErrorIfArgsNotProvided } from '@/utils/checker';
+import { MUST_PROVIDED } from '@/types/error-dev';
 
 function requiredIf(value: string, isRequired: string): true | RuleError {
-  throwErrorIfArgsNotProvided(isRequired, 'required-if rule expects a field id as argument');
+  throwErrorWhen(isRequired === '', MUST_PROVIDED);
 
   if (isRequired === 'false') return true;
 

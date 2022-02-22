@@ -1,15 +1,13 @@
 import { Rule } from '@/types';
-import { int as isInteger } from '@/rules';
-import { throwErrorIfArgsNotProvided } from '@/utils/checker';
 import { RuleError } from '@/modules/rule-error';
+import { int as isInteger } from '@/rules';
+import { throwErrorWhen } from '@/utils/checker';
 import { DIGITS } from '@/types/error-cause';
+import { MUST_INTEGER, MUST_PROVIDED } from '@/types/error-dev';
 
-function digits(value: string, digitLength: string): true | RuleError {
-  throwErrorIfArgsNotProvided(digitLength, 'digits rule expects one argument');
-
-  if (isInteger(digitLength) !== true || +digitLength < 1) {
-    throw new Error('digit length must be specified as an integer');
-  }
+function digits(value: string, digitLength = ''): true | RuleError {
+  throwErrorWhen(digitLength === '', MUST_PROVIDED);
+  throwErrorWhen(isInteger(digitLength) !== true || +digitLength < 1, MUST_INTEGER);
 
   const regex = new RegExp(`^-?[0-9]{${digitLength}}$`);
 

@@ -1,26 +1,22 @@
 import { Rule } from '@/types';
 import { RuleError } from '@/modules/rule-error';
+import { throwErrorWhen } from '@/utils/checker';
 import { BETWEEN, GREATER_EQUAL, LESS_EQUAL, NUMBER } from '@/types/error-cause';
-import { throwErrorIfArgsNotProvided } from '@/utils/checker';
+import { MUST_NUMBER, MUST_PROVIDED } from '@/types/error-dev';
 
-function between(value: string, args: string): true | RuleError {
-  throwErrorIfArgsNotProvided(args, 'between rule expects at least one argument');
+function between(value: string, args = ''): true | RuleError {
+  throwErrorWhen(args === '', MUST_PROVIDED);
 
   const [minArg, maxArg] = args.split(',');
 
   const min = minArg === '' ? Number.NEGATIVE_INFINITY : Number(minArg);
   const max = maxArg === '' ? Number.POSITIVE_INFINITY : Number(maxArg);
 
-  if (Number.isNaN(min) || Number.isNaN(max)) {
-    throw new Error('between rule expects two numbers as arguments');
-  }
-
-  if (min > max) {
-    throw new Error('between rule expects first argument to be less than or equal to second argument');
-  }
+  throwErrorWhen(Number.isNaN(min) || Number.isNaN(max), MUST_NUMBER);
+  throwErrorWhen(min > max, 'min must be less than max');
 
   const valueInNumber = Number(value);
-  if (!Number.isNaN(valueInNumber) && valueInNumber >= min && valueInNumber <= max) {
+  if (value !== '' && !Number.isNaN(valueInNumber) && valueInNumber >= min && valueInNumber <= max) {
     return true;
   }
 

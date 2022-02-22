@@ -1,7 +1,7 @@
 import { Rule } from '@/types';
 import { RuleError } from '@/modules/rule-error';
-import { INTEGER } from '@/types/error-cause';
 import { integer as integerRegex } from '@/utils/regex';
+import { INTEGER } from '@/types/error-cause';
 
 function int(value: string): true | RuleError {
   return integerRegex.test(value) || new RuleError(INTEGER);
