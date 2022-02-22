@@ -13,7 +13,7 @@ function digits(value: string, digitLength: string): true | RuleError {
 
   const regex = new RegExp(`^-?[0-9]{${digitLength}}$`);
 
-  return regex.test(value) ? true : new RuleError('digits', DIGITS, digitLength);
+  return regex.test(value) ? true : new RuleError(DIGITS, digitLength);
 }
 
 export default digits as Rule;

@@ -8,7 +8,7 @@ function requiredIf(value: string, isRequired: string): true | RuleError {
 
   if (isRequired === 'false') return true;
 
-  return value.trim().length > 0 || new RuleError('required-if', REQUIRED);
+  return value.trim().length > 0 || new RuleError(REQUIRED);
 }
 
 export default requiredIf as Rule;

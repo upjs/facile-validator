@@ -6,7 +6,7 @@ import { throwErrorIfArgsNotProvided } from '@/utils/checker';
 function endsWith(value: string, args: string): true | RuleError {
   throwErrorIfArgsNotProvided(args, 'ends-with rule expects one argument');
 
-  return value.endsWith(args) || new RuleError('ends-with', ENDS_WITH, args);
+  return value.endsWith(args) || new RuleError(ENDS_WITH, args);
 }
 
 export default endsWith as Rule;

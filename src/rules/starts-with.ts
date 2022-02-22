@@ -6,7 +6,7 @@ import { throwErrorIfArgsNotProvided } from '@/utils/checker';
 function startsWith(value: string, args: string): true | RuleError {
   throwErrorIfArgsNotProvided(args, 'starts-with rule expects one argument');
 
-  return value.startsWith(args) || new RuleError('starts-with', STARTS_WITH, args);
+  return value.startsWith(args) || new RuleError(STARTS_WITH, args);
 }
 
 export default startsWith as Rule;

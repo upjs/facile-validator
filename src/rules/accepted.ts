@@ -7,7 +7,7 @@ function accepted(value: string): true | RuleError {
     return true;
   }
 
-  return new RuleError('accepted', ACCEPTED);
+  return new RuleError(ACCEPTED);
 }
 
 export default accepted as Rule;

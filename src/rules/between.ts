@@ -25,13 +25,13 @@ function between(value: string, args: string): true | RuleError {
   }
 
   if (min === Number.NEGATIVE_INFINITY && max === Number.POSITIVE_INFINITY) {
-    return new RuleError('between', NUMBER);
+    return new RuleError(NUMBER);
   } else if (min === Number.NEGATIVE_INFINITY) {
-    return new RuleError('between', LESS_EQUAL, maxArg);
+    return new RuleError(LESS_EQUAL, maxArg);
   } else if (max === Number.POSITIVE_INFINITY) {
-    return new RuleError('between', GREATER_EQUAL, minArg);
+    return new RuleError(GREATER_EQUAL, minArg);
   } else {
-    return new RuleError('between', BETWEEN, minArg, maxArg);
+    return new RuleError(BETWEEN, minArg, maxArg);
   }
 }
 

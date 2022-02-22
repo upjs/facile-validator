@@ -3,7 +3,7 @@ import { Rule } from '@/types';
 import { REQUIRED } from '@/types/error-cause';
 
 function required(value: string): true | RuleError {
-  return value.trim().length > 0 || new RuleError('required', REQUIRED);
+  return value.trim().length > 0 || new RuleError(REQUIRED);
 }
 
 export default required as Rule;

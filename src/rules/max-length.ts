@@ -13,7 +13,7 @@ function maxLength(value: string, max: string): true | RuleError {
     throw new Error('max rule expects a positive number as argument');
   }
 
-  return value.length <= maxInNumber || new RuleError('max-length', MAX_LENGTH, max);
+  return value.length <= maxInNumber || new RuleError(MAX_LENGTH, max);
 }
 
 export default maxLength as Rule;

@@ -16,7 +16,7 @@ function lessThan(value: string, args: string): true | RuleError {
     return true;
   }
 
-  return new RuleError('less-than', LESS, args);
+  return new RuleError(LESS, args);
 }
 
 export default lessThan as Rule;

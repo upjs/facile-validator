@@ -13,7 +13,7 @@ function minLength(value: string, min: string): true | RuleError {
     throw new Error('min rule expects a positive number as argument');
   }
 
-  return value.length >= minInNumber || new RuleError('min-length', MIN_LENGTH, min);
+  return value.length >= minInNumber || new RuleError(MIN_LENGTH, min);
 }
 
 export default minLength as Rule;

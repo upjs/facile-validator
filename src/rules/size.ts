@@ -19,13 +19,13 @@ function size(value: string, args: string): true | RuleError {
       return true;
     }
 
-    return new RuleError('size', SIZE_NUMBER, size);
+    return new RuleError(SIZE_NUMBER, size);
   } else {
     if (value.length === sizeInNumber) {
       return true;
     }
 
-    return new RuleError('size', SIZE_STRING, size);
+    return new RuleError(SIZE_STRING, size);
   }
 }
 

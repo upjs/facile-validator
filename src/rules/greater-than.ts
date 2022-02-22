@@ -16,7 +16,7 @@ function greaterThan(value: string, args: string): true | RuleError {
     return true;
   }
 
-  return new RuleError('greater-than', GREATER, args);
+  return new RuleError(GREATER, args);
 }
 
 export default greaterThan as Rule;

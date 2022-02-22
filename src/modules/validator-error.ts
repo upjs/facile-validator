@@ -12,7 +12,7 @@ export default class ValidatorError {
     this.errorsList = [];
   }
 
-  public setError(element: HTMLElement, ruleError: RuleError) {
+  public setError(element: HTMLElement, rule: string, ruleError: RuleError) {
     let errors = this.errorsList.find((error) => error[0].element === element);
 
     if (!errors) {
@@ -25,7 +25,7 @@ export default class ValidatorError {
     const errorDetail: ErrorDetail = {
       message: errorMessage,
       element,
-      rule: ruleError.rule,
+      rule,
       cause: ruleError.message,
       args: ruleError.args,
     };

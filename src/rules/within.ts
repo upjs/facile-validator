@@ -8,7 +8,7 @@ function within(value: string, args: string): true | RuleError {
 
   const list = args.split(',');
 
-  return list.includes(value) || new RuleError('within', WITHIN);
+  return list.includes(value) || new RuleError(WITHIN);
 }
 
 export default within as Rule;

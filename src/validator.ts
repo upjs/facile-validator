@@ -93,7 +93,7 @@ class Validator {
             const result = rules[rule as RuleKey](value, args);
 
             if (result instanceof RuleError) {
-              this.validatorError.setError(field, result);
+              this.validatorError.setError(field, rule, result);
 
               // stop on first failure when 'bail' is set
               if (shouldStopOnFirstFailure) break;
