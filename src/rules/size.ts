@@ -1,6 +1,6 @@
 import { Rule } from '@/types';
 import { RuleError } from '@/modules/rule-error';
-import { throwErrorWhen } from '@/utils/helpers';
+import { processRule, throwErrorWhen } from '@/utils/helpers';
 import { SIZE_NUMBER, SIZE_STRING } from '@/types/error-cause';
 import { MUST_NUMBER, MUST_POSITIVE, MUST_PROVIDED } from '@/types/error-dev';
 
@@ -35,6 +35,20 @@ function sizeForString(value: string, size: number): true | RuleError {
   }
 
   return new RuleError(SIZE_STRING, String(size));
+}
+
+export function replaceSizeRule(rule: string, rules: string[]): string {
+  const { name: NAME, args: ARGS } = processRule(rule);
+
+  const indexOfRule = rules.indexOf(rule);
+  const rulesBeforeRule = rules.slice(0, indexOfRule);
+
+  let type = 'string';
+  if (rulesBeforeRule.includes('number') || rulesBeforeRule.includes('int')) {
+    type = 'number';
+  }
+
+  return `${NAME}:${type},${ARGS.join(',')}`;
 }
 
 export default size as Rule;
