@@ -1,3 +1,4 @@
+import { LangKeys } from '@/types';
 import * as causes from '@/types/error-cause';
 
 export default {
@@ -20,4 +21,4 @@ export default {
   [causes.ALPHA]: 'لطفاً فقط حروف الفبا وارد کنید',
   [causes.SIZE_NUMBER]: 'مقدار این فیلد باید $1 باشد',
   [causes.SIZE_STRING]: 'مقدار این فیلد باید $1 حرف باشد',
-};
+} as Record<LangKeys, string>;

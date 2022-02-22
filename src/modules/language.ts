@@ -1,12 +1,14 @@
-class Language {
-  private lang?: Record<string, string>;
+import { Lang } from '@/types';
 
-  public set(lang?: Record<string, string>) {
+class Language {
+  private lang?: Lang;
+
+  public set(lang?: Lang) {
     this.lang = lang;
   }
 
   public get() {
-    return this.lang ?? {};
+    return typeof this.lang === 'object' ? this.lang : {};
   }
 }
 

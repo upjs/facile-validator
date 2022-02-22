@@ -1,4 +1,5 @@
 import Language from '@/modules/language';
+import { LangKeys } from '@/types';
 import { TYPE_CHECKBOX, TYPE_RADIO } from '@/types/element-type';
 export function toCamelCase(value: string) {
   return value.replace(/-./g, (match) => match[1].toUpperCase());
@@ -21,7 +22,7 @@ export function lang(key: string, ...args: string[]): string {
   let item = key;
 
   if (Object.prototype.hasOwnProperty.call(languages, key)) {
-    item = languages[key];
+    item = languages[key as LangKeys] as string;
   }
 
   return format(item, ...args);

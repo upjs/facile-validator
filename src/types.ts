@@ -1,11 +1,16 @@
 import { RuleError } from '@/modules/rule-error';
+import * as errorCause from '@/types/error-cause';
 
 export type ArrayOfValues<T> = {
   [P in keyof T]: T[P][];
 };
 
+type ErrorCause = typeof errorCause;
+export type LangKeys = ErrorCause[keyof ErrorCause];
+export type Lang = Partial<Record<LangKeys, string>>;
+
 export interface ValidatorOptions {
-  lang?: Record<string, string>;
+  lang?: Lang;
   on?: Events;
   autoSubmit?: boolean;
 }

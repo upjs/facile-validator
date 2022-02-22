@@ -1,4 +1,5 @@
 import * as causes from '@/types/error-cause';
+import { LangKeys } from '@/types';
 
 export default {
   [causes.ACCEPTED]: 'Please accept this field',
@@ -20,4 +21,4 @@ export default {
   [causes.ALPHA]: 'Please enter only alphabetic characters',
   [causes.SIZE_NUMBER]: 'The value must be equal to $1',
   [causes.SIZE_STRING]: 'The value must have $1 characters',
-};
+} as Record<LangKeys, string>;
