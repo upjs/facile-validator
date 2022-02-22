@@ -3,7 +3,7 @@ import { Rule } from '@/types';
 import { ACCEPTED } from '@/types/error-cause';
 
 function accepted(value: string): true | RuleError {
-  if (value === 'true') {
+  if (value === 'checked') {
     return true;
   }
 

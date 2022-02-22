@@ -4,7 +4,7 @@ import { accepted } from '@/rules';
 
 describe('rules: accepted', () => {
   it('should accept if checkbox is checked', () => {
-    expect(accepted('true')).toBe(true);
+    expect(accepted('checked')).toBe(true);
   });
 
   it('should reject if not checkbox is not checked', () => {

@@ -6,7 +6,7 @@ export function toCamelCase(value: string) {
 
 export function getValue(element: HTMLInputElement): string {
   if (element.type === TYPE_CHECKBOX || element.type === TYPE_RADIO) {
-    return String(element.checked);
+    return element.checked ? 'checked' : '';
   }
 
   return element.value || '';
