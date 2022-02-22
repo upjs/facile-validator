@@ -13,6 +13,7 @@ export const STARTS_WITH = 'starts-with';
 export const ENDS_WITH = 'ends-with';
 export const INTEGER = 'integer';
 export const REQUIRED = 'required';
+export const REQUIRED_IF = 'required-if';
 export const WITHIN = 'within';
 export const ALPHA = 'alpha';
 export const SIZE_NUMBER = 'size-number';

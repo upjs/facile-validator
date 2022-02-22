@@ -16,6 +16,15 @@ export function format(message: string, ...toReplace: string[]) {
   return message.replace(/\$(\d)/g, (_, index) => toReplace?.[index - 1] || '');
 }
 
+export function processRule(rule: string): { name: string; args: string[] } {
+  const [ruleName, args] = rule.split(':');
+
+  return {
+    name: ruleName,
+    args: args ? args.split(',') : [],
+  };
+}
+
 export function lang(key: string, ...args: string[]): string {
   const languages = Language.get();
   let item = key;

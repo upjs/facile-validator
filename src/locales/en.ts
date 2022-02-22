@@ -16,6 +16,7 @@ export default {
   [causes.ENDS_WITH]: 'The value must ends with "$1"',
   [causes.INTEGER]: 'The value must be a valid integer',
   [causes.REQUIRED]: 'This field is required',
+  [causes.REQUIRED_IF]: 'This field is required when $1 field is present',
   [causes.WITHIN]: 'The value is incorrect',
   [causes.ALPHA]: 'Please enter only alphabetic characters',
   [causes.SIZE_NUMBER]: 'The value must be equal to $1',
