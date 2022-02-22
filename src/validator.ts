@@ -78,13 +78,12 @@ class Validator {
         const computedFieldRules = this.getComputedFieldRules(fieldRules);
 
         for (const fieldRule of computedFieldRules) {
-          // eslint-disable-next-line prefer-const
-          let [rule, args = ''] = fieldRule.split(':');
-          rule = toCamelCase(rule);
+          const [rule, args = ''] = fieldRule.split(':');
+          const ruleKey = toCamelCase(rule) as RuleKey;
 
-          if (rule in rules) {
+          if (ruleKey in rules) {
             try {
-              const result = rules[rule as RuleKey](value, args);
+              const result = rules[ruleKey](value, args);
 
               if (result instanceof RuleError) {
                 this.validatorError.setError(field, rule, result);
