@@ -1,7 +1,7 @@
 import { Rule } from '@/types';
 import { RuleError } from '@/modules/rule-error';
 import { throwErrorWhen } from '@/utils/helpers';
-import { BETWEEN, GREATER_EQUAL, LESS_EQUAL, NUMBER } from '@/types/error-cause';
+import { BETWEEN, EQUAL, GREATER_EQUAL, LESS_EQUAL, NUMBER } from '@/types/error-cause';
 import { MUST_NUMBER, MUST_PROVIDED } from '@/types/error-dev';
 
 function between(value: string, args = ''): true | RuleError {
@@ -26,6 +26,8 @@ function between(value: string, args = ''): true | RuleError {
     return new RuleError(LESS_EQUAL, maxArg);
   } else if (max === Number.POSITIVE_INFINITY) {
     return new RuleError(GREATER_EQUAL, minArg);
+  } else if (min === max) {
+    return new RuleError(EQUAL, minArg);
   } else {
     return new RuleError(BETWEEN, minArg, maxArg);
   }

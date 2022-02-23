@@ -1,8 +1,9 @@
 import { Rule } from '@/types';
 import { RuleError } from '@/modules/rule-error';
 import { processRule, throwErrorWhen } from '@/utils/helpers';
-import { SIZE_NUMBER, SIZE_STRING } from '@/types/error-cause';
 import { MUST_NUMBER, MUST_POSITIVE, MUST_PROVIDED } from '@/types/error-dev';
+import between from './between';
+import length from './length';
 
 function size(value: string, args = ''): true | RuleError {
   throwErrorWhen(args === '', MUST_PROVIDED);
@@ -14,27 +15,10 @@ function size(value: string, args = ''): true | RuleError {
   throwErrorWhen(type === 'string' && sizeInNumber < 0, MUST_POSITIVE);
 
   if (type === 'number') {
-    return sizeForNumber(value, sizeInNumber);
+    return between(value, `${size},${size}`);
   } else {
-    return sizeForString(value, sizeInNumber);
+    return length(value, size);
   }
-}
-
-function sizeForNumber(value: string, size: number): true | RuleError {
-  const valueInNumber = Number(value);
-  if (!Number.isNaN(valueInNumber) && valueInNumber === size) {
-    return true;
-  }
-
-  return new RuleError(SIZE_NUMBER, String(size));
-}
-
-function sizeForString(value: string, size: number): true | RuleError {
-  if (value.length === size) {
-    return true;
-  }
-
-  return new RuleError(SIZE_STRING, String(size));
 }
 
 export function replaceSizeRule(rule: string, rules: string[]): string {
