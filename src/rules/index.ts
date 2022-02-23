@@ -7,6 +7,7 @@ export { default as email } from './email';
 export { default as greaterThan, default as gt } from './greater-than';
 export { default as greaterThanEqual, default as gte, default as min } from './greater-than-equal';
 export { default as integer, default as int } from './int';
+export { default as length } from './length';
 export { default as lessThan, default as lt } from './less-than';
 export { default as lessThanEqual, default as lte, default as max } from './less-than-equal';
 export { default as maxLength } from './max-length';

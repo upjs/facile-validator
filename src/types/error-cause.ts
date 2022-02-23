@@ -16,5 +16,5 @@ export const REQUIRED = 'required';
 export const REQUIRED_IF = 'required-if';
 export const WITHIN = 'within';
 export const ALPHA = 'alpha';
-export const SIZE_NUMBER = 'size-number';
-export const SIZE_STRING = 'size-string';
+export const EQUAL = 'equal';
+export const LENGTH = 'length';
