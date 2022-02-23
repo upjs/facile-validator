@@ -4,10 +4,13 @@ import { between } from '@/rules';
 import { throwErrorWhen } from '@/utils/helpers';
 import { MUST_PROVIDED } from '@/types/error-dev';
 
-function greaterThanEqual(value: string, min = ''): true | RuleError {
+function min(value: string, args = ''): true | RuleError {
+  throwErrorWhen(args === '', MUST_PROVIDED);
+
+  const [type, min = ''] = args.split(',');
   throwErrorWhen(min === '', MUST_PROVIDED);
 
-  return between(value, `${min},`);
+  return between(value, `${type},${min},`);
 }
 
-export default greaterThanEqual as Rule;
+export default min as Rule;

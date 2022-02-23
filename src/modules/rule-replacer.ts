@@ -6,7 +6,10 @@ import { ReplacerFn } from '@/types';
 
 const mapMethods: Record<string, ReplacerFn> = {
   requiredIf: replaceRequiredIfRule,
+  between: replaceSizeRule,
   size: replaceSizeRule,
+  min: replaceSizeRule,
+  max: replaceSizeRule,
 };
 
 export function replaceRule(rule: string, rules: string[], form: HTMLFormElement): string {

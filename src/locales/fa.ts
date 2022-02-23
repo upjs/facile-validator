@@ -5,6 +5,7 @@ const faLang: Record<LangKeys, string> = {
   [causes.ACCEPTED]: 'لطفا این فیلد را تیک بزنید',
   [causes.ALPHA]: 'لطفاً فقط حروف الفبا وارد کنید',
   [causes.BETWEEN]: 'لطفا یک عدد بین $1 و $2 وارد کنید',
+  [causes.BETWEEN_LENGTH]: 'مقدار باید بین $1 و $2 کاراکتر باشد',
   [causes.DIGITS]: 'مقدار این فیلد باید $1 رقم باشد',
   [causes.EMAIL]: 'لطفا یک آدرس ایمیل معتبر وارد کنید',
   [causes.ENDS_WITH]: 'مقدار این فیلد باید با "$1" پایان داده شود',

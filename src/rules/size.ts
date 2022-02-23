@@ -1,23 +1,16 @@
 import { Rule } from '@/types';
 import { RuleError } from '@/modules/rule-error';
-import { between, length } from '@/rules';
+import { between } from '@/rules';
 import { processRule, throwErrorWhen } from '@/utils/helpers';
-import { MUST_NUMBER, MUST_POSITIVE, MUST_PROVIDED } from '@/types/error-dev';
+import { MUST_PROVIDED } from '@/types/error-dev';
 
 function size(value: string, args = ''): true | RuleError {
   throwErrorWhen(args === '', MUST_PROVIDED);
 
-  const [type, size] = args.split(',');
+  const [type, size = ''] = args.split(',');
+  throwErrorWhen(size === '', MUST_PROVIDED);
 
-  const sizeInNumber = Number(size);
-  throwErrorWhen(Number.isNaN(sizeInNumber), MUST_NUMBER);
-  throwErrorWhen(type === 'string' && sizeInNumber < 0, MUST_POSITIVE);
-
-  if (type === 'number') {
-    return between(value, `${size},${size}`);
-  } else {
-    return length(value, size);
-  }
+  return between(value, `${type},${size},${size}`);
 }
 
 export function replaceSizeRule(rule: string, rules: string[]): string {
@@ -27,7 +20,7 @@ export function replaceSizeRule(rule: string, rules: string[]): string {
   const rulesBeforeRule = rules.slice(0, indexOfRule);
 
   let type = 'string';
-  if (rulesBeforeRule.includes('number') || rulesBeforeRule.includes('int')) {
+  if (rulesBeforeRule.includes('number') || rulesBeforeRule.includes('int') || rulesBeforeRule.includes('integer')) {
     type = 'number';
   }
 

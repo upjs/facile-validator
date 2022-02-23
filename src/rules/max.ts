@@ -4,10 +4,13 @@ import { between } from '@/rules';
 import { throwErrorWhen } from '@/utils/helpers';
 import { MUST_PROVIDED } from '@/types/error-dev';
 
-function lessThanEqual(value: string, max = ''): true | RuleError {
+function max(value: string, args = ''): true | RuleError {
+  throwErrorWhen(args === '', MUST_PROVIDED);
+
+  const [type, max = ''] = args.split(',');
   throwErrorWhen(max === '', MUST_PROVIDED);
 
-  return between(value, `,${max}`);
+  return between(value, `${type},,${max}`);
 }
 
-export default lessThanEqual as Rule;
+export default max as Rule;

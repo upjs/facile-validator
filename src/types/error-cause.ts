@@ -1,6 +1,7 @@
 export const ACCEPTED = 'accepted';
 export const ALPHA = 'alpha';
 export const BETWEEN = 'between';
+export const BETWEEN_LENGTH = 'between-length';
 export const DIGITS = 'digits';
 export const EMAIL = 'email';
 export const ENDS_WITH = 'ends-with';

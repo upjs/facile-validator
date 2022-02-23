@@ -5,6 +5,7 @@ const enLang: Record<LangKeys, string> = {
   [causes.ACCEPTED]: 'Please accept this field',
   [causes.ALPHA]: 'Please enter only alphabetic characters',
   [causes.BETWEEN]: 'Please enter a number between $1 and $2',
+  [causes.BETWEEN_LENGTH]: 'The value must have between $1 and $2 characters',
   [causes.DIGITS]: 'The value must be a $1-digits number',
   [causes.EMAIL]: 'Please enter a valid email address',
   [causes.ENDS_WITH]: 'The value must ends with "$1"',
