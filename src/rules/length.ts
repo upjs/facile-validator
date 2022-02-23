@@ -9,7 +9,6 @@ function length(value: string, length = ''): true | RuleError {
 
   const lengthInNumber = Number(length);
   throwErrorWhen(Number.isNaN(lengthInNumber), MUST_NUMBER);
-  console.log(lengthInNumber, lengthInNumber <= 0);
   throwErrorWhen(lengthInNumber < 0, MUST_POSITIVE);
 
   return value.length === lengthInNumber || new RuleError(LENGTH, length);

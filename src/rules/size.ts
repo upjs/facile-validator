@@ -1,9 +1,8 @@
 import { Rule } from '@/types';
 import { RuleError } from '@/modules/rule-error';
+import { between, length } from '@/rules';
 import { processRule, throwErrorWhen } from '@/utils/helpers';
 import { MUST_NUMBER, MUST_POSITIVE, MUST_PROVIDED } from '@/types/error-dev';
-import between from './between';
-import length from './length';
 
 function size(value: string, args = ''): true | RuleError {
   throwErrorWhen(args === '', MUST_PROVIDED);
