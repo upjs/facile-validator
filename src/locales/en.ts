@@ -1,7 +1,7 @@
 import * as causes from '@/types/error-cause';
 import { LangKeys } from '@/types';
 
-export default {
+const enLang: Record<LangKeys, string> = {
   [causes.ACCEPTED]: 'Please accept this field',
   [causes.ALPHA]: 'Please enter only alphabetic characters',
   [causes.BETWEEN]: 'Please enter a number between $1 and $2',
@@ -22,4 +22,6 @@ export default {
   [causes.REQUIRED_IF]: 'This field is required when $1 field is present',
   [causes.STARTS_WITH]: 'The value must start with "$1"',
   [causes.WITHIN]: 'The value is incorrect',
-} as Record<LangKeys, string>;
+};
+
+export default enLang;
