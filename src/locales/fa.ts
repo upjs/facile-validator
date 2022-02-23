@@ -18,7 +18,6 @@ const faLang: Record<LangKeys, string> = {
   [causes.MAX_LENGTH]: 'حداکثر طول مجاز این فیلد $1 است',
   [causes.MIN_LENGTH]: 'حداقل طول مجاز این فیلد $1 است',
   [causes.REQUIRED]: 'این فیلد الزامی است',
-  [causes.REQUIRED_IF]: 'این فیلد زمانی که $1 فیلد فعال شده ضروری است',
   [causes.NUMBER]: 'لطفا یک عدد معتبر وارد کنید',
   [causes.STARTS_WITH]: 'مقدار این فیلد باید با "$1" شروع شود',
   [causes.WITHIN]: 'مقدار این فیلد نادرست است',

@@ -19,7 +19,6 @@ const enLang: Record<LangKeys, string> = {
   [causes.MIN_LENGTH]: 'Min length is $1',
   [causes.NUMBER]: 'Please enter a valid number',
   [causes.REQUIRED]: 'This field is required',
-  [causes.REQUIRED_IF]: 'This field is required when $1 field is present',
   [causes.STARTS_WITH]: 'The value must start with "$1"',
   [causes.WITHIN]: 'The value is incorrect',
 };
