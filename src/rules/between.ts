@@ -11,6 +11,7 @@ import {
   MAX_LENGTH,
   MIN_LENGTH,
   NUMBER,
+  REQUIRED,
 } from '@/types/error-cause';
 import { MUST_NUMBER, MUST_POSITIVE, MUST_PROVIDED } from '@/types/error-dev';
 
@@ -61,7 +62,9 @@ function betweenForString(value: string, min: number, max: number) {
     return true;
   }
 
-  if (min === 0) {
+  if (min === 1 && max === Number.POSITIVE_INFINITY) {
+    return new RuleError(REQUIRED);
+  } else if (min === 0) {
     return new RuleError(MAX_LENGTH, String(max));
   } else if (max === Number.POSITIVE_INFINITY) {
     return new RuleError(MIN_LENGTH, String(min));
