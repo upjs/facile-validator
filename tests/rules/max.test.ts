@@ -38,9 +38,13 @@ describe('rules: max', () => {
   it('should throw error on invalid argument', () => {
     expect(() => max('1')).toThrowError();
     expect(() => max('1', '')).toThrowError();
+    expect(() => max('1', '3')).toThrowError();
+    expect(() => max('1', '-1')).toThrowError();
+
     expect(() => max('1', 'string')).toThrowError();
     expect(() => max('1', 'string,-1')).toThrowError();
     expect(() => max('1', 'string,text')).toThrowError();
+
     expect(() => max('1', 'number')).toThrowError();
     expect(() => max('1', 'number,text')).toThrowError();
   });

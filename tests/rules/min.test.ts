@@ -22,6 +22,13 @@ describe('rules: min', () => {
   it('should throw error on invalid argument', () => {
     expect(() => min('1')).toThrowError();
     expect(() => min('1', '')).toThrowError();
+    expect(() => min('1', '3')).toThrowError();
+    expect(() => min('1', '-1')).toThrowError();
+
+    expect(() => min('1', 'string')).toThrowError();
+    expect(() => min('1', 'string,-1')).toThrowError();
+    expect(() => min('1', 'string,text')).toThrowError();
+
     expect(() => min('1', 'number')).toThrowError();
     expect(() => min('1', 'number,text')).toThrowError();
   });

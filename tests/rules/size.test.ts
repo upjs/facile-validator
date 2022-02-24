@@ -32,9 +32,14 @@ describe('rules: size', () => {
   it('should throw error on invalid argument', () => {
     expect(() => size('abc')).toThrowError();
     expect(() => size('abc', '')).toThrowError();
-    expect(() => size('abc', 'string')).toThrowError();
     expect(() => size('abc', '3')).toThrowError();
     expect(() => size('abc', '-1')).toThrowError();
+
+    expect(() => size('abc', 'string')).toThrowError();
     expect(() => size('abc', 'string,-1')).toThrowError();
+    expect(() => size('abc', 'string,text')).toThrowError();
+
+    expect(() => size('abc', 'number')).toThrowError();
+    expect(() => size('abc', 'number,text')).toThrowError();
   });
 });
