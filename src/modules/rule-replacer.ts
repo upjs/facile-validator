@@ -1,24 +1,21 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
-import { replaceRequiredIfRule } from '@/rules/required-if';
 import { ReplacerFn } from '@/types';
-import { processRule } from '@/utils/helpers';
+import { getValue, processRule, toCamelCase } from '@/utils/helpers';
 
 const mapMethods: Record<string, ReplacerFn> = {
-  requiredIf: replaceRequiredIfRule,
-  between: attachTypeArgument,
-  size: attachTypeArgument,
-  min: attachTypeArgument,
-  max: attachTypeArgument,
+  requiredIf: injectTargetValue,
+  between: injectType,
+  size: injectType,
+  min: injectType,
+  max: injectType,
 };
 
 export function replaceRule(rule: string, rules: string[], form: HTMLFormElement): string {
-  const ruleName = rule.split(':')[0];
+  const ruleName = toCamelCase(rule.split(':')[0]);
 
   return mapMethods[ruleName]?.(rule, rules, form) || rule;
 }
 
-export function attachTypeArgument(rule: string, rules: string[]): string {
+export function injectType(rule: string, rules: string[]): string {
   const { name: NAME, args: ARGS } = processRule(rule);
 
   const indexOfRule = rules.indexOf(rule);
@@ -30,4 +27,21 @@ export function attachTypeArgument(rule: string, rules: string[]): string {
   }
 
   return `${NAME}:${type},${ARGS.join(',')}`;
+}
+
+function injectTargetValue(rule: string): string {
+  const { name: NAME, args: ARGS } = processRule(rule);
+
+  if (ARGS.length === 0) return NAME;
+
+  let targetValue = '';
+  if (ARGS.length > 0) {
+    const targetField = document.getElementById(ARGS[0]);
+    if (targetField !== null) {
+      targetValue = getValue(targetField as HTMLInputElement);
+    }
+  }
+
+  ARGS.splice(0, 1, targetValue);
+  return `${NAME}:${ARGS.join(',')}`;
 }

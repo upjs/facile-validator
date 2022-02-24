@@ -79,7 +79,7 @@ class Validator {
 
         for (const fieldRule of computedFieldRules) {
           const [rule, args = ''] = fieldRule.split(':');
-          const ruleKey = rule as RuleKey;
+          const ruleKey = toCamelCase(rule) as RuleKey;
 
           if (ruleKey in rules) {
             try {
@@ -109,7 +109,7 @@ class Validator {
 
   private getComputedFieldRules(givenRules: string[]): string[] {
     return givenRules.map((rule) => {
-      return replaceRule(toCamelCase(rule), givenRules, this.form);
+      return replaceRule(rule, givenRules, this.form);
     });
   }
 
