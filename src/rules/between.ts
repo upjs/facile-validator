@@ -1,36 +1,45 @@
 import { Rule } from '@/types';
 import { RuleError } from '@/modules/rule-error';
 import { throwErrorWhen } from '@/utils/helpers';
-import { BETWEEN, EQUAL, GREATER_EQUAL, LESS_EQUAL, NUMBER } from '@/types/error-cause';
-import { MUST_NUMBER, MUST_PROVIDED } from '@/types/error-dev';
+import { BETWEEN_NUMBER, BETWEEN_LENGTH } from '@/types/error-cause';
+import { MUST_NUMBER, MUST_POSITIVE, MUST_PROVIDED } from '@/types/error-dev';
 
 function between(value: string, args = ''): true | RuleError {
   throwErrorWhen(args === '', MUST_PROVIDED);
 
-  const [minArg, maxArg] = args.split(',');
+  const [type, minArg, maxArg] = args.split(',');
+  throwErrorWhen(!minArg || !maxArg, MUST_PROVIDED);
 
-  const min = minArg === '' ? Number.NEGATIVE_INFINITY : Number(minArg);
-  const max = maxArg === '' ? Number.POSITIVE_INFINITY : Number(maxArg);
-
+  const min = Number(minArg);
+  const max = Number(maxArg);
   throwErrorWhen(Number.isNaN(min) || Number.isNaN(max), MUST_NUMBER);
   throwErrorWhen(min > max, 'min must be less than max');
+  throwErrorWhen(min === max, 'min and max must not be equal');
 
+  if (type === 'number') {
+    return betweenForNumber(value, min, max);
+  } else {
+    return betweenForString(value, min, max);
+  }
+}
+
+function betweenForNumber(value: string, min: number, max: number) {
   const valueInNumber = Number(value);
   if (value !== '' && !Number.isNaN(valueInNumber) && valueInNumber >= min && valueInNumber <= max) {
     return true;
   }
 
-  if (min === Number.NEGATIVE_INFINITY && max === Number.POSITIVE_INFINITY) {
-    return new RuleError(NUMBER);
-  } else if (min === Number.NEGATIVE_INFINITY) {
-    return new RuleError(LESS_EQUAL, maxArg);
-  } else if (max === Number.POSITIVE_INFINITY) {
-    return new RuleError(GREATER_EQUAL, minArg);
-  } else if (min === max) {
-    return new RuleError(EQUAL, minArg);
-  } else {
-    return new RuleError(BETWEEN, minArg, maxArg);
+  return new RuleError(BETWEEN_NUMBER, String(min), String(max));
+}
+
+function betweenForString(value: string, min: number, max: number) {
+  throwErrorWhen(min < 0 || max < 0, MUST_POSITIVE);
+
+  if (value.length >= min && value.length <= max) {
+    return true;
   }
+
+  return new RuleError(BETWEEN_LENGTH, String(min), String(max));
 }
 
 export default between as Rule;

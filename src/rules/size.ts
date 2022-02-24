@@ -1,37 +1,42 @@
 import { Rule } from '@/types';
 import { RuleError } from '@/modules/rule-error';
-import { between, length } from '@/rules';
-import { processRule, throwErrorWhen } from '@/utils/helpers';
+import { throwErrorWhen } from '@/utils/helpers';
 import { MUST_NUMBER, MUST_POSITIVE, MUST_PROVIDED } from '@/types/error-dev';
+import { EQUAL_LENGTH, EQUAL_NUMBER } from '@/types/error-cause';
 
 function size(value: string, args = ''): true | RuleError {
   throwErrorWhen(args === '', MUST_PROVIDED);
 
   const [type, size] = args.split(',');
+  throwErrorWhen(!size, MUST_PROVIDED);
 
   const sizeInNumber = Number(size);
   throwErrorWhen(Number.isNaN(sizeInNumber), MUST_NUMBER);
-  throwErrorWhen(type === 'string' && sizeInNumber < 0, MUST_POSITIVE);
 
   if (type === 'number') {
-    return between(value, `${size},${size}`);
+    return sizeForNumber(value, sizeInNumber);
   } else {
-    return length(value, size);
+    return sizeForString(value, sizeInNumber);
   }
 }
 
-export function replaceSizeRule(rule: string, rules: string[]): string {
-  const { name: NAME, args: ARGS } = processRule(rule);
-
-  const indexOfRule = rules.indexOf(rule);
-  const rulesBeforeRule = rules.slice(0, indexOfRule);
-
-  let type = 'string';
-  if (rulesBeforeRule.includes('number') || rulesBeforeRule.includes('int')) {
-    type = 'number';
+function sizeForNumber(value: string, size: number) {
+  const valueInNumber = Number(value);
+  if (value !== '' && !Number.isNaN(valueInNumber) && valueInNumber === size) {
+    return true;
   }
 
-  return `${NAME}:${type},${ARGS.join(',')}`;
+  return new RuleError(EQUAL_NUMBER, String(size));
+}
+
+function sizeForString(value: string, size: number) {
+  throwErrorWhen(size < 0, MUST_POSITIVE);
+
+  if (value.length === size) {
+    return true;
+  }
+
+  return new RuleError(EQUAL_LENGTH, String(size));
 }
 
 export default size as Rule;
