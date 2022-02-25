@@ -108,9 +108,7 @@ class Validator {
   }
 
   private getComputedFieldRules(givenRules: string[]): string[] {
-    return givenRules.map((rule) => {
-      return replaceRule(rule, givenRules, this.form);
-    });
+    return givenRules.map((rule) => replaceRule(rule, givenRules, this.form));
   }
 
   private errorEventTrigger() {

@@ -1,17 +1,17 @@
 import { Rule } from '@/types';
 import { RuleError } from '@/modules/rule-error';
-import { throwErrorWhen } from '@/utils/helpers';
+import { when } from '@/utils/helpers';
 import { MUST_NUMBER, MUST_POSITIVE, MUST_PROVIDED } from '@/types/error-dev';
 import { LESS_EQUAL, MAX_LENGTH } from '@/types/error-cause';
 
 function max(value: string, args = ''): true | RuleError {
-  throwErrorWhen(args === '', MUST_PROVIDED);
+  when(args === '').throwError(MUST_PROVIDED);
 
   const [type, max] = args.split(',');
-  throwErrorWhen(!max, MUST_PROVIDED);
+  when(!max).throwError(MUST_PROVIDED);
 
   const maxInNumber = Number(max);
-  throwErrorWhen(Number.isNaN(maxInNumber), MUST_NUMBER);
+  when(Number.isNaN(maxInNumber)).throwError(MUST_NUMBER);
 
   if (type === 'number') {
     return maxForNumber(value, maxInNumber);
@@ -30,7 +30,7 @@ function maxForNumber(value: string, max: number) {
 }
 
 function maxForString(value: string, max: number) {
-  throwErrorWhen(max < 0, MUST_POSITIVE);
+  when(max < 0).throwError(MUST_POSITIVE);
 
   if (value.length <= max) {
     return true;
