@@ -10,6 +10,9 @@ describe('rules: alpha-dash', () => {
     expect(alphaNumDash('a_a')).toBe(true);
     expect(alphaNumDash('a-a')).toBe(true);
     expect(alphaNumDash('1')).toBe(true);
+    expect(alphaNumDash('۱')).toBe(true);
+    expect(alphaNumDash('٤')).toBe(true); // Arabic 4
+    expect(alphaNumDash('۴')).toBe(true); // Persian 4
     expect(alphaNumDash('a1')).toBe(true);
     expect(alphaNumDash('__1')).toBe(true);
     expect(alphaNumDash('ـ')).toBe(true); // ARABIC TATWEEL {kashida}
