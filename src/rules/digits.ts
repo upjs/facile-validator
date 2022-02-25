@@ -1,13 +1,13 @@
 import { Rule } from '@/types';
 import { RuleError } from '@/modules/rule-error';
 import { int as isInteger } from '@/rules';
-import { throwErrorWhen } from '@/utils/helpers';
+import { when } from '@/utils/helpers';
 import { DIGITS } from '@/types/error-cause';
-import { MUST_INTEGER, MUST_PROVIDED } from '@/types/error-dev';
+import { ARGUMENT_MUST_BE_AN_INTEGER, ARGUMENT_MUST_BE_PROVIDED } from '@/types/error-dev';
 
 function digits(value: string, digitLength = ''): true | RuleError {
-  throwErrorWhen(digitLength === '', MUST_PROVIDED);
-  throwErrorWhen(isInteger(digitLength) !== true || +digitLength < 1, MUST_INTEGER);
+  when(digitLength === '').throwError(ARGUMENT_MUST_BE_PROVIDED);
+  when(isInteger(digitLength) !== true || +digitLength < 1).throwError(ARGUMENT_MUST_BE_AN_INTEGER);
 
   const regex = new RegExp(`^-?[0-9]{${digitLength}}$`);
 

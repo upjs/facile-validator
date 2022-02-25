@@ -4,6 +4,7 @@ import { LangKeys } from '@/types';
 const enLang: Record<LangKeys, string> = {
   [causes.ACCEPTED]: 'Please accept this field',
   [causes.ALPHA]: 'Please enter only alphabetic characters',
+  [causes.ALPHA_NUM_DASH]: 'Please enter only alpha-numeric characters, dashes, and underscores',
   [causes.BETWEEN_LENGTH]: 'The value must have between $1 and $2 characters',
   [causes.BETWEEN_NUMBER]: 'Please enter a number between $1 and $2',
   [causes.DIGITS]: 'The value must be a $1-digits number',

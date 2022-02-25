@@ -42,3 +42,19 @@ export function throwErrorWhen(condition: boolean, message: string): void {
     throw new Error(message);
   }
 }
+
+export function when(condition: boolean) {
+  return {
+    throwError(message: string) {
+      if (condition) {
+        throw new Error(message);
+      }
+    },
+    warning() {
+      // ...
+    },
+    notice() {
+      // ...
+    },
+  };
+}
