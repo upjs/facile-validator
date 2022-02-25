@@ -4,6 +4,7 @@ import * as causes from '@/types/error-cause';
 const faLang: Record<LangKeys, string> = {
   [causes.ACCEPTED]: 'لطفا این فیلد را تیک بزنید',
   [causes.ALPHA]: 'لطفاً فقط حروف الفبا وارد کنید',
+  [causes.ALPHA_NUM_DASH]: 'لطفاً فقط حروف الفبا، اعداد، زیر خط و خط فاصله وارد کنید',
   [causes.BETWEEN_LENGTH]: 'مقدار باید بین $1 و $2 کاراکتر باشد',
   [causes.BETWEEN_NUMBER]: 'لطفا یک عدد بین $1 و $2 وارد کنید',
   [causes.DIGITS]: 'مقدار این فیلد باید $1 رقم باشد',

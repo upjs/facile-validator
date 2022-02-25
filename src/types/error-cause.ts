@@ -1,5 +1,6 @@
 export const ACCEPTED = 'accepted';
 export const ALPHA = 'alpha';
+export const ALPHA_NUM_DASH = 'alpha-num-dash';
 export const BETWEEN_LENGTH = 'between-length';
 export const BETWEEN_NUMBER = 'between-number';
 export const DIGITS = 'digits';

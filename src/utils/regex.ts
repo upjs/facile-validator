@@ -4,3 +4,4 @@ export const email =
 export const integer = /^[+-]?[0-9]+$/;
 
 export const alpha = /^[\p{L}\p{M}]+$/u;
+export const alphaNumDash = /^[\p{L}\p{M}\p{N}_-]+$/u;

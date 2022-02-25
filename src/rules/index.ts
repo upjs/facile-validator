@@ -1,5 +1,6 @@
 export { default as accepted } from './accepted';
 export { default as alpha } from './alpha';
+export { default as alphaNumDash } from './alpha-num-dash';
 export { default as between } from './between';
 export { default as digits } from './digits';
 export { default as endsWith } from './ends-with';
