@@ -1,5 +1,6 @@
 export { default as accepted } from './accepted';
 export { default as alpha } from './alpha';
+export { default as alphaNum } from './alpha-num';
 export { default as alphaNumDash } from './alpha-num-dash';
 export { default as between } from './between';
 export { default as digits } from './digits';
@@ -9,6 +10,7 @@ export { default as min } from './min';
 export { default as integer, default as int } from './int';
 export { default as max } from './max';
 export { default as number } from './number';
+export { default as numDash } from './num-dash';
 export { default as required } from './required';
 export { default as requiredIf } from './required-if';
 export { default as size } from './size';
