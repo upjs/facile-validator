@@ -4,6 +4,7 @@ import * as causes from '@/types/error-cause';
 const faLang: Record<LangKeys, string> = {
   [causes.ACCEPTED]: 'لطفا این فیلد را تیک بزنید',
   [causes.ALPHA]: 'لطفاً فقط حروف الفبا وارد کنید',
+  [causes.ALPHA_NUM]: 'لطفاً فقط اعداد، زیر خط و خط فاصله وارد کنید',
   [causes.ALPHA_NUM_DASH]: 'لطفاً فقط حروف الفبا، اعداد، زیر خط و خط فاصله وارد کنید',
   [causes.BETWEEN_LENGTH]: 'مقدار باید بین $1 و $2 کاراکتر باشد',
   [causes.BETWEEN_NUMBER]: 'لطفا یک عدد بین $1 و $2 وارد کنید',
@@ -18,6 +19,7 @@ const faLang: Record<LangKeys, string> = {
   [causes.MAX_LENGTH]: 'حداکثر طول مجاز این فیلد $1 است',
   [causes.MIN_LENGTH]: 'حداقل طول مجاز این فیلد $1 است',
   [causes.REQUIRED]: 'این فیلد الزامی است',
+  [causes.NUM_DASH]: 'لطفاً فقط اعداد با زیرخط و خط فاصله وارد کنید',
   [causes.NUMBER]: 'لطفا یک عدد معتبر وارد کنید',
   [causes.STARTS_WITH]: 'مقدار این فیلد باید با "$1" شروع شود',
   [causes.WITHIN]: 'مقدار این فیلد نادرست است',

@@ -1,5 +1,6 @@
 export const ACCEPTED = 'accepted';
 export const ALPHA = 'alpha';
+export const ALPHA_NUM = 'alpha-num';
 export const ALPHA_NUM_DASH = 'alpha-num-dash';
 export const BETWEEN_LENGTH = 'between-length';
 export const BETWEEN_NUMBER = 'between-number';
@@ -13,6 +14,7 @@ export const INTEGER = 'integer';
 export const LESS_EQUAL = 'less-equal';
 export const MAX_LENGTH = 'max-length';
 export const MIN_LENGTH = 'min-length';
+export const NUM_DASH = 'num-dash';
 export const NUMBER = 'number';
 export const REQUIRED = 'required';
 export const STARTS_WITH = 'starts-with';
