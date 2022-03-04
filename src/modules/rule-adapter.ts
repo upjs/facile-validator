@@ -1,7 +1,7 @@
-import { ReplacerFn } from '@/types';
+import { AdapterFn } from '@/types';
 import { getValue, processRule, toCamelCase } from '@/utils/helpers';
 
-const mapMethods: Record<string, ReplacerFn> = {
+const mapMethods: Record<string, AdapterFn> = {
   requiredIf: injectTargetValue,
   between: injectType,
   size: injectType,
@@ -9,7 +9,7 @@ const mapMethods: Record<string, ReplacerFn> = {
   max: injectType,
 };
 
-export function replaceRule(rule: string, rules: string[], form: HTMLFormElement): string {
+export function adaptRule(rule: string, rules: string[], form: HTMLFormElement): string {
   const ruleName = toCamelCase(rule.split(':')[0]);
 
   return mapMethods[ruleName]?.(rule, rules, form) || rule;

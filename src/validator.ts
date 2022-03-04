@@ -5,7 +5,7 @@ import { getValue, toCamelCase } from '@/utils/helpers';
 import EventBus from './modules/events';
 import Language from './modules/language';
 import { RuleError } from './modules/rule-error';
-import { replaceRule } from './modules/rule-replacer';
+import { adaptRule } from './modules/rule-adapter';
 
 type RuleKey = keyof typeof rules;
 
@@ -108,7 +108,7 @@ class Validator {
   }
 
   private getComputedFieldRules(givenRules: string[]): string[] {
-    return givenRules.map((rule) => replaceRule(rule, givenRules, this.form));
+    return givenRules.map((rule) => adaptRule(rule, givenRules, this.form));
   }
 
   private errorEventTrigger() {
