@@ -6,8 +6,6 @@ export default defineConfig({
   ...viteConfig,
   root: resolve(__dirname, './'),
   publicDir: resolve(__dirname, './public'),
-  build: {
-    outDir: resolve(__dirname, '../demo'),
-  },
+  build: undefined,
   base: 'https://upjs.github.io/easy-html-form-validator/',
 });
