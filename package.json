@@ -5,6 +5,22 @@
   "repository": "upjs/facile-validator",
   "homepage": "https://github.com/upjs/facile-validator",
   "license": "MIT",
+  "scripts": {
+    "dev": "vite --config ./playground/vite.config.ts",
+    "deploy": "vite --config ./playground/vite.config.ts build",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint": "eslint --ext .ts,vue --ignore-path .gitignore .",
+    "test": "vitest --run",
+    "test:watch": "vitest --watch",
+    "coverage": "vitest run --coverage",
+    "prepare": "husky install",
+    "release": "yarn test && npx standard-version && git push --follow-tags && npm publish"
+  },
+  "lint-staged": {
+    "*.ts": "eslint --fix",
+    "*": "prettier -w -u"
+  },
   "keywords": [
     "javascript",
     "typescript",
@@ -39,22 +55,6 @@
     "src",
     "dist"
   ],
-  "scripts": {
-    "dev": "vite --config ./playground/vite.config.ts",
-    "deploy": "vite --config ./playground/vite.config.ts build",
-    "build": "tsc && vite build",
-    "preview": "vite preview",
-    "lint": "eslint --ext .ts,vue --ignore-path .gitignore .",
-    "test": "vitest --run",
-    "test:watch": "vitest --watch",
-    "coverage": "vitest run --coverage",
-    "prepare": "husky install",
-    "release": "yarn test && npx standard-version && git push --follow-tags && npm publish"
-  },
-  "lint-staged": {
-    "*.ts": "eslint --fix",
-    "*": "prettier -w -u"
-  },
   "devDependencies": {
     "@types/node": "17.0.17",
     "@typescript-eslint/eslint-plugin": "5.13.0",
