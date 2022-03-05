@@ -2,7 +2,7 @@
 
 _This documentation is being completed..._
 
-**[DEMO](https://alin11.github.io/misc/easy-html-form-validator/)**
+**[DEMO](https://upjs.github.io/easy-html-form-validator/)**
 
 Laravel-inspired validation for HTML forms:
 
