@@ -2,7 +2,7 @@
 
 _This documentation is being completed..._
 
-**[DEMO](https://upjs.github.io/easy-html-form-validator/)**
+**[DEMO](https://upjs.github.io/facile-validator/)**
 
 Laravel-inspired validation for HTML forms:
 
@@ -17,7 +17,7 @@ Easily chain validation rules with `|`.
 ## Installation
 
 ```
-$ npm i easy-html-form-validator
+$ npm i facile-validator
 ```
 
 ## Usage:
@@ -33,7 +33,7 @@ HTML:
 JavaScript:
 
 ```javascript
-import Validator from 'easy-html-form-validator';
+import Validator from 'facile-validator';
 
 new Validator('#my-form');
 ```

@@ -1,30 +1,40 @@
 {
-  "name": "easy-html-form-validator",
+  "name": "facile-validator",
   "version": "0.2.0",
   "description": "Easy HTML form validator written in TypeScript with tree-shaking",
-  "repository": "AliN11/easy-html-form-validator",
-  "homepage": "https://github.com/AliN11/easy-html-form-validator",
+  "repository": "upjs/facile-validator",
+  "homepage": "https://github.com/upjs/facile-validator",
   "license": "MIT",
   "keywords": [
-    "html",
-    "from",
-    "validation",
-    "input",
     "javascript",
-    "typescript"
+    "typescript",
+    "html",
+    "validation",
+    "validator",
+    "form",
+    "form-validation"
   ],
   "author": {
     "name": "Ali Nazari",
     "email": "alinazari.7321@gmail.com"
   },
-  "main": "./dist/validator.umd.js",
-  "module": "./dist/validator.es.js",
+  "contributors": [
+    {
+      "name": "Mohammad Saleh Fadaei",
+      "email": "ms.fadaei1997@gmail.com",
+      "url": "https://twitter.com/ms_fadaei"
+    }
+  ],
+  "type": "module",
+  "sideEffects": false,
   "exports": {
     ".": {
-      "import": "./dist/validator.es.js",
-      "require": "./dist/validator.umd.js"
+      "import": "./dist/facile-validator.mjs",
+      "require": "./dist/facile-validator.cjs"
     }
   },
+  "main": "./dist/facile-validator.umd.js",
+  "module": "./dist/facile-validator.es.js",
   "files": [
     "src",
     "dist"
