@@ -2,20 +2,21 @@ import { AdapterFn } from '@/types';
 import { getValue, processRule, toCamelCase } from '@/utils/helpers';
 
 const mapMethods: Record<string, AdapterFn> = {
-  requiredIf: injectTargetValue,
-  between: injectType,
-  size: injectType,
-  min: injectType,
-  max: injectType,
+  requiredIf: appendTargetValue,
+  between: appendType,
+  size: appendType,
+  min: appendType,
+  max: appendType,
+  in: appendType,
 };
 
-export function adaptRule(rule: string, rules: string[], form: HTMLFormElement): string {
+export function adaptRule(rule: string, rules: string[], form: HTMLFormElement, field: HTMLElement): string {
   const ruleName = toCamelCase(rule.split(':')[0]);
 
-  return mapMethods[ruleName]?.(rule, rules, form) || rule;
+  return mapMethods[ruleName]?.(rule, rules, form, field) || rule;
 }
 
-export function injectType(rule: string, rules: string[]): string {
+export function appendType(rule: string, rules: string[]): string {
   const { name: NAME, args: ARGS } = processRule(rule);
 
   const indexOfRule = rules.indexOf(rule);
@@ -24,12 +25,14 @@ export function injectType(rule: string, rules: string[]): string {
   let type = 'string';
   if (rulesBeforeRule.includes('number') || rulesBeforeRule.includes('int') || rulesBeforeRule.includes('integer')) {
     type = 'number';
+  } else if (rulesBeforeRule.includes('array')) {
+    type = 'array';
   }
 
   return `${NAME}:${type},${ARGS.join(',')}`;
 }
 
-function injectTargetValue(rule: string): string {
+function appendTargetValue(rule: string): string {
   const { name: NAME, args: ARGS } = processRule(rule);
 
   if (ARGS.length === 0) return NAME;
@@ -43,5 +46,6 @@ function injectTargetValue(rule: string): string {
   }
 
   ARGS.splice(0, 1, targetValue);
+
   return `${NAME}:${ARGS.join(',')}`;
 }

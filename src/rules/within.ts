@@ -7,7 +7,19 @@ import { ARGUMENT_MUST_BE_PROVIDED } from '@/types/error-dev';
 function within(value: string, values: string): true | RuleError {
   when(values === '').throwError(ARGUMENT_MUST_BE_PROVIDED);
 
-  const list = values.split(',');
+  const [type, ...list] = values.split(',');
+
+  if (type === 'array') {
+    const splittedValue = value.split(',');
+    for (const value of splittedValue) {
+      if (!list.includes(value)) {
+        return new RuleError(WITHIN);
+      }
+    }
+
+    return true;
+  }
+
   return list.includes(value) || new RuleError(WITHIN);
 }
 

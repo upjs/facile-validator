@@ -75,7 +75,7 @@ class Validator {
       if (fieldRules && fieldRules.length > 0) {
         const value = getValue(field);
         const shouldStopOnFirstFailure = this.shouldStopOnFirstFailure(fieldRules);
-        const computedFieldRules = this.getComputedFieldRules(fieldRules);
+        const computedFieldRules = this.getComputedFieldRules(fieldRules, field);
 
         for (const fieldRule of computedFieldRules) {
           const [rule, args = ''] = fieldRule.split(':');
@@ -107,8 +107,8 @@ class Validator {
     return givenRules.includes('bail');
   }
 
-  private getComputedFieldRules(givenRules: string[]): string[] {
-    return givenRules.map((rule) => adaptRule(rule, givenRules, this.form));
+  private getComputedFieldRules(givenRules: string[], field: HTMLElement): string[] {
+    return givenRules.map((rule) => adaptRule(rule, givenRules, this.form, field));
   }
 
   private errorEventTrigger() {
