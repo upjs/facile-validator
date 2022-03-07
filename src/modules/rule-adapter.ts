@@ -38,7 +38,7 @@ function injectTargetValue(rule: string): string {
   if (ARGS.length > 0) {
     const targetField = document.getElementById(ARGS[0]);
     if (targetField !== null) {
-      targetValue = getValue(targetField as HTMLInputElement);
+      targetValue = getValue(targetField as HTMLElement);
     }
   }
 

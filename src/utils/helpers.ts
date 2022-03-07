@@ -5,12 +5,22 @@ export function toCamelCase(value: string) {
   return value.replace(/-./g, (match) => match[1].toUpperCase());
 }
 
-export function getValue(element: HTMLInputElement): string {
-  if (element.type === TYPE_CHECKBOX || element.type === TYPE_RADIO) {
-    return element.checked ? 'checked' : '';
+export function getValue(element: HTMLElement): string {
+  if (element instanceof HTMLInputElement) {
+    if (element.type === TYPE_CHECKBOX || element.type === TYPE_RADIO) {
+      return element.checked ? 'checked' : '';
+    }
+
+    return element.value;
   }
 
-  return element.value || '';
+  if (element instanceof HTMLSelectElement) {
+    return Array.from(element.selectedOptions)
+      .map((option) => option.value)
+      .toString();
+  }
+
+  return '';
 }
 
 export function format(message: string, ...toReplace: string[]) {
