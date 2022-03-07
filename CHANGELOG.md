@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.2](https://github.com/upjs/facile-validator/compare/v0.1.1...v0.1.2) (2022-03-07)
+
+### Bug Fixes
+
+- fix package entry ([a882e39](https://github.com/upjs/facile-validator/commit/a882e3943d922c8aef2a9531f990d441667674ce))
+
 ### [0.1.1](https://github.com/upjs/facile-validator/compare/v0.1.0...v0.1.1) (2022-03-05)
 
 ## 0.1.0 (2022-03-05)
