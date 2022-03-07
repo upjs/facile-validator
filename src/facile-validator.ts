@@ -49,7 +49,7 @@ class Validator {
   public validate(): boolean {
     this.events.call('validate:start', this.form);
 
-    const fields = this.form.querySelectorAll<HTMLInputElement>('[data-rules]');
+    const fields = this.form.querySelectorAll<HTMLElement>('[data-rules]');
     if (fields.length === 0) return true;
 
     const isSuccessful = this.validateFields(Array.from(fields));
@@ -68,7 +68,7 @@ class Validator {
     this.events.off(event, callback);
   }
 
-  private validateFields(fields: HTMLInputElement[]): boolean {
+  private validateFields(fields: HTMLElement[]): boolean {
     for (const field of fields) {
       const fieldRules = field.getAttribute('data-rules')?.split('|');
 
