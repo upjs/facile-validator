@@ -45,8 +45,8 @@
       "require": "./dist/facile-validator.cjs"
     }
   },
-  "main": "./dist/facile-validator.umd.js",
-  "module": "./dist/facile-validator.es.js",
+  "main": "./dist/facile-validator.cjs",
+  "module": "./dist/facile-validator.mjs",
   "files": [
     "src",
     "dist"
