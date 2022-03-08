@@ -108,7 +108,7 @@ class Validator {
   }
 
   private getComputedFieldRules(givenRules: string[], field: HTMLElement): string[] {
-    return givenRules.map((rule) => adaptRule(rule, givenRules, this.form, field));
+    return givenRules.map((rule) => adaptRule(rule, givenRules, field, this.form));
   }
 
   private errorEventTrigger() {
