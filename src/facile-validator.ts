@@ -1,5 +1,5 @@
 import * as rules from '@/rules';
-import { ValidatorOptions, EventsName, Events } from '@/types';
+import { ValidatorOptions, EventsName, Events, FormInputEelement } from '@/types';
 import ValidatorError from '@/modules/validator-error';
 import { getValue, toCamelCase } from '@/utils/helpers';
 import EventBus from './modules/events';
@@ -49,7 +49,7 @@ class Validator {
   public validate(): boolean {
     this.events.call('validate:start', this.form);
 
-    const fields = this.form.querySelectorAll<HTMLElement>('[data-rules]');
+    const fields = this.form.querySelectorAll<FormInputEelement>('[data-rules]');
     if (fields.length === 0) return true;
 
     const isSuccessful = this.validateFields(Array.from(fields));
@@ -68,7 +68,7 @@ class Validator {
     this.events.off(event, callback);
   }
 
-  private validateFields(fields: HTMLElement[]): boolean {
+  private validateFields(fields: FormInputEelement[]): boolean {
     for (const field of fields) {
       const fieldRules = field.getAttribute('data-rules')?.split('|');
 
@@ -88,7 +88,7 @@ class Validator {
               if (result instanceof RuleError) {
                 this.validatorError.setError(field, rule, result);
 
-                // stop on first failure when 'bail' is set
+                // stop on first failure if 'bail' rule exists
                 if (shouldStopOnFirstFailure) break;
               }
             } catch (error) {
@@ -107,7 +107,7 @@ class Validator {
     return givenRules.includes('bail');
   }
 
-  private getComputedFieldRules(givenRules: string[], field: HTMLElement): string[] {
+  private getComputedFieldRules(givenRules: string[], field: FormInputEelement): string[] {
     return givenRules.map((rule) => adaptRule(rule, givenRules, this.form, field));
   }
 
