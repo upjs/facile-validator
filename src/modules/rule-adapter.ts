@@ -10,10 +10,10 @@ const mapMethods: Record<string, AdapterFn> = {
   in: prependType,
 };
 
-export function adaptRule(rule: string, rules: string[], form: HTMLFormElement, field: FormInputEelement): string {
+export function adaptRule(rule: string, rules: string[], field: FormInputEelement, form: HTMLFormElement): string {
   const ruleName = toCamelCase(rule.split(':')[0]);
 
-  return mapMethods[ruleName]?.(rule, rules, form, field) || rule;
+  return mapMethods[ruleName]?.(rule, rules, field, form) || rule;
 }
 
 export function prependType(rule: string, rules: string[]): string {

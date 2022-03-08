@@ -41,6 +41,6 @@ export type EventsList = {
   [P in EventsName]?: Events[P][];
 };
 
-export type AdapterFn = (rule: string, rules: string[], form: HTMLFormElement, field: FormInputEelement) => string;
+export type AdapterFn = (rule: string, rules: string[], field: FormInputEelement, form: HTMLFormElement) => string;
 
 export type FormInputEelement = HTMLInputElement | HTMLSelectElement;
