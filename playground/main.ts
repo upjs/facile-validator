@@ -5,16 +5,20 @@ import { ErrorDetail } from '@/types';
 const validator = new Validator('form', {
   lang: enLang,
   autoSubmit: true,
+  on: {
+    'validate:success': () => {
+      alert('Success! Form validated with no errors');
+    },
+    'validate:failed': () => {
+      // ...
+    },
+  },
 });
 
 validator.on('validate:start', () => {
   document.querySelectorAll('.validator-err').forEach((el) => {
     el.remove();
   });
-});
-
-validator.on('validate:success', () => {
-  alert('Success! Form validated with no errors');
 });
 
 validator.on('error:field', (_form: HTMLFormElement, element: HTMLElement, errors: ErrorDetail[]) => {

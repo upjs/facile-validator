@@ -28,11 +28,11 @@ export interface ErrorDetail {
 }
 
 export interface Events {
-  'validate:start': (form: HTMLFormElement) => void;
-  'validate:end': (form: HTMLFormElement, isSuccessful: boolean) => void;
-  'validate:success': (form: HTMLFormElement) => void;
-  'validate:failed': (form: HTMLFormElement) => void;
-  'error:field': (form: HTMLFormElement, element: FormInputEelement, errors: ErrorDetail[]) => void;
+  'validate:start'?: (form: HTMLFormElement) => void;
+  'validate:end'?: (form: HTMLFormElement, isSuccessful: boolean) => void;
+  'validate:success'?: (form: HTMLFormElement) => void;
+  'validate:failed'?: (form: HTMLFormElement) => void;
+  'error:field'?: (form: HTMLFormElement, element: FormInputEelement, errors: ErrorDetail[]) => void;
 }
 
 export type EventsName = keyof Events;
