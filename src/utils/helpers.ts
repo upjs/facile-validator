@@ -1,6 +1,6 @@
 import Language from '@/modules/language';
 import { LangKeys, FormInputEelement } from '@/types';
-import { TYPE_CHECKBOX, TYPE_RADIO } from '@/types/element-type';
+import { TYPE_CHECKBOX, TYPE_RADIO } from '@/types/elements';
 
 export function toCamelCase(value: string) {
   return value.replace(/-./g, (match) => match[1].toUpperCase());

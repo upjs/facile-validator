@@ -1,7 +1,7 @@
 import { Rule } from '@/types';
 import { RuleError } from '@/modules/rule-error';
 import { throwErrorWhen } from '@/utils/helpers';
-import { STARTS_WITH } from '@/types/error-cause';
+import { STARTS_WITH } from '@/types/rules';
 import { ARGUMENT_MUST_BE_PROVIDED } from '@/types/error-dev';
 
 function startsWith(value: string, start = ''): true | RuleError {

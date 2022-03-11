@@ -2,7 +2,7 @@ import { Rule } from '@/types';
 import { RuleError } from '@/modules/rule-error';
 import { when } from '@/utils/helpers';
 import { ARGUMENT_MUST_BE_A_NUMBER, ARGUMENT_MUST_BE_POSITIVE, ARGUMENT_MUST_BE_PROVIDED } from '@/types/error-dev';
-import { LESS_EQUAL, MAX_LENGTH } from '@/types/error-cause';
+import { LESS_EQUAL, MAX_LENGTH } from '@/types/rules';
 
 function max(value: string, args = ''): true | RuleError {
   when(args === '').throwError(ARGUMENT_MUST_BE_PROVIDED);
