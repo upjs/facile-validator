@@ -1,4 +1,4 @@
-import { ErrorDetail } from '@/types';
+import { ErrorDetail, FormInputEelement } from '@/types';
 import { lang } from '@/utils/helpers';
 import Language from './language';
 import { RuleError } from './rule-error';
@@ -12,7 +12,7 @@ export default class ValidatorError {
     this.errorsList = [];
   }
 
-  public setError(element: HTMLElement, rule: string, ruleError: RuleError) {
+  public setError(element: FormInputEelement, rule: string, ruleError: RuleError) {
     let errors = this.errorsList.find((error) => error[0].element === element);
 
     if (!errors) {

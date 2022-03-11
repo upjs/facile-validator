@@ -1,22 +1,22 @@
-import { AdapterFn } from '@/types';
+import { AdapterFn, FormInputEelement } from '@/types';
 import { getValue, processRule, toCamelCase } from '@/utils/helpers';
 
 const mapMethods: Record<string, AdapterFn> = {
-  requiredIf: appendTargetValue,
-  between: appendType,
-  size: appendType,
-  min: appendType,
-  max: appendType,
-  in: appendType,
+  requiredIf: prependTargetValue,
+  between: prependType,
+  size: prependType,
+  min: prependType,
+  max: prependType,
+  in: prependType,
 };
 
-export function adaptRule(rule: string, rules: string[], form: HTMLFormElement, field: HTMLElement): string {
+export function adaptRule(rule: string, rules: string[], field: FormInputEelement, form: HTMLFormElement): string {
   const ruleName = toCamelCase(rule.split(':')[0]);
 
-  return mapMethods[ruleName]?.(rule, rules, form, field) || rule;
+  return mapMethods[ruleName]?.(rule, rules, field, form) || rule;
 }
 
-export function appendType(rule: string, rules: string[]): string {
+export function prependType(rule: string, rules: string[]): string {
   const { name: NAME, args: ARGS } = processRule(rule);
 
   const indexOfRule = rules.indexOf(rule);
@@ -32,7 +32,7 @@ export function appendType(rule: string, rules: string[]): string {
   return `${NAME}:${type},${ARGS.join(',')}`;
 }
 
-function appendTargetValue(rule: string): string {
+function prependTargetValue(rule: string): string {
   const { name: NAME, args: ARGS } = processRule(rule);
 
   if (ARGS.length === 0) return NAME;
@@ -41,7 +41,7 @@ function appendTargetValue(rule: string): string {
   if (ARGS.length > 0) {
     const targetField = document.getElementById(ARGS[0]);
     if (targetField !== null) {
-      targetValue = getValue(targetField as HTMLElement);
+      targetValue = getValue(targetField as FormInputEelement);
     }
   }
 
