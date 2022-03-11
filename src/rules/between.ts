@@ -1,7 +1,7 @@
 import { Rule } from '@/types';
 import { RuleError } from '@/modules/rule-error';
 import { when } from '@/utils/helpers';
-import { BETWEEN_NUMBER, BETWEEN_LENGTH } from '@/types/error-cause';
+import { BETWEEN_NUMBER, BETWEEN_LENGTH } from '@/types/rules';
 import { ARGUMENT_MUST_BE_A_NUMBER, ARGUMENT_MUST_BE_POSITIVE, ARGUMENT_MUST_BE_PROVIDED } from '@/types/error-dev';
 
 function between(value: string, args = ''): true | RuleError {

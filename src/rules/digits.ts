@@ -2,7 +2,7 @@ import { Rule } from '@/types';
 import { RuleError } from '@/modules/rule-error';
 import { int as isInteger } from '@/rules';
 import { when } from '@/utils/helpers';
-import { DIGITS } from '@/types/error-cause';
+import { DIGITS } from '@/types/rules';
 import { ARGUMENT_MUST_BE_AN_INTEGER, ARGUMENT_MUST_BE_PROVIDED } from '@/types/error-dev';
 
 function digits(value: string, digitLength = ''): true | RuleError {

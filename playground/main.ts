@@ -18,15 +18,13 @@ validator.on('validate:success', () => {
 });
 
 validator.on('error:field', (_form: HTMLFormElement, element: HTMLElement, errors: ErrorDetail[]) => {
-  const elem = element as HTMLInputElement;
-
   errors.reverse().forEach((error) => {
     const messageElement = document.createElement('p');
     messageElement.classList.add('validator-err');
     messageElement.innerHTML = error.message;
 
-    if (elem.parentNode) {
-      elem.parentNode.insertBefore(messageElement, elem.nextSibling);
+    if (element.parentNode) {
+      element.parentNode.insertBefore(messageElement, element.nextSibling);
     }
   });
 });

@@ -1,6 +1,6 @@
 import { Rule } from '@/types';
 import { RuleError } from '@/modules/rule-error';
-import { NUMBER } from '@/types/error-cause';
+import { NUMBER } from '@/types/rules';
 
 function number(value: string): true | RuleError {
   return String(Number(value)) === value || new RuleError(NUMBER);

@@ -1,6 +1,6 @@
 import { Rule } from '@/types';
 import { RuleError } from '@/modules/rule-error';
-import { ACCEPTED } from '@/types/error-cause';
+import { ACCEPTED } from '@/types/rules';
 
 function accepted(value: string): true | RuleError {
   if (value === 'checked') {

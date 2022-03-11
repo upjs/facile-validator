@@ -1,11 +1,11 @@
 import { RuleError } from '@/modules/rule-error';
-import * as errorCause from '@/types/error-cause';
+import * as rules from '@/types/rules';
 
 export type ArrayOfValues<T> = {
   [P in keyof T]: T[P][];
 };
 
-type ErrorCause = typeof errorCause;
+type ErrorCause = typeof rules;
 export type LangKeys = ErrorCause[keyof ErrorCause];
 export type Lang = Partial<Record<LangKeys, string>>;
 
