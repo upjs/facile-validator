@@ -1,6 +1,5 @@
 import './style.css';
 import { Validator, enLang } from '@/index';
-import { ErrorDetail } from '@/types';
 
 const validator = new Validator('form', {
   lang: enLang,
@@ -21,7 +20,7 @@ validator.on('validate:start', () => {
   });
 });
 
-validator.on('error:field', (_form: HTMLFormElement, element: HTMLElement, errors: ErrorDetail[]) => {
+validator.on('error:field', (_form, element, errors) => {
   errors.reverse().forEach((error) => {
     const messageElement = document.createElement('p');
     messageElement.classList.add('validator-err');
