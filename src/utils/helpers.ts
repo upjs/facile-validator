@@ -1,3 +1,4 @@
+import EventBus from '@/modules/events';
 import Language from '@/modules/language';
 import { LangKeys, FormInputEelement } from '@/types';
 import { TYPE_CHECKBOX, TYPE_RADIO } from '@/types/elements';
@@ -68,4 +69,24 @@ export function when(condition: boolean) {
       // ...
     },
   };
+}
+
+export function defaultErrorListeners(events: EventBus) {
+  events.on('error:field', (_form, element, errors) => {
+    errors.reverse().forEach((error) => {
+      const messageElement = document.createElement('p');
+      messageElement.classList.add('validator-err');
+      messageElement.innerHTML = error.message;
+
+      if (element.parentNode) {
+        element.parentNode.insertBefore(messageElement, element.nextSibling);
+      }
+    });
+  });
+
+  events.on('validate:start', (form) => {
+    form.querySelectorAll('.validator-err').forEach((el) => {
+      el.remove();
+    });
+  });
 }

@@ -1,7 +1,7 @@
 import * as rules from '@/rules';
 import { ValidatorOptions, EventsName, Events, FormInputEelement } from '@/types';
 import ValidatorError from '@/modules/validator-error';
-import { getValue, toCamelCase } from '@/utils/helpers';
+import { getValue, toCamelCase, defaultErrorListeners } from '@/utils/helpers';
 import EventBus from './modules/events';
 import Language from './modules/language';
 import { RuleError } from './modules/rule-error';
@@ -10,51 +10,47 @@ import { adaptRule } from './modules/rule-adapter';
 type RuleKey = keyof typeof rules;
 
 const defaultOptions: ValidatorOptions = {
-  autoSubmit: true,
+  renderErrors: true,
 };
 
 class Validator {
   private validatorError: ValidatorError;
   private events: EventBus;
   private options: ValidatorOptions;
-  private eventHandler: (e: SubmitEvent) => void;
-  private form: HTMLFormElement;
+  private form: HTMLElement;
 
-  constructor(el: string, options: ValidatorOptions = {}) {
-    const form = document.querySelector(el);
-    if (form === null || !(form instanceof HTMLFormElement)) {
+  constructor(form: HTMLElement, options: ValidatorOptions = {}) {
+    if (form === null || !(form instanceof HTMLElement)) {
       throw new Error('Invalid form element');
     }
 
     this.options = Object.assign(defaultOptions, options);
-    Language.set(this.options.lang);
     this.validatorError = new ValidatorError();
     this.events = new EventBus(this.options.on);
-
-    // reset errors on validate:start
-    this.events.on('validate:start', () => this.validatorError.clearErrors());
-
-    // manage errors on validate:failed
-    this.events.on('validate:failed', () => this.errorEventTrigger());
-
-    this.eventHandler = (event: SubmitEvent) => !this.validate() && event.preventDefault();
-    form.addEventListener('submit', this.eventHandler);
     this.form = form;
-  }
 
-  public revoke() {
-    this.form.removeEventListener('submit', this.eventHandler);
+    Language.set(this.options.lang);
+
+    if (this.options.renderErrors) {
+      defaultErrorListeners(this.events);
+    }
+
+    this.events.on('validate:start', () => this.validatorError.clearErrors());
+    this.events.on('validate:failed', () => this.errorEventTrigger());
   }
 
   public validate(): boolean {
     this.events.call('validate:start', this.form);
+    let isSuccessful = true;
+    let status = 'success';
 
     const fields = this.form.querySelectorAll<FormInputEelement>('[data-rules]');
-    if (fields.length === 0) return true;
+    if (fields.length > 0) {
+      isSuccessful = this.validateFields(Array.from(fields));
+      status = isSuccessful ? 'success' : 'failed';
+    }
 
-    const isSuccessful = this.validateFields(Array.from(fields));
-    const status = isSuccessful ? 'success' : 'failed';
-    this.events.call(`validate:${status}`, this.form);
+    this.events.call(`validate:${status}` as keyof Events, this.form);
     this.events.call('validate:end', this.form, isSuccessful);
 
     return isSuccessful;
@@ -87,9 +83,9 @@ class Validator {
 
               if (result instanceof RuleError) {
                 this.validatorError.setError(field, rule, result);
-
-                // stop on first failure if 'bail' rule exists
-                if (shouldStopOnFirstFailure) break;
+                if (shouldStopOnFirstFailure) {
+                  break;
+                }
               }
             } catch (error) {
               console.error(new Error(`${rule}: ${(error as Error).message}`));

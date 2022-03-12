@@ -1,30 +1,18 @@
 import './style.css';
 import { Validator, enLang } from '@/index';
-import { ErrorDetail } from '@/types';
 
-const validator = new Validator('form', {
+const form = document.querySelector('form') as HTMLElement;
+
+form.onsubmit = (e) => {
+  e.preventDefault();
+  v.validate();
+};
+
+const v = new Validator(form, {
   lang: enLang,
-  autoSubmit: true,
-});
-
-validator.on('validate:start', () => {
-  document.querySelectorAll('.validator-err').forEach((el) => {
-    el.remove();
-  });
-});
-
-validator.on('validate:success', () => {
-  alert('Success! Form validated with no errors');
-});
-
-validator.on('error:field', (_form: HTMLFormElement, element: HTMLElement, errors: ErrorDetail[]) => {
-  errors.reverse().forEach((error) => {
-    const messageElement = document.createElement('p');
-    messageElement.classList.add('validator-err');
-    messageElement.innerHTML = error.message;
-
-    if (element.parentNode) {
-      element.parentNode.insertBefore(messageElement, element.nextSibling);
-    }
-  });
+  on: {
+    'validate:success': () => {
+      alert('Success! Form validated with no errors');
+    },
+  },
 });

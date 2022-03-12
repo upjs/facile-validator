@@ -37,7 +37,7 @@ export default class EventBus {
     }
   }
 
-  public call<K extends EventsName>(event: K, ...args: Parameters<Events[K]>): void {
+  public call<K extends EventsName>(event: EventsName, ...args: Parameters<Events[K]>): void {
     if (typeof this.events[event] !== 'undefined') {
       const events = this.events[event] as ((...args: Parameters<Events[K]>) => void)[];
 

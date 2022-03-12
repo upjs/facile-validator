@@ -11,8 +11,8 @@ export type Lang = Partial<Record<LangKeys, string>>;
 
 export interface ValidatorOptions {
   lang?: Lang;
-  on?: Events;
-  autoSubmit?: boolean;
+  on?: Partial<Events>;
+  renderErrors?: boolean;
 }
 
 export interface Rule {
@@ -28,11 +28,11 @@ export interface ErrorDetail {
 }
 
 export interface Events {
-  'validate:start': (form: HTMLFormElement) => void;
-  'validate:end': (form: HTMLFormElement, isSuccessful: boolean) => void;
-  'validate:success': (form: HTMLFormElement) => void;
-  'validate:failed': (form: HTMLFormElement) => void;
-  'error:field': (form: HTMLFormElement, element: FormInputEelement, errors: ErrorDetail[]) => void;
+  'validate:start': (form: HTMLElement) => void;
+  'validate:end': (form: HTMLElement, isSuccessful: boolean) => void;
+  'validate:success': (form: HTMLElement) => void;
+  'validate:failed': (form: HTMLElement) => void;
+  'error:field': (form: HTMLElement, element: FormInputEelement, errors: ErrorDetail[]) => void;
 }
 
 export type EventsName = keyof Events;
@@ -41,6 +41,6 @@ export type EventsList = {
   [P in EventsName]?: Events[P][];
 };
 
-export type AdapterFn = (rule: string, rules: string[], field: FormInputEelement, form: HTMLFormElement) => string;
+export type AdapterFn = (rule: string, rules: string[], field: FormInputEelement, form: HTMLElement) => string;
 
 export type FormInputEelement = HTMLInputElement | HTMLSelectElement;
