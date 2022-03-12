@@ -10,7 +10,7 @@ const mapMethods: Record<string, AdapterFn> = {
   in: attachType,
 };
 
-export function adaptRule(rule: string, rules: string[], field: FormInputEelement, form: HTMLFormElement): string {
+export function adaptRule(rule: string, rules: string[], field: FormInputEelement, form: HTMLElement): string {
   const ruleName = toCamelCase(rule.split(':')[0]);
 
   return mapMethods[ruleName]?.(rule, rules, field, form) || rule;
