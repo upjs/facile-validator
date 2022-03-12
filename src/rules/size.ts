@@ -13,11 +13,7 @@ function size(value: string, args = ''): true | RuleError {
   const sizeInNumber = Number(size);
   when(Number.isNaN(sizeInNumber)).throwError(ARGUMENT_MUST_BE_A_NUMBER);
 
-  if (type === 'number') {
-    return sizeForNumber(value, sizeInNumber);
-  } else {
-    return sizeForString(value, sizeInNumber);
-  }
+  return type === 'number' ? sizeForNumber(value, sizeInNumber) : sizeForString(value, sizeInNumber);
 }
 
 function sizeForNumber(value: string, size: number) {
