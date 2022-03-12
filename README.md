@@ -1,4 +1,4 @@
-# Easy HTML Form Validator
+# Facile Validator
 
 _This documentation is being completed..._
 
@@ -16,8 +16,8 @@ Easily chain validation rules with `|`.
 
 ## Installation
 
-```
-$ npm i facile-validator
+```bash
+$ npm i @upjs/facile-validator
 ```
 
 ## Usage:
@@ -25,7 +25,7 @@ $ npm i facile-validator
 HTML:
 
 ```html
-<form id="my-form">
+<form>
   <input data-rules="bail|required|number|between:1,10" />
 </form>
 ```
@@ -33,9 +33,13 @@ HTML:
 JavaScript:
 
 ```javascript
-import Validator from 'facile-validator';
+import { Validator, enLang as en } from '@upjs/facile-validator'
 
-new Validator('#my-form');
+const form = document.querySelector('form');
+
+const v = new Validator(form, {
+  lang: en,
+);
 ```
 
 ## Available Validation Rules:
