@@ -11,7 +11,7 @@ export type Lang = Partial<Record<LangKeys, string>>;
 
 export interface ValidatorOptions {
   lang?: Lang;
-  on?: Events;
+  on?: Partial<Events>;
   renderErrors?: boolean;
 }
 
@@ -28,11 +28,11 @@ export interface ErrorDetail {
 }
 
 export interface Events {
-  'validate:start'?: (form: HTMLElement) => void;
-  'validate:end'?: (form: HTMLElement, isSuccessful: boolean) => void;
-  'validate:success'?: (form: HTMLElement) => void;
-  'validate:failed'?: (form: HTMLElement) => void;
-  'error:field'?: (form: HTMLElement, element: FormInputEelement, errors: ErrorDetail[]) => void;
+  'validate:start': (form: HTMLElement) => void;
+  'validate:end': (form: HTMLElement, isSuccessful: boolean) => void;
+  'validate:success': (form: HTMLElement) => void;
+  'validate:failed': (form: HTMLElement) => void;
+  'error:field': (form: HTMLElement, element: FormInputEelement, errors: ErrorDetail[]) => void;
 }
 
 export type EventsName = keyof Events;
