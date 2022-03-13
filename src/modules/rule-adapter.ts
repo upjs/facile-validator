@@ -3,11 +3,11 @@ import { getValue, processRule, toCamelCase } from '@/utils/helpers';
 
 const mapMethods: Record<string, AdapterFn> = {
   requiredIf: prependTargetValue,
-  between: attachType,
-  size: attachType,
-  min: attachType,
-  max: attachType,
-  in: attachType,
+  between: prependType,
+  size: prependType,
+  min: prependType,
+  max: prependType,
+  in: prependType,
 };
 
 export function adaptRule(rule: string, rules: string[], field: FormInputElement, parentEl: HTMLElement): string {
@@ -16,7 +16,7 @@ export function adaptRule(rule: string, rules: string[], field: FormInputElement
   return mapMethods[ruleName]?.(rule, rules, field, parentEl) || rule;
 }
 
-export function attachType(rule: string, rules: string[]): string {
+export function prependType(rule: string, rules: string[]): string {
   const { name: NAME, args: ARGS } = processRule(rule);
 
   const indexOfRule = rules.indexOf(rule);
