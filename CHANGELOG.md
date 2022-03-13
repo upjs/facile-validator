@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.2.0](https://github.com/upjs/facile-validator/compare/v0.1.2...v0.2.0) (2022-03-13)
+
+### ⚠ BREAKING CHANGES
+
+- By this commit, an `HTMLElement` should be passed to the validator instead of a string
+
+### Features
+
+- allow `HTMLElement` to be passed to the Validator ([c89b844](https://github.com/upjs/facile-validator/commit/c89b8443c94fc3158c8c19e9184f1234f09c5f7f))
+- improve `within` to support array ([3168b46](https://github.com/upjs/facile-validator/commit/3168b462bdce3315267b5c5730ed847486175d30))
+
+### Bug Fixes
+
+- fix conflicts ([62ee440](https://github.com/upjs/facile-validator/commit/62ee44098255dcf1fd46b6d7779899643ca53246))
+- fix conflicts ([d20892b](https://github.com/upjs/facile-validator/commit/d20892b9d3be906fac42573167694c3c362519a0))
+- fix email rule ([61ec63a](https://github.com/upjs/facile-validator/commit/61ec63a4aa6fafe5b24e1bd1c2fc1e68fdde813d))
+- fix optional events ([a34e2fe](https://github.com/upjs/facile-validator/commit/a34e2feb8f664e36026953721149716841c895f2))
+- make `Events` fields optional ([062f9d1](https://github.com/upjs/facile-validator/commit/062f9d1ac3c3a87d5d02266a93e16329b606aa83))
+- revert rules for national code ([dac6b55](https://github.com/upjs/facile-validator/commit/dac6b5564693a27ca5a957cc61e33be776ebc30e))
+- use `HTMLElement` interface insteadof `HTMLInputElement` ([d6a23c2](https://github.com/upjs/facile-validator/commit/d6a23c27d5c81df41483f48c69e40d4b2e124929))
+
 ### [0.1.2](https://github.com/upjs/facile-validator/compare/v0.1.1...v0.1.2) (2022-03-07)
 
 ### Bug Fixes
