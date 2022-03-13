@@ -1,7 +1,7 @@
 import * as rules from '@/rules';
 import { ValidatorOptions, EventsName, Events, FormInputElement } from '@/types';
 import ValidatorError from '@/modules/validator-error';
-import { getValue, toCamelCase, defaultErrorListeners } from '@/utils/helpers';
+import { getValue, toCamelCase, defaultErrorListeners, processRule } from '@/utils/helpers';
 import EventBus from './modules/events';
 import Language from './modules/language';
 import { RuleError } from './modules/rule-error';
@@ -74,21 +74,21 @@ class Validator {
         const computedFieldRules = this.getComputedFieldRules(fieldRules, field);
 
         for (const fieldRule of computedFieldRules) {
-          const [rule, args = ''] = fieldRule.split(':');
-          const ruleKey = toCamelCase(rule) as RuleKey;
+          const { name: ruleName, argsText: ruleArgs } = processRule(fieldRule);
+          const ruleKey = toCamelCase(ruleName) as RuleKey;
 
           if (ruleKey in rules) {
             try {
-              const result = rules[ruleKey](value, args);
+              const result = rules[ruleKey](value, ruleArgs);
 
               if (result instanceof RuleError) {
-                this.validatorError.setError(field, rule, result);
+                this.validatorError.setError(field, ruleName, result);
                 if (shouldStopOnFirstFailure) {
                   break;
                 }
               }
             } catch (error) {
-              console.error(new Error(`${rule}: ${(error as Error).message}`));
+              console.error(new Error(`${ruleName}: ${(error as Error).message}`));
               return false;
             }
           }

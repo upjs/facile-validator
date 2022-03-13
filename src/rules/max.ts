@@ -1,13 +1,12 @@
 import { Rule } from '@/types';
 import { RuleError } from '@/modules/rule-error';
-import { when } from '@/utils/helpers';
+import { when, processArgs } from '@/utils/helpers';
 import { ARGUMENT_MUST_BE_A_NUMBER, ARGUMENT_MUST_BE_POSITIVE, ARGUMENT_MUST_BE_PROVIDED } from '@/types/error-dev';
 import { LESS_EQUAL, MAX_LENGTH } from '@/types/rules';
 
 function max(value: string, args = ''): true | RuleError {
-  when(args === '').throwError(ARGUMENT_MUST_BE_PROVIDED);
-
-  const [type, max] = args.split(',');
+  const [type, max] = processArgs(args);
+  when(!type).throwError(ARGUMENT_MUST_BE_PROVIDED);
   when(!max).throwError(ARGUMENT_MUST_BE_PROVIDED);
 
   const maxInNumber = Number(max);

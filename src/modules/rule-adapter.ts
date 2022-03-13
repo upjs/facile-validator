@@ -11,13 +11,13 @@ const mapMethods: Record<string, AdapterFn> = {
 };
 
 export function adaptRule(rule: string, rules: string[], field: FormInputElement, parentEl: HTMLElement): string {
-  const ruleName = toCamelCase(rule.split(':')[0]);
+  const ruleName = toCamelCase(processRule(rule).name);
 
   return mapMethods[ruleName]?.(rule, rules, field, parentEl) || rule;
 }
 
 export function prependType(rule: string, rules: string[]): string {
-  const { name: NAME, args: ARGS } = processRule(rule);
+  const { name, argsText } = processRule(rule);
 
   const indexOfRule = rules.indexOf(rule);
   const rulesBeforeRule = rules.slice(0, indexOfRule);
@@ -29,23 +29,23 @@ export function prependType(rule: string, rules: string[]): string {
     type = 'array';
   }
 
-  return `${NAME}:${type},${ARGS.join(',')}`;
+  return `${name}:${type},${argsText}`;
 }
 
 function prependTargetValue(rule: string): string {
-  const { name: NAME, args: ARGS } = processRule(rule);
+  const { name, args } = processRule(rule);
 
-  if (ARGS.length === 0) return NAME;
+  if (args.length === 0) return name;
 
   let targetValue = '';
-  if (ARGS.length > 0) {
-    const targetField = document.getElementById(ARGS[0]);
+  if (args.length > 0) {
+    const targetField = document.getElementById(args[0]);
     if (targetField !== null) {
       targetValue = getValue(targetField as FormInputElement);
     }
   }
 
-  ARGS.splice(0, 1, targetValue);
+  args.splice(0, 1, targetValue);
 
-  return `${NAME}:${ARGS.join(',')}`;
+  return `${name}:${args.join(',')}`;
 }

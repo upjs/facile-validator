@@ -1,13 +1,12 @@
 import { Rule } from '@/types';
 import { RuleError } from '@/modules/rule-error';
-import { when } from '@/utils/helpers';
+import { when, processArgs } from '@/utils/helpers';
 import { ARGUMENT_MUST_BE_A_NUMBER, ARGUMENT_MUST_BE_POSITIVE, ARGUMENT_MUST_BE_PROVIDED } from '@/types/error-dev';
 import { EQUAL_LENGTH, EQUAL_NUMBER } from '@/types/rules';
 
 function size(value: string, args = ''): true | RuleError {
-  when(args === '').throwError(ARGUMENT_MUST_BE_PROVIDED);
-
-  const [type, size] = args.split(',');
+  const [type, size] = processArgs(args);
+  when(!type).throwError(ARGUMENT_MUST_BE_PROVIDED);
   when(!size).throwError(ARGUMENT_MUST_BE_PROVIDED);
 
   const sizeInNumber = Number(size);

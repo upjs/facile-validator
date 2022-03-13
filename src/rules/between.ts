@@ -1,13 +1,12 @@
 import { Rule } from '@/types';
 import { RuleError } from '@/modules/rule-error';
-import { when } from '@/utils/helpers';
+import { when, processArgs } from '@/utils/helpers';
 import { BETWEEN_NUMBER, BETWEEN_LENGTH } from '@/types/rules';
 import { ARGUMENT_MUST_BE_A_NUMBER, ARGUMENT_MUST_BE_POSITIVE, ARGUMENT_MUST_BE_PROVIDED } from '@/types/error-dev';
 
 function between(value: string, args = ''): true | RuleError {
-  when(args === '').throwError(ARGUMENT_MUST_BE_PROVIDED);
-
-  const [type, minArg, maxArg] = args.split(',');
+  const [type, minArg, maxArg] = processArgs(args);
+  when(!type).throwError(ARGUMENT_MUST_BE_PROVIDED);
   when(!minArg || !maxArg).throwError(ARGUMENT_MUST_BE_PROVIDED);
 
   const min = Number(minArg);

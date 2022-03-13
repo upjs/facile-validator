@@ -1,13 +1,12 @@
 import { Rule } from '@/types';
 import { RuleError } from '@/modules/rule-error';
-import { when } from '@/utils/helpers';
+import { when, processArgs } from '@/utils/helpers';
 import { ARGUMENT_MUST_BE_A_NUMBER, ARGUMENT_MUST_BE_POSITIVE, ARGUMENT_MUST_BE_PROVIDED } from '@/types/error-dev';
 import { GREATER_EQUAL, MIN_LENGTH } from '@/types/rules';
 
 function min(value: string, args = ''): true | RuleError {
-  when(args === '').throwError(ARGUMENT_MUST_BE_PROVIDED);
-
-  const [type, min] = args.split(',');
+  const [type, min] = processArgs(args);
+  when(!type).throwError(ARGUMENT_MUST_BE_PROVIDED);
   when(!min).throwError(ARGUMENT_MUST_BE_PROVIDED);
 
   const minInNumber = Number(min);

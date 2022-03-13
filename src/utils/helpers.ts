@@ -29,13 +29,18 @@ export function format(message: string, ...toReplace: string[]) {
   return message.replace(/\$(\d)/g, (_, index) => toReplace?.[index - 1] || '');
 }
 
-export function processRule(rule: string): { name: string; args: string[] } {
-  const [ruleName, args] = rule.split(':');
+export function processRule(rule: string): { name: string; argsText: string; args: string[] } {
+  const [name, argsText = ''] = rule.split(':');
 
   return {
-    name: ruleName,
-    args: args ? args.split(',') : [],
+    name,
+    argsText,
+    args: processArgs(argsText),
   };
+}
+
+export function processArgs(args: string): string[] {
+  return args ? args.split(',') : [];
 }
 
 export function lang(key: string, ...args: string[]): string {
