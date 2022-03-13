@@ -1,4 +1,4 @@
-import { AdapterFn, FormInputEelement } from '@/types';
+import { AdapterFn, FormInputElement } from '@/types';
 import { getValue, processRule, toCamelCase } from '@/utils/helpers';
 
 const mapMethods: Record<string, AdapterFn> = {
@@ -10,7 +10,7 @@ const mapMethods: Record<string, AdapterFn> = {
   in: attachType,
 };
 
-export function adaptRule(rule: string, rules: string[], field: FormInputEelement, form: HTMLElement): string {
+export function adaptRule(rule: string, rules: string[], field: FormInputElement, form: HTMLElement): string {
   const ruleName = toCamelCase(rule.split(':')[0]);
 
   return mapMethods[ruleName]?.(rule, rules, field, form) || rule;
@@ -41,7 +41,7 @@ function prependTargetValue(rule: string): string {
   if (ARGS.length > 0) {
     const targetField = document.getElementById(ARGS[0]);
     if (targetField !== null) {
-      targetValue = getValue(targetField as FormInputEelement);
+      targetValue = getValue(targetField as FormInputElement);
     }
   }
 

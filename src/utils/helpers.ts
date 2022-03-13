@@ -1,13 +1,13 @@
 import EventBus from '@/modules/events';
 import Language from '@/modules/language';
-import { LangKeys, FormInputEelement } from '@/types';
+import { LangKeys, FormInputElement } from '@/types';
 import { TYPE_CHECKBOX, TYPE_RADIO } from '@/types/elements';
 
 export function toCamelCase(value: string) {
   return value.replace(/-./g, (match) => match[1].toUpperCase());
 }
 
-export function getValue(element: FormInputEelement): string {
+export function getValue(element: FormInputElement): string {
   if (element instanceof HTMLInputElement) {
     if (element.type === TYPE_CHECKBOX || element.type === TYPE_RADIO) {
       return element.checked ? 'checked' : '';

@@ -20,7 +20,7 @@ export interface Rule {
 }
 
 export interface ErrorDetail {
-  element: FormInputEelement;
+  element: FormInputElement;
   rule: string;
   cause: string;
   message: string;
@@ -32,7 +32,7 @@ export interface Events {
   'validate:end': (form: HTMLElement, isSuccessful: boolean) => void;
   'validate:success': (form: HTMLElement) => void;
   'validate:failed': (form: HTMLElement) => void;
-  'error:field': (form: HTMLElement, element: FormInputEelement, errors: ErrorDetail[]) => void;
+  'error:field': (form: HTMLElement, element: FormInputElement, errors: ErrorDetail[]) => void;
 }
 
 export type EventsName = keyof Events;
@@ -41,6 +41,6 @@ export type EventsList = {
   [P in EventsName]?: Events[P][];
 };
 
-export type AdapterFn = (rule: string, rules: string[], field: FormInputEelement, form: HTMLElement) => string;
+export type AdapterFn = (rule: string, rules: string[], field: FormInputElement, form: HTMLElement) => string;
 
-export type FormInputEelement = HTMLInputElement | HTMLSelectElement;
+export type FormInputElement = HTMLInputElement | HTMLSelectElement;
