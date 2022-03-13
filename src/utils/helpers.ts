@@ -72,7 +72,7 @@ export function when(condition: boolean) {
 }
 
 export function defaultErrorListeners(events: EventBus) {
-  events.on('error:field', (_form, element, errors) => {
+  events.on('error:field', (_parentEl, element, errors) => {
     errors.reverse().forEach((error) => {
       const messageElement = document.createElement('p');
       messageElement.classList.add('validator-err');
@@ -84,8 +84,8 @@ export function defaultErrorListeners(events: EventBus) {
     });
   });
 
-  events.on('validate:start', (form) => {
-    form.querySelectorAll('.validator-err').forEach((el) => {
+  events.on('validate:start', (parentEl) => {
+    parentEl.querySelectorAll('.validator-err').forEach((el) => {
       el.remove();
     });
   });

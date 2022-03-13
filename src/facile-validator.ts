@@ -17,17 +17,17 @@ class Validator {
   private validatorError: ValidatorError;
   private events: EventBus;
   private options: ValidatorOptions;
-  private form: HTMLElement;
+  private parentEl: HTMLElement;
 
-  constructor(form: HTMLElement, options: ValidatorOptions = {}) {
-    if (form === null || !(form instanceof HTMLElement)) {
-      throw new Error('Invalid form element');
+  constructor(parentEl: HTMLElement, options: ValidatorOptions = {}) {
+    if (parentEl === null || !(parentEl instanceof HTMLElement)) {
+      throw new Error('Invalid parentEl element');
     }
 
     this.options = Object.assign(defaultOptions, options);
     this.validatorError = new ValidatorError();
     this.events = new EventBus(this.options.on);
-    this.form = form;
+    this.parentEl = parentEl;
 
     Language.set(this.options.lang);
 
@@ -40,18 +40,18 @@ class Validator {
   }
 
   public validate(): boolean {
-    this.events.call('validate:start', this.form);
+    this.events.call('validate:start', this.parentEl);
     let isSuccessful = true;
     let status = 'success';
 
-    const fields = this.form.querySelectorAll<FormInputElement>('[data-rules]');
+    const fields = this.parentEl.querySelectorAll<FormInputElement>('[data-rules]');
     if (fields.length > 0) {
       isSuccessful = this.validateFields(Array.from(fields));
       status = isSuccessful ? 'success' : 'failed';
     }
 
-    this.events.call(`validate:${status}` as keyof Events, this.form);
-    this.events.call('validate:end', this.form, isSuccessful);
+    this.events.call(`validate:${status}` as keyof Events, this.parentEl);
+    this.events.call('validate:end', this.parentEl, isSuccessful);
 
     return isSuccessful;
   }
@@ -104,7 +104,7 @@ class Validator {
   }
 
   private getComputedFieldRules(givenRules: string[], field: FormInputElement): string[] {
-    return givenRules.map((rule) => adaptRule(rule, givenRules, field, this.form));
+    return givenRules.map((rule) => adaptRule(rule, givenRules, field, this.parentEl));
   }
 
   private errorEventTrigger() {
@@ -113,7 +113,7 @@ class Validator {
     errors.forEach((errors) => {
       if (errors.length === 0) return;
 
-      this.events.call('error:field', this.form, errors[0].element, errors);
+      this.events.call('error:field', this.parentEl, errors[0].element, errors);
     });
   }
 }
