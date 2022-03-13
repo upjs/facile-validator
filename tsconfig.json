@@ -19,5 +19,5 @@
       "~/*": ["./playground/*"]
     }
   },
-  "include": ["src", "playground", "env.d.ts", "tests"]
+  "include": ["src", "playground", "tests"]
 }
