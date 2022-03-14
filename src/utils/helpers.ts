@@ -19,7 +19,7 @@ export function getValue(element: FormInputElement): string {
   if (element instanceof HTMLSelectElement) {
     return Array.from(element.selectedOptions)
       .map((option) => option.value)
-      .toString();
+      .join(',');
   }
 
   return '';
