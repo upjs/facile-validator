@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { int } from '@/rules';
 
 describe('rules: int', () => {
-  it('should accept for intbetic characters', () => {
+  it('should accept integers', () => {
     expect(int('123')).toBe(true);
     expect(int('-123')).toBe(true);
     expect(int('+123')).toBe(true);
@@ -13,7 +13,7 @@ describe('rules: int', () => {
     expect(int('-0')).toBe(true);
   });
 
-  it('should reject for non-intbetic characters', () => {
+  it('should reject non-integers', () => {
     expect(int('123a')).toBeInstanceOf(Error);
     expect(int('a123 ')).toBeInstanceOf(Error);
     expect(int('-a')).toBeInstanceOf(Error);
