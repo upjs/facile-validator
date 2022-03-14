@@ -61,12 +61,6 @@ export function when(condition: boolean) {
         throw new Error(message);
       }
     },
-    warning() {
-      // ...
-    },
-    notice() {
-      // ...
-    },
   };
 }
 
