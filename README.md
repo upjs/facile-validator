@@ -29,10 +29,9 @@ JavaScript:
 import { Validator, enLang as en } from '@upjs/facile-validator';
 
 const form = document.querySelector('form');
-
 const v = new Validator(form, {
   lang: en,
-);
+});
 ```
 Now every input with `data-rules` attribute in the `form` will be validated.
 
