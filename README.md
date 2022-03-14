@@ -78,7 +78,7 @@ Now every input with `data-rules` attribute in the `form` will be validated.
 
 ------
 
-[`accepted`](/#accepted-rule)  
+[`accepted`](#accepted-rule)  
 The input (checkbox, radio) must be checked:
 
 ```html
