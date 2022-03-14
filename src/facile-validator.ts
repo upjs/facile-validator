@@ -73,10 +73,6 @@ class Validator {
         const shouldStopOnFirstFailure = this.shouldStopOnFirstFailure(fieldRules);
         const computedFieldRules = this.getComputedFieldRules(fieldRules, field);
 
-        if (!this.requiredRuleExists(fieldRules) && value === '') {
-          continue;
-        }
-
         for (const fieldRule of computedFieldRules) {
           const { name: ruleName, argsText: ruleArgs } = processRule(fieldRule);
           const ruleKey = toCamelCase(ruleName) as RuleKey;
@@ -105,10 +101,6 @@ class Validator {
 
   private shouldStopOnFirstFailure(givenRules: Array<string>) {
     return givenRules.includes('bail');
-  }
-
-  private requiredRuleExists(givenRules: Array<string>) {
-    return givenRules.includes('required');
   }
 
   private getComputedFieldRules(givenRules: string[], field: FormInputElement): string[] {
