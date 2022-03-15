@@ -4,7 +4,10 @@ _This documentation is being completed..._
 
 Laravel-inspired validation for HTML forms, built for simplicity of use: 😋
 
-<img src="./misc/intro.jpg" />
+<p align="center">
+  <img src="./misc/intro.jpg" />
+</p>
+
 Facile (French word for "easy", pronounced `fa·sil`) is an HTML form validator that is inspired by Laravel's validation style and is designed for simplicity of use.
 
 **[DEMO](https://upjs.github.io/facile-validator/)**
@@ -15,6 +18,7 @@ Facile (French word for "easy", pronounced `fa·sil`) is an HTML form validator 
 - [Usage](#usage)
 - [Handling Events](#handling-events)
 - [Available Validation Rules](#available-validation-rules)
+- [Localization](#localization)
 
 <br/>
 
@@ -423,6 +427,9 @@ _Only red or green or blue are valid inputs._
 _Only 1, 3 or both are accepted._
 
 ---
+
+## Localization
+*WIP...*
 
 ## License
 
