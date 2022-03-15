@@ -113,7 +113,7 @@ class Validator {
     errors.forEach((errors) => {
       if (errors.length === 0) return;
 
-      this.events.call('error:field', this.parentEl, errors[0].element, errors);
+      this.events.call('field:error', this.parentEl, errors[0].element, errors);
     });
   }
 }

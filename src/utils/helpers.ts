@@ -65,7 +65,7 @@ export function when(condition: boolean) {
 }
 
 export function defaultErrorListeners(events: EventBus) {
-  events.on('error:field', (_parentEl, element, errors) => {
+  events.on('field:error', (_parentEl, element, errors) => {
     errors.reverse().forEach((error) => {
       const messageElement = document.createElement('p');
       messageElement.classList.add('validator-err');
