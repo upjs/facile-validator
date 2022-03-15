@@ -11,7 +11,7 @@ form.onsubmit = (e) => {
 const v = new Validator(form, {
   lang: enLang,
   on: {
-    'validate:success': () => {
+    'validation:success': () => {
       alert('Success! Form validated with no errors');
     },
   },
