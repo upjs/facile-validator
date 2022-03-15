@@ -85,7 +85,7 @@ v.on(event_name, () => {
   // This function will be executed when the respective event occurs.
 });
 ```
-<br />
+---
 
 #### `validation:start`
 As you might have guessed, this event will occur when the validation starts:
@@ -94,7 +94,7 @@ v.on('validation:start', (form) => {
   // This function will be executed when the validation starts
 });
 ```
-<br />
+---
 
 #### `validation:end`
 This event will occur when the validation ends, no matter the it was successful or not:
@@ -103,7 +103,7 @@ v.on('validation:end', (form, isSuccessful) => {
   // This function will be executed when the validation ends
 });
 ```
-<br />
+---
 
 #### `validation:success`
 This event will occur when the validation ends with no errors:
@@ -112,7 +112,7 @@ v.on('validation:success', (form) => {
   // Do something after successful validation e.g. send the form-data to the server
 });
 ```
-<br />
+---
 
 #### `validation:failed`
 This event will occur when the validation ends while there are errors in the inputs:
@@ -121,7 +121,7 @@ v.on('validation:failed', (form) => {
   // Notify the user to fix the form
 });
 ```
-<br />
+---
 
 #### `field:error`
 When a particular input has errors, you can handle the errors with this event:
