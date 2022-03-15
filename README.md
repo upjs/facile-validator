@@ -72,11 +72,11 @@ When the validation starts, ends, succeeds or fails, there are easy ways to hand
 A hook is simply a function that you define to be executed when a particular event occurs.
 
 There are five type of events that can be handled with the hooks:
-- `validation:start`
-- `validation:end`
-- `validation:success`
-- `validation:failed`
-- `field:error`
+- [`validation:start`](#validationstart)
+- [`validation:end`](#validationend)
+- [`validation:success`](#validationsuccess)
+- [`validation:failed`](#validationfailed)
+- [`field:error`](#fielderror)
 
 
 To attach hooks to these events, use `on` method:
@@ -136,7 +136,7 @@ v.on('field:error', (form, input, errors) => {
 });
 ```
 This is a good place to show the errors in your own format. By default, the validator automatically shows the error messages below each input. However, you can disable this feature by setting `renderErrors` option to `false` in the configuration object:
-```
+```javascript
 const v = new Validator(form, {
   renderErrors: false,
 });
