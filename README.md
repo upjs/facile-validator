@@ -13,7 +13,8 @@ Facile (French word for "easy", pronounced `fa·sil`) is an HTML form validator 
 
 - [Installation](#installation)
 - [Usage](#usage)
-- [Available Validation Rules:](#available-validation-rules)
+- [Handling Events](#handling-events)
+- [Available Validation Rules](#available-validation-rules)
 
 <br/>
 
@@ -50,19 +51,98 @@ JavaScript:
 import { Validator, enLang as en } from '@upjs/facile-validator';
 
 const form = document.querySelector('form');
-const validator = new Validator(form, {
+const v = new Validator(form, {
   lang: en,
 });
 
 form.addEventListener('submit', (e) => {
   e.preventDefault();
-  validator.validate();
+  
+  // Call validate method to start validation
+  v.validate();
 });
 ```
 
 Now every input with `data-rules` attribute in the `form` will be validated.
 
 <br/>
+
+## Handling Events
+When the validation starts, ends, succeeds or fails, there are easy ways to handle these events. We do this with the help of the **Hooks**.
+A hook is simply a function that you define to be executed when a particular event occurs.
+
+There are five type of events that can be handled with the hooks:
+- `validation:start`
+- `validation:end`
+- `validation:success`
+- `validation:failed`
+- `field:error`
+
+
+To attach hooks to these events, use `on` method:
+```javascript
+v.on(event_name, () => {
+  // This function will be executed when the respective event occurs.
+});
+```
+<br />
+
+#### `validation:start`
+As you might have guessed, this event will occur when the validation starts:
+```javascript
+v.on('validation:start', (form) => {
+  // This function will be executed when the validation starts
+});
+```
+<br />
+
+#### `validation:end`
+This event will occur when the validation ends, no matter the it was successful or not:
+```javascript
+v.on('validation:end', (form, isSuccessful) => {
+  // This function will be executed when the validation ends
+});
+```
+<br />
+
+#### `validation:success`
+This event will occur when the validation ends with no errors:
+```javascript
+v.on('validation:success', (form) => {
+  // Do something after successful validation e.g. send the form-data to the server
+});
+```
+<br />
+
+#### `validation:failed`
+This event will occur when the validation ends while there are errors in the inputs:
+```javascript
+v.on('validation:failed', (form) => {
+  // Notify the user to fix the form
+});
+```
+<br />
+
+#### `field:error`
+When a particular input has errors, you can handle the errors with this event:
+```javascript
+v.on('field:error', (form, input, errors) => {
+  erorrs.forEach(error => {
+    console.log(error.args);
+    console.log(error.message);
+    console.log(error.rule);
+    console.log(error.element);
+  });
+});
+```
+This is a good place to show the errors in your own format. By default, the validator automatically shows the error messages below each input. However, you can disable this feature by setting `renderErrors` option to `false` in the configuration object:
+```
+const v = new Validator(form, {
+  renderErrors: false,
+});
+```
+
+<br />
 
 ## Available Validation Rules:
 
