@@ -85,6 +85,19 @@ v.on(event_name, () => {
   // This function will be executed when the respective event occurs.
 });
 ```
+
+You can also attach those hooks in the configuration object:
+```javascript
+const v = new Validator(form, {
+  // ...
+  on: {
+    'validation:success': () => {
+      alert('Success! Form validated with no errors');
+    },
+  },
+});
+```
+
 ---
 
 #### `validation:start`
@@ -127,7 +140,7 @@ v.on('validation:failed', (form) => {
 When a particular input has errors, you can handle the errors with this event:
 ```javascript
 v.on('field:error', (form, input, errors) => {
-  erorrs.forEach(error => {
+  errors.forEach(error => {
     console.log(error.args);
     console.log(error.message);
     console.log(error.rule);
