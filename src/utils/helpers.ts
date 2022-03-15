@@ -77,7 +77,7 @@ export function defaultErrorListeners(events: EventBus) {
     });
   });
 
-  events.on('validate:start', (parentEl) => {
+  events.on('validation:start', (parentEl) => {
     parentEl.querySelectorAll('.validator-err').forEach((el) => {
       el.remove();
     });

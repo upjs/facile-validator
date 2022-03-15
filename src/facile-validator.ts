@@ -35,12 +35,12 @@ class Validator {
       defaultErrorListeners(this.events);
     }
 
-    this.events.on('validate:start', () => this.validatorError.clearErrors());
-    this.events.on('validate:failed', () => this.errorEventTrigger());
+    this.events.on('validation:start', () => this.validatorError.clearErrors());
+    this.events.on('validation:failed', () => this.errorEventTrigger());
   }
 
   public validate(): boolean {
-    this.events.call('validate:start', this.parentEl);
+    this.events.call('validation:start', this.parentEl);
     let isSuccessful = true;
     let status = 'success';
 
@@ -50,8 +50,8 @@ class Validator {
       status = isSuccessful ? 'success' : 'failed';
     }
 
-    this.events.call(`validate:${status}` as keyof Events, this.parentEl);
-    this.events.call('validate:end', this.parentEl, isSuccessful);
+    this.events.call(`validation:${status}` as keyof Events, this.parentEl);
+    this.events.call('validation:end', this.parentEl, isSuccessful);
 
     return isSuccessful;
   }
