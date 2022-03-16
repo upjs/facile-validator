@@ -65,6 +65,17 @@ form.addEventListener('submit', (e) => {
   // Call validate method to start validation
   v.validate();
 });
+
+
+// Handle successful validation
+v.on('validation:success', () => {
+  alert('Nice! The form validation without any errors');
+});
+
+// Handle failed validation
+v.on('validation:failed', () => {
+  alert('Oops! There are some errors in the form.');
+});
 ```
 
 Now every input with `data-rules` attribute in the `form` will be validated.
