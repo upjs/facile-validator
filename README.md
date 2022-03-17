@@ -54,7 +54,10 @@ JavaScript:
 ```javascript
 import { Validator, enLang as en } from '@upjs/facile-validator';
 
+// Select the container element that contains the inputs
 const form = document.querySelector('form');
+
+// Create an instance of Validator for the container element
 const v = new Validator(form, {
   lang: en,
 });
