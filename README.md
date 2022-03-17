@@ -67,7 +67,7 @@ form.addEventListener('submit', (e) => {
 });
 
 
-// Handle successful validation
+// Handle error-free validation
 v.on('validation:success', () => {
   alert('Nice! The form validation without any errors');
 });
