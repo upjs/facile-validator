@@ -192,6 +192,8 @@ const v = new Validator(form, {
 - [size](#size)
 - [starts-with](#starts-with)
 - [in](#in)
+- ...
+- [Your rule?](https://github.com/upjs/facile-validator/pulls)
 
 ---
 
@@ -440,7 +442,35 @@ _Only 1, 3 or both are accepted._
 ---
 
 ## Localization
-*WIP...*
+When instantiating the `Validator` class, importing a language is mandatory. This allows you to keep the bundle size as minimal as possible by including only the desired language:
+```javascript
+import { Validator, enLang as en } from '@upjs/facile-validator';
+
+const form = document.querySelector('form');
+const v = new Validator(form, {
+  lang: en,
+});
+```
+### Customizing error messages
+You can easily override the default error messages:
+```javascript
+import { Validator, enLang as en } from '@upjs/facile-validator';
+
+const itemsToOverride = {
+  required: 'Please fill out this field',
+  accepted: 'Please accept this field',
+};
+
+Object.assign(en, itemsToOverride);
+
+```
+
+### Adding your own language
+Facile Validator currently supports these languages by default:
+- English (import with `enLang`)
+- Persian (import with `faLang`)
+
+We welcome any contributions for new languages. The languages are located in [this path](https://github.com/upjs/facile-validator/blob/main/src/locales). Just copy any file, translate it into your own language and then make a [PR](https://github.com/upjs/facile-validator/pulls).
 
 ## License
 
