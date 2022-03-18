@@ -40,7 +40,7 @@ HTML:
 </form>
 ```
 
-The rules for every input are separated with a pipe character (vertical line) `|`. In this example, we've assigned four rules for that `input`:
+The rules for each field are separated with a pipe character (vertical line) `|`. In this example, we've assigned four rules for that `input`:
 
 - bail
 - required
@@ -54,7 +54,7 @@ JavaScript:
 ```javascript
 import { Validator, enLang as en } from '@upjs/facile-validator';
 
-// Select the container element that contains the inputs
+// Select the container element that contains the fields
 const form = document.querySelector('form');
 
 // Create an instance of Validator for the container element
@@ -146,7 +146,7 @@ v.on('validation:success', (form) => {
 ---
 
 #### `validation:failed`
-This event will occur when the validation ends while there are errors in the inputs:
+This event will occur when the validation ends while there are errors in the fields:
 ```javascript
 v.on('validation:failed', (form) => {
   // Notify the user to fix the form
@@ -155,7 +155,7 @@ v.on('validation:failed', (form) => {
 ---
 
 #### `field:error`
-When a particular input has errors, you can handle the errors with this event:
+When a particular field has errors, you can handle the errors with this event:
 ```javascript
 v.on('field:error', (form, input, errors) => {
   errors.forEach(error => {
