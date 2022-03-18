@@ -191,6 +191,7 @@ const v = new Validator(form, {
 - [min](#min)
 - [num-dash](#num-dash)
 - [number](#number)
+- [nullable](#nullable)
 - [required](#required)
 - [size](#size)
 - [starts-with](#starts-with)
@@ -202,7 +203,7 @@ const v = new Validator(form, {
 
 ### accepted
 
-The input (checkbox, radio) must be checked:
+The field under validation (checkbox, radio) must be checked:
 
 ```html
 <input data-rules="accepted" />
@@ -212,7 +213,7 @@ The input (checkbox, radio) must be checked:
 
 ### alpha
 
-The input value must contain only alphabetic characters.
+The field under validation must contain only alphabetic characters.
 
 ```html
 <input data-rules="alpha" />
@@ -222,7 +223,7 @@ The input value must contain only alphabetic characters.
 
 ### alpha-num
 
-The input value must contain only alpha-numeric characters.
+The field under validation must contain only alpha-numeric characters.
 
 ```html
 <input data-rules="alpha-num" />
@@ -232,7 +233,7 @@ The input value must contain only alpha-numeric characters.
 
 ### alpha-num-dash
 
-The input value must contain only alpha-numeric characters, dashes, and underscores.
+The field under validation must contain only alpha-numeric characters, dashes, and underscores.
 
 ```html
 <input data-rules="alpha-num-dash" />
@@ -242,7 +243,7 @@ The input value must contain only alpha-numeric characters, dashes, and undersco
 
 ### bail
 
-If a set of rules contains `bail` rule, the validation for the input will be stopped as soon as a rule fails, and then other rules will not be processed.
+Stop running validation rules for the field after the first validation failure
 
 ```html
 <input data-rules="bail|required|number|between:1,10" />
@@ -254,7 +255,7 @@ _`required` rule will be processed and if it fails, other rules will not be proc
 
 ### between
 
-The input value must be a number between the given range.
+The field under validation must be a number between the given range.
 
 ```html
 <input data-rules="between:1,10" />
@@ -266,7 +267,7 @@ _The numbers lower than 1 and higher than 10 are not accepted._
 
 ### digits
 
-The input value must be a number with the given length.
+The field under validation must be a number with the given length.
 
 ```html
 <input data-rules="digits:10" />
@@ -278,7 +279,7 @@ _Only a number with the length of 10 is accepted (e.g. 1234567890)_
 
 ### email
 
-The input value must be an email.
+The field under validation must be an email.
 
 ```html
 <input data-rules="email" />
@@ -288,7 +289,7 @@ The input value must be an email.
 
 ### ends-with
 
-The input value must end with the given substring.
+The field under validation must end with the given substring.
 
 ```html
 <input data-rules="ends-with:ies" />
@@ -300,7 +301,7 @@ _Only the words that end with <u>ies</u> (technologies, parties, allies, ...) ar
 
 ### int
 
-The input value must be an integer (positive or negative).
+The field under validation must be an integer (positive or negative).
 
 ```html
 <input data-rules="int" />
@@ -314,7 +315,7 @@ You can also use `integer`
 
 This rule is used for multiple purposes.
 
-With the combination with the `number` rule, the input value must be a number less than or equal to the given number:
+With the combination with the `number` rule, the field under validation must be a number less than or equal to the given number:
 
 ```html
 <input data-rules="number|max:50" />
@@ -322,7 +323,7 @@ With the combination with the `number` rule, the input value must be a number le
 
 _Only a number less than or equal to 50 will be accepted._
 
-If `max` is used without `number` rule, the input value is considered as a `string` and then the input value must be a string with a maximum length of the given number:
+If `max` is used without `number` rule, the field under validation is considered as a `string` and then the field under validation must be a string with a maximum length of the given number:
 
 ```html
 <input data-rules="max:5" />
@@ -336,7 +337,7 @@ _Only strings with the length of 5 or less will be accepted._
 
 This rule is used for multiple purposes.
 
-With the combination with the `number` rule, the input value must be a number greater than or equal to the given number:
+With the combination with the `number` rule, the field under validation must be a number greater than or equal to the given number:
 
 ```html
 <input data-rules="number|min:50" />
@@ -344,7 +345,7 @@ With the combination with the `number` rule, the input value must be a number gr
 
 _Only a number greater than or equal to 50 will be accepted._
 
-If `min` rule is used without `number` rule, the input value is considered as a string and then the input value must be a string with a minimum length of the given number.
+If `min` rule is used without `number` rule, the field under validation is considered as a string and then The field under validation must be a string with a minimum length of the given number.
 
 ```html
 <input data-rules="max:5" />
@@ -356,7 +357,7 @@ _Only strings with the length of 5 or higher will be accepted._
 
 ### num-dash
 
-The input value must contain only numeric characters, dashes, and underscores.
+The field under validation must contain only numeric characters, dashes, and underscores.
 
 ```html
 <input data-rules="num-dash" />
@@ -368,7 +369,7 @@ _1000, 123-456, 123_456 are valid numbers for this rule._
 
 ### number
 
-The input value must be a number.
+The field under validation must be a number.
 
 ```html
 <input data-rules="number" />
@@ -378,7 +379,7 @@ The input value must be a number.
 
 ### required
 
-The input must be filled.
+The field under validation must not be empty
 
 ```html
 <input data-rules="required" />
@@ -390,7 +391,7 @@ The input must be filled.
 
 This rule is used for multiple purposes.
 
-With the combination with the `number` rule, the input value must be a number equal to the given number:
+With the combination with the `number` rule, the field under validation must be a number equal to the given number:
 
 ```html
 <input data-rules="number|size:1000" />
@@ -398,7 +399,7 @@ With the combination with the `number` rule, the input value must be a number eq
 
 _Only 1000 is accepted._
 
-If used without `number` rule, the input value is considered as a string and then the input value must be a string with the exact length of the given number:
+If used without `number` rule, the field under validation is considered as a string and then the field under validation must be a string with the exact length of the given number:
 
 ```html
 <input data-rules="size:5" />
@@ -410,7 +411,7 @@ _Only the strings with the length of 5 are accepted._
 
 ### starts-with
 
-The input value must start with the given substring.
+The field under validation must start with the given substring.
 
 ```html
 <input data-rules="starts-with:app" />
@@ -422,7 +423,7 @@ _Only the words that start with <u>app</u> (apple, application, append, ...) are
 
 ### in
 
-The input value must be in the list of given values.
+The field under validation must be in the list of given values.
 
 ```html
 <input data-rules="in:red,green,blue" />
