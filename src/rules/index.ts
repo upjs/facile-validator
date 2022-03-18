@@ -9,6 +9,7 @@ export { default as email } from './email';
 export { default as min } from './min';
 export { default as integer, default as int } from './int';
 export { default as max } from './max';
+export { default as nullable } from './nullable';
 export { default as number } from './number';
 export { default as numDash } from './num-dash';
 export { default as required } from './required';
