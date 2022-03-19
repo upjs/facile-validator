@@ -72,7 +72,7 @@ form.addEventListener('submit', (e) => {
 
 // Handle error-free validation
 v.on('validation:success', () => {
-  alert('Nice! The form validation without any errors');
+  alert('Nice! The form was validated without any errors');
 });
 
 // Handle failed validation
@@ -97,14 +97,14 @@ There are five type of events that can be handled with the hooks:
 - [`field:error`](#fielderror)
 
 
-To attach hooks to these events, use `on` method:
+To attach a hook to these events, use `on` method:
 ```javascript
 v.on(event_name, () => {
   // This function will be executed when the respective event occurs.
 });
 ```
 
-You can also attach those hooks in the configuration object:
+You can also attach those hooks in the config object:
 ```javascript
 const v = new Validator(form, {
   // ...
@@ -128,7 +128,7 @@ v.on('validation:start', (form) => {
 ---
 
 #### `validation:end`
-This event will occur when the validation ends, no matter the it was successful or not:
+This event will occur when the validation ends, no matter whether it was successful or not:
 ```javascript
 v.on('validation:end', (form, isSuccessful) => {
   // This function will be executed when the validation ends
@@ -146,7 +146,7 @@ v.on('validation:success', (form) => {
 ---
 
 #### `validation:failed`
-This event will occur when the validation ends while there are errors in the fields:
+This event will occur when the validation ends while there are errors in the form:
 ```javascript
 v.on('validation:failed', (form) => {
   // Notify the user to fix the form
@@ -166,7 +166,7 @@ v.on('field:error', (form, input, errors) => {
   });
 });
 ```
-This is a good place to show the errors in your own format. By default, the validator automatically shows the error messages below each input. However, you can disable this feature by setting `renderErrors` option to `false` in the configuration object:
+This is a good place to display errors in your own format. By default, the validator automatically shows error messages below each input. However, you can disable this feature by setting `renderErrors` option to `false` in the config object:
 ```javascript
 const v = new Validator(form, {
   renderErrors: false,
@@ -307,7 +307,7 @@ The field under validation must be an integer (positive or negative).
 <input data-rules="int" />
 ```
 
-You can also use `integer`
+You can also use `integer`.
 
 ---
 
@@ -315,13 +315,13 @@ You can also use `integer`
 
 This rule is used for multiple purposes.
 
-With the combination with the `number` rule, the field under validation must be a number less than or equal to the given number:
+In the combination with the `number` rule, the field under validation must be a number less than or equal to the given number:
 
 ```html
 <input data-rules="number|max:50" />
 ```
 
-_Only a number less than or equal to 50 will be accepted._
+_Only a number less than or equal to 50 are accepted._
 
 If `max` is used without `number` rule, the field under validation is considered as a `string` and then the field under validation must be a string with a maximum length of the given number:
 
@@ -329,7 +329,7 @@ If `max` is used without `number` rule, the field under validation is considered
 <input data-rules="max:5" />
 ```
 
-_Only strings with the length of 5 or less will be accepted._
+_Only strings with the length of 5 or less are accepted._
 
 ---
 
@@ -337,7 +337,7 @@ _Only strings with the length of 5 or less will be accepted._
 
 This rule is used for multiple purposes.
 
-With the combination with the `number` rule, the field under validation must be a number greater than or equal to the given number:
+In the combination with the `number` rule, the field under validation must be a number greater than or equal to the given number:
 
 ```html
 <input data-rules="number|min:50" />
@@ -348,7 +348,7 @@ _Only a number greater than or equal to 50 will be accepted._
 If `min` rule is used without `number` rule, the field under validation is considered as a string and then The field under validation must be a string with a minimum length of the given number.
 
 ```html
-<input data-rules="max:5" />
+<input data-rules="min:5" />
 ```
 
 _Only strings with the length of 5 or higher will be accepted._
@@ -379,7 +379,7 @@ The field under validation must be a number.
 
 ### required
 
-The field under validation must not be empty
+The field under validation must not be empty.
 
 ```html
 <input data-rules="required" />
@@ -391,7 +391,7 @@ The field under validation must not be empty
 
 This rule is used for multiple purposes.
 
-With the combination with the `number` rule, the field under validation must be a number equal to the given number:
+In the combination with the `number` rule, the field under validation must be a number equal to the given number:
 
 ```html
 <input data-rules="number|size:1000" />
@@ -434,7 +434,7 @@ _Only red or green or blue are valid inputs._
 `in` rule can also be used with a `<select multiple>` element. In this case, `in` rule should be used with `array` rule:
 
 ```html
-<select data-rules="required|array|in:1,3" name="names[]" multiple>
+<select data-rules="array|in:1,3" name="names[]" multiple>
   <option value="1">1</option>
   <option value="2">2</option>
   <option value="3">3</option>
