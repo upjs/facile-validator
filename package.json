@@ -69,7 +69,7 @@
     "typescript": "4.6.2",
     "unbuild": "0.7.0",
     "vite": "2.8.6",
-    "vitest": "0.7.4"
+    "vitest": "0.7.11"
   },
   "bugs": {
     "url": "https://github.com/upjs/facile-validator/issues"
