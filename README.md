@@ -218,7 +218,10 @@ The field under validation must contain only alphabetic characters.
 ```html
 <input data-rules="alpha" />
 ```
-
+Valid inputs: 
+- Hello
+- français
+- سلام
 ---
 
 ### alpha-num
@@ -228,7 +231,9 @@ The field under validation must contain only alpha-numeric characters.
 ```html
 <input data-rules="alpha-num" />
 ```
-
+Valid inputs: 
+- abc123
+- abc
 ---
 
 ### alpha-num-dash
@@ -238,6 +243,11 @@ The field under validation must contain only alpha-numeric characters, dashes, a
 ```html
 <input data-rules="alpha-num-dash" />
 ```
+
+Valid inputs
+- abc-123
+- abc123
+- abc
 
 ---
 
