@@ -234,6 +234,7 @@ The field under validation must contain only alpha-numeric characters.
 Valid inputs: 
 - abc123
 - abc
+- 123
 ---
 
 ### alpha-num-dash
@@ -246,8 +247,10 @@ The field under validation must contain only alpha-numeric characters, dashes, a
 
 Valid inputs
 - abc-123
+- abc_123
 - abc123
 - abc
+- 123
 
 ---
 
