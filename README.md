@@ -455,26 +455,39 @@ const v = new Validator(form, {
   lang: en,
 });
 ```
-### Customizing error messages
-You can easily override the default error messages:
-```javascript
-import { Validator, enLang as en } from '@upjs/facile-validator';
 
-const itemsToOverride = {
-  required: 'Please fill out this field',
-  accepted: 'Please accept this field',
-};
-
-Object.assign(en, itemsToOverride);
-
-```
-
-### Adding your own language
 Facile Validator currently supports these languages by default:
 - English (import with `enLang`)
 - Persian (import with `faLang`)
 
-We welcome any contributions for new languages. The languages are located in [this path](https://github.com/upjs/facile-validator/blob/main/src/locales). Just copy any file, translate it into your own language and then make a [PR](https://github.com/upjs/facile-validator/pulls).
+We welcome any contributions for other languages. The languages are located in [this path](https://github.com/upjs/facile-validator/blob/main/src/locales). Just copy any file, translate it into your own language and then make a [PR](https://github.com/upjs/facile-validator/pulls).
+
+<br>
+
+### Using your own language
+Use `createLang` function to define your own error messages:
+```javascript
+import { Validator, enLang as en, createLang } from '@upjs/facile-validator';
+
+const myLang = createLang({
+  required: 'Please fill out this field',
+  accepted: 'Please accept this field',
+});
+
+const v = new Validator(form, {
+  lang: myLang,
+});
+```
+Note that in this case you should define a message for each existing rule. Although, to override only certain messages, pass original language object:
+```javascript
+import { Validator, enLang as en, createLang } from '@upjs/facile-validator';
+
+const myLang = createLang({
+  ...en,
+  required: 'Please fill out this field',
+  accepted: 'Please accept this field',
+});
+```
 
 ## License
 
