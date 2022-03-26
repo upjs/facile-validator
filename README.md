@@ -355,6 +355,16 @@ _Only strings with the length of 5 or higher will be accepted._
 
 ---
 
+### nullable
+The field under validation can be empty.
+
+```html
+<input data-rules="nullable|min:5" />
+```
+`min` rule will not be processed unless the field is filled.
+
+---
+
 ### num-dash
 
 The field under validation must contain only numeric characters, dashes, and underscores.
