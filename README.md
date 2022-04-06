@@ -1,7 +1,5 @@
 # Facile Validator
 
-_This documentation is being completed..._
-
 Laravel-inspired validation for HTML forms, built for simplicity of use: 😋
 
 <p align="center">
