@@ -1,5 +1,10 @@
 # Facile Validator
 
+[![npm version][npm-version-src]][npm-version-href]
+[![npm downloads][npm-downloads-src]][npm-downloads-href]
+[![Github Actions CI][github-actions-ci-src]][github-actions-ci-href]
+[![License][license-src]][license-href]
+
 Laravel-inspired validation for HTML forms, built for simplicity of use: 😋
 
 <p align="center">
@@ -513,3 +518,17 @@ const myLang = createLang({
 ## License
 
 MIT
+
+<!-- Badges -->
+[npm-version-src]: https://img.shields.io/npm/v/@upjs/facile-validator/latest.svg
+[npm-version-href]: https://npmjs.com/package/@upjs/facile-validator
+
+[npm-downloads-src]: https://img.shields.io/npm/dt/@upjs/facile-validator.svg
+[npm-downloads-href]: https://npmjs.com/package/@upjs/facile-validator
+
+[github-actions-ci-src]: https://github.com/upjs/facile-validator/workflows/verify/badge.svg
+[github-actions-ci-href]: https://github.com/upjs/facile-validator/actions/workflows/verify.yml
+
+[license-src]: https://img.shields.io/npm/l/@upjs/facile-validator.svg
+[license-href]: https://npmjs.com/package/@upjs/facile-validator
+
