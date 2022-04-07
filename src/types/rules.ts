@@ -16,7 +16,6 @@ export const MAX_LENGTH = 'max-length';
 export const MIN_LENGTH = 'min-length';
 export const NUM_DASH = 'num-dash';
 export const NUMBER = 'number';
-export const NULLABLE = 'nullable';
 export const REQUIRED = 'required';
 export const STARTS_WITH = 'starts-with';
 export const WITHIN = 'within';
