@@ -43,12 +43,12 @@ HTML:
 </form>
 ```
 
-The rules for each field are separated with a pipe character (vertical line) `|`. In this example, we've assigned four rules for that `input`:
+The rules for each field are separated with a pipe character (vertical line) `|`. In this example, we've assigned 4 rules for that `input`:
 
 - bail
 - required
 - number
-- between
+- between (with two arguments: 1 and 10)
 
 <br/>
 
@@ -131,7 +131,7 @@ v.on('validation:start', (form) => {
 ---
 
 #### `validation:end`
-This event will occur when the validation ends, no matter whether it was successful or not:
+This event will occur when the validation ends, no matter if it was successful or not:
 ```javascript
 v.on('validation:end', (form, isSuccessful) => {
   // This function will be executed when the validation ends
@@ -149,7 +149,7 @@ v.on('validation:success', (form) => {
 ---
 
 #### `validation:failed`
-This event will occur when the validation ends while there are errors in the form:
+This event will occur when the validation ends while there are some errors in the form:
 ```javascript
 v.on('validation:failed', (form) => {
   // Notify the user to fix the form
@@ -216,12 +216,12 @@ The field under validation (checkbox, radio) must be checked:
 
 ### alpha
 
-The field under validation must contain only alphabetic characters.
+The field under validation must contain only alphabetic characters:
 
 ```html
 <input data-rules="alpha" />
 ```
-Valid inputs: 
+Some valid inputs: 
 - Hello
 - français
 - سلام
@@ -229,12 +229,12 @@ Valid inputs:
 
 ### alpha-num
 
-The field under validation must contain only alpha-numeric characters.
+The field under validation must contain only alpha-numeric characters:
 
 ```html
 <input data-rules="alpha-num" />
 ```
-Valid inputs: 
+Some valid inputs: 
 - abc123
 - abc
 - 123
@@ -242,13 +242,13 @@ Valid inputs:
 
 ### alpha-num-dash
 
-The field under validation must contain only alpha-numeric characters, dashes, and underscores.
+The field under validation must contain only alpha-numeric characters, dashes, and underscores:
 
 ```html
 <input data-rules="alpha-num-dash" />
 ```
 
-Valid inputs
+Some valid inputs
 - abc-123
 - abc_123
 - abc123
@@ -259,7 +259,7 @@ Valid inputs
 
 ### bail
 
-Stop running validation rules for the field after the first validation failure
+Stops running validation rules for the field after the first validation failure:
 
 ```html
 <input data-rules="bail|required|number|between:1,10" />
@@ -271,7 +271,7 @@ _`required` rule will be processed and if it fails, other rules will not be proc
 
 ### between
 
-The field under validation must be a number between the given range.
+The field under validation must be a number between the given range:
 
 ```html
 <input data-rules="between:1,10" />
@@ -283,7 +283,7 @@ _The numbers lower than 1 and higher than 10 are not accepted._
 
 ### digits
 
-The field under validation must be a number with the given length.
+The field under validation must be a number with the given length:
 
 ```html
 <input data-rules="digits:10" />
@@ -295,7 +295,7 @@ _Only a number with the length of 10 is accepted (e.g. 1234567890)_
 
 ### email
 
-The field under validation must be an email.
+The field under validation must be an email:
 
 ```html
 <input data-rules="email" />
@@ -305,7 +305,7 @@ The field under validation must be an email.
 
 ### ends-with
 
-The field under validation must end with the given substring.
+The field under validation must end with the given substring:
 
 ```html
 <input data-rules="ends-with:ies" />
@@ -317,13 +317,13 @@ _Only the words that end with <u>ies</u> (technologies, parties, allies, ...) ar
 
 ### int
 
-The field under validation must be an integer (positive or negative).
+The field under validation must be an integer (positive or negative):
 
 ```html
 <input data-rules="int" />
 ```
 
-You can also use `integer`.
+_You can also use `integer` rule._
 
 ---
 
@@ -372,30 +372,30 @@ _Only strings with the length of 5 or higher will be accepted._
 ---
 
 ### nullable
-The field under validation can be empty.
+The field under validation can be empty:
 
 ```html
 <input data-rules="nullable|min:5" />
 ```
-`min` rule will not be processed unless the field is filled.
+`min` rule will not be processed unless the field is filled. Note that the rules order is important. In this example, if `nullable` rule comes after `min` rule, the validator first processes `min` rule and then `nullable` rule.
 
 ---
 
 ### num-dash
 
-The field under validation must contain only numeric characters, dashes, and underscores.
+The field under validation must contain only numeric characters, dashes, and underscores:
 
 ```html
 <input data-rules="num-dash" />
 ```
 
-_1000, 123-456, 123_456 are valid numbers for this rule._
+_1000, 123-456, 123_456 are some valid inputs for this rule._
 
 ---
 
 ### number
 
-The field under validation must be a number.
+The field under validation must be a number:
 
 ```html
 <input data-rules="number" />
@@ -405,7 +405,7 @@ The field under validation must be a number.
 
 ### required
 
-The field under validation must not be empty.
+The field under validation must not be empty:
 
 ```html
 <input data-rules="required" />
@@ -425,7 +425,7 @@ In the combination with the `number` rule, the field under validation must be a 
 
 _Only 1000 is accepted._
 
-If used without `number` rule, the field under validation is considered as a string and then the field under validation must be a string with the exact length of the given number:
+If used without `number` rule, the field under validation is considered as a string and then the field under validation must be a string with the exact length of the given argument:
 
 ```html
 <input data-rules="size:5" />
@@ -437,7 +437,7 @@ _Only the strings with the length of 5 are accepted._
 
 ### starts-with
 
-The field under validation must start with the given substring.
+The field under validation must start with the given substring:
 
 ```html
 <input data-rules="starts-with:app" />
@@ -449,7 +449,7 @@ _Only the words that start with <u>app</u> (apple, application, append, ...) are
 
 ### in
 
-The field under validation must be in the list of given values.
+The field under validation must be in the list of the given arguments:
 
 ```html
 <input data-rules="in:red,green,blue" />
@@ -486,7 +486,7 @@ Facile Validator currently supports these languages by default:
 - English (import with `enLang`)
 - Persian (import with `faLang`)
 
-We welcome any contributions for other languages. The languages are located in [this path](https://github.com/upjs/facile-validator/blob/main/src/locales). Just copy any file, translate it into your own language and then make a [PR](https://github.com/upjs/facile-validator/pulls).
+We welcome any contributions for other languages. The languages are located in [this path](https://github.com/upjs/facile-validator/blob/main/src/locales). Just copy any file, translate it into your own language and then make a **PR**.
 
 <br>
 
@@ -504,7 +504,7 @@ const v = new Validator(form, {
   lang: myLang,
 });
 ```
-Note that in this case you should define a message for each existing rule. Although, to override only certain messages, pass original language object:
+Note that in this case you should define a message for each existing rule. Although, to override only certain messages, pass the original language object:
 ```javascript
 import { Validator, enLang as en, createLang } from '@upjs/facile-validator';
 
