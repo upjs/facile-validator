@@ -24,7 +24,6 @@ All notable changes to this project will be documented in this file. See [standa
 - replace intro image ([b6b6389](https://github.com/upjs/facile-validator/commit/b6b6389999791d63e77cb26a948ac1db70542d2f))
 - undo code for non-required empty inputs ([a56eb6d](https://github.com/upjs/facile-validator/commit/a56eb6dfcd8991d045d589832d3698116cb064dc))
 - undo code for non-required empty inputs ([60eb9c0](https://github.com/upjs/facile-validator/commit/60eb9c090540d9f1f4a11b128379b6ca568e16d0))
-- update readme ([7846fcd](https://github.com/upjs/facile-validator/commit/7846fcd8c909a5da93752c493603d39b47f59568))
 
 ## [0.2.0](https://github.com/upjs/facile-validator/compare/v0.1.2...v0.2.0) (2022-03-13)
 
