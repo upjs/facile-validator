@@ -9,12 +9,6 @@ All notable changes to this project will be documented in this file. See [standa
 - add `nullable` to readme.md ([c789615](https://github.com/upjs/facile-validator/commit/c789615c00038e2630145265ee7199534fa08676))
 - add intro image ([79299e1](https://github.com/upjs/facile-validator/commit/79299e1ababd2cf798e181cb47dad5df328778cf))
 - add nullable rule ([843926e](https://github.com/upjs/facile-validator/commit/843926e1f60e7f7ea87e079eed107c330223ba4a))
-- update readme ([b38093b](https://github.com/upjs/facile-validator/commit/b38093b575461492078c3c8fdf2a02cd9c1031e6))
-- update readme ([9eb5440](https://github.com/upjs/facile-validator/commit/9eb5440e2e5247ba0633ed575a97fe5a06d13702))
-- update readme ([1a5f697](https://github.com/upjs/facile-validator/commit/1a5f697cf91fc8a4259f384a7af23fc0cbaf02c8))
-- update readme ([69738c2](https://github.com/upjs/facile-validator/commit/69738c28a04d62836327d7f028865daf30c39a65))
-- update readme ([c80b76d](https://github.com/upjs/facile-validator/commit/c80b76d179ba1c7f9de71be5e1e8ce027be26f74))
-- Update readme.md ([f53fb37](https://github.com/upjs/facile-validator/commit/f53fb3750a91634470ad8037846399bb6c38e015))
 
 ### Bug Fixes
 
