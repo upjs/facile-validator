@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.0.0](https://github.com/upjs/facile-validator/compare/v0.2.0...v1.0.0) (2022-04-07)
+
+### Features
+
+- add `nullable` to readme.md ([c789615](https://github.com/upjs/facile-validator/commit/c789615c00038e2630145265ee7199534fa08676))
+- add intro image ([79299e1](https://github.com/upjs/facile-validator/commit/79299e1ababd2cf798e181cb47dad5df328778cf))
+- add nullable rule ([843926e](https://github.com/upjs/facile-validator/commit/843926e1f60e7f7ea87e079eed107c330223ba4a))
+
+### Bug Fixes
+
+- `nullable` now is a virtual rule ([1efa241](https://github.com/upjs/facile-validator/commit/1efa24137dd7b187c09d558deea8cad2333657ab))
+- emit errors on build ([a29ff55](https://github.com/upjs/facile-validator/commit/a29ff5596aee192711a259beb5ba1ecaca375f8e))
+- fix `nullable` behavior ([7a1d2a2](https://github.com/upjs/facile-validator/commit/7a1d2a2285ffe4772649f9b9220c3a0a5653b8fe))
+- fix readme ([d7a84d3](https://github.com/upjs/facile-validator/commit/d7a84d3e6ad0a6da224209224387fa820443d89e))
+- fix readme ([631e147](https://github.com/upjs/facile-validator/commit/631e1470e7ef788d493b6dcd8ec5a160c4041e54))
+- fix typos in the readme ([c8ec46b](https://github.com/upjs/facile-validator/commit/c8ec46b6c6c3f44d1994106dd6ee1c6563b18e4e))
+- ignore non-required and empty inputs ([c75ed73](https://github.com/upjs/facile-validator/commit/c75ed736eeb6231e89afd2018e1e78de52ed1ff3))
+- remove `throwErrorWhen` helper function ([7d9b7a6](https://github.com/upjs/facile-validator/commit/7d9b7a6dca013dbc5e420219424f891bad07410c))
+- remove unused functions ([d9ab937](https://github.com/upjs/facile-validator/commit/d9ab9373deb3e27f600ee1562efc1924d2c1f51b))
+- replace intro image ([b6b6389](https://github.com/upjs/facile-validator/commit/b6b6389999791d63e77cb26a948ac1db70542d2f))
+- undo code for non-required empty inputs ([a56eb6d](https://github.com/upjs/facile-validator/commit/a56eb6dfcd8991d045d589832d3698116cb064dc))
+- undo code for non-required empty inputs ([60eb9c0](https://github.com/upjs/facile-validator/commit/60eb9c090540d9f1f4a11b128379b6ca568e16d0))
+
 ## [0.2.0](https://github.com/upjs/facile-validator/compare/v0.1.2...v0.2.0) (2022-03-13)
 
 ### ⚠ BREAKING CHANGES
