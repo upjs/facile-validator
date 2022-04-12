@@ -160,7 +160,7 @@ v.on('validation:failed', (form) => {
 #### `field:error`
 When a particular field has errors, you can handle the errors with this event:
 ```javascript
-v.on('field:error', (form, input, errors) => {
+v.on('field:error', (form, field, errors) => {
   errors.forEach(error => {
     console.log(error.args);
     console.log(error.message);
