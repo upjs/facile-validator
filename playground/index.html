@@ -3,61 +3,163 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <title>Validator</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto" />
+    <title>🔥 Facile Validator - Demo 🔥</title>
+    <meta
+      name="description"
+      content="This is a simple demo provided for Facile Validator package 🔥
+Use and enjoy! 🥳
+Don't forget to rate ⭐️"
+    />
   </head>
-  <body>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-8 col-lg-4 mx-auto">
-          <form action="" class="card shadow">
-            <div class="card-header text-center">
-              <h4 class="">Form Validator</h4>
-            </div>
+  <body class="font-roboto h-screen w-full flex flex-col bg-gray-100 select-none">
+    <main class="w-full flex-auto flex flex-col items-center justify-center px-12 py-8">
+      <header>
+        <a href="/" class="flex items-center justify-center group" title="Facile Validator">
+          <!-- Logo -->
+          <div
+            class="flex items-center justify-center w-12 h-12 bg-primary rounded-lg shadow-lg shadow-primary/50 group-hover:bg-primary/80 transition-all"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 198.3 199.11" class="w-8 h-8 fill-white">
+              <path
+                d="M116.45,51.44c-16.79,0-33.59.18-50.37-.1-5.44-.1-8.65,4.57-5.53,9.7,7.26,12,14.16,24.21,21.09,36.4a8.9,8.9,0,0,0,8.52,4.89c14-.07,28.06,0,42.09,0,6.41,0,8.92,4.3,5.72,9.83Q114,153.57,90.08,195c-3.19,5.52-8.15,5.47-11.37-.09-7-12.08-13.93-24.18-21-36.23a9.53,9.53,0,0,1,0-10.46c7.08-12.11,14-24.28,21.11-36.4,1.38-2.37,2-4.68.23-7.1a5.64,5.64,0,0,0-5-2.17c-13.89,0-27.77-.08-41.65.07-5,0-8.32-1.77-10.78-6.18C15,84.45,8,72.62,1.18,60.72c-2.87-5-.3-9.51,5.43-9.51,14.18,0,28.35-.06,42.53,0a8.89,8.89,0,0,0,8.53-4.87c7.82-13.69,15.78-27.3,23.61-41A9.73,9.73,0,0,1,90.52.06c33.65.06,67.31.13,101-.06,5.38,0,8.68,4.77,5.69,9.79C190,21.85,183.05,34,176.1,46.21A9.58,9.58,0,0,1,167,51.46C150.18,51.41,133.31,51.44,116.45,51.44Z"
+              />
+            </svg>
+          </div>
 
-            <div class="card-body">
-              <div class="mb-4">
-                <label>Email</label>
-                <input class="form-control" type="text" data-rules="required-if:password|nullable|email" />
-              </div>
+          <!-- Typography -->
+          <div class="grid grid-cols-1 ml-2">
+            <h1 class="text-primary font-bold text-2xl group-hover:text-primary/80 transition-all">Facile Validator</h1>
+            <p class="text-xs text-heading text-justify w-full group-hover:text-slate-500 transition-all">
+              Next Generation of validators
+            </p>
+          </div>
+        </a>
+      </header>
 
-              <div class="mb-4">
-                <label>Age</label>
-                <small>(Between 3-100)</small>
-                <input class="form-control" type="text" data-rules="nullable|number|between:3,100" />
-              </div>
-
-              <div class="mb-4">
-                <label>National code</label>
-                <small>(10 Digits)</small>
-                <input class="form-control" type="text" data-rules="required|digits:10" />
-              </div>
-
-              <div class="mb-4">
-                <label>Password</label>
-                <input id="password" class="form-control" type="password" data-rules="required|string|min-length:5" />
-              </div>
-
-              <div class="mb-4">
-                <label for="must-be-accepted">Accept this</label>
-                <input id="must-be-accepted" type="checkbox" data-rules="accepted" />
-              </div>
-
-              <div class="mb-4">
-                <label>Choose only 1 and 3</label>
-                <select class="form-control" name="names[]" multiple data-rules="required|array|in:1,3">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                </select>
-              </div>
-
-              <button>Submit</button>
-            </div>
-          </form>
+      <form
+        action=""
+        class="bg-white px-4 py-4 rounded-lg w-full max-w-sm mt-8 flex flex-col border border-px border-gray-100"
+      >
+        <div class="form-control">
+          <label for="email" class="label"> Email </label>
+          <input
+            name="email"
+            id="email"
+            class="input"
+            placeholder="Enter your email address"
+            type="text"
+            data-rules="required-if:password|nullable|email"
+          />
         </div>
-      </div>
-    </div>
+
+        <div class="form-control mt-4">
+          <label for="age" class="label">
+            Age
+            <small class="text-slate-600">(Between 3-100)</small>
+          </label>
+          <input
+            name="age"
+            id="age"
+            class="input"
+            placeholder="Enter your age"
+            type="text"
+            data-rules="nullable|number|between:3,100"
+          />
+        </div>
+
+        <div class="form-control mt-4">
+          <label for="national_code" class="label">
+            National code
+            <small class="text-slate-600">(10 Digits)</small>
+          </label>
+          <input
+            id="national_code"
+            placeholder="Enter your national code"
+            class="input"
+            type="text"
+            data-rules="required|digits:10"
+          />
+        </div>
+
+        <div class="form-control mt-4">
+          <label for="password" class="label"> Password </label>
+          <input
+            id="password"
+            placeholder="Enter your password"
+            class="input"
+            type="password"
+            data-rules="required|string|min-length:5"
+          />
+        </div>
+
+        <div class="mt-4">
+          <label class="label-not-inner" for="must-be-accepted">
+            <span>Check me please! 🥺</span>
+          </label>
+          <input class="pt-2" id="must-be-accepted" type="checkbox" data-rules="accepted" />
+        </div>
+
+        <div class="form-control mt-4">
+          <label for="names" class="label">Choose only 1 and 3</label>
+          <select class="input" id="names" name="names[]" data-rules="required|array|in:1,3">
+            <option class="hidden">Select a value</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+          </select>
+        </div>
+
+        <div class="w-full flex justify-between items-center mt-6">
+          <a href="https://github.com/upjs/facile-validator" class="text-sm text-amber-500 animate animate-pulse">
+            Rate me ⭐️
+          </a>
+          <button
+            class="bg-primary transition-all hover:bg-primary/80 text-white rounded px-6 py-1.5 shadow-lg shadow-primary/50"
+          >
+            Validate
+          </button>
+        </div>
+      </form>
+      <p class="text-sm text-gray-500 mt-6">
+        Designed by
+        <a href="https://github.com/realmrhex" target="_blank" class="text-blue-600">Hex</a>
+        with ❤️ and ☕️
+      </p>
+    </main>
+
+    <footer class="flex items-center justify-center py-4 space-x-3 text-heading text-sm">
+      <a
+        href="https://github.com/upjs/facile-validator"
+        target="_blank"
+        title="Github"
+        class="hover:text-primary transition-all"
+        >Github</a
+      >
+      <span class="text-gray-400">•</span>
+      <a
+        href="https://github.com/upjs/facile-validator/blob/main/README.md"
+        target="_blank"
+        class="hover:text-primary transition-all"
+        >Documentation [En]</a
+      >
+      <span class="text-gray-400">•</span>
+      <a
+        href="https://ditty.ir/posts/facile-html-form-validator/5V9bJ"
+        target="_blank"
+        class="hover:text-primary transition-all"
+        >Documentation [Fa]</a
+      >
+      <span class="text-gray-400">•</span>
+      <a
+        href="https://www.npmjs.com/package/@upjs/facile-validator"
+        title="NPM JS"
+        target="_blank"
+        class="hover:text-primary transition-all"
+        >npm JS</a
+      >
+    </footer>
+
     <script type="module" src="./main.ts"></script>
   </body>
 </html>
