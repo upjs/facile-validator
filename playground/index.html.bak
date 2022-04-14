@@ -111,9 +111,7 @@ Don't forget to rate ⭐️"
         </div>
 
         <div class="w-full flex justify-between items-center mt-6">
-          <a href="https://github.com/upjs/facile-validator" class="text-sm text-amber-500 animate animate-pulse">
-            Rate me ⭐️
-          </a>
+          <a href="" class="text-sm text-amber-500 animate animate-pulse"> Rate me ⭐️ </a>
           <button
             class="bg-primary transition-all hover:bg-primary/80 text-white rounded px-6 py-1.5 shadow-lg shadow-primary/50"
           >
