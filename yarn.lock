@@ -607,7 +607,7 @@
     "@unocss/core" "0.31.5"
     "@unocss/preset-mini" "0.31.5"
 
-"@unocss/reset@0.31.5", "@unocss/reset@^0.31.3":
+"@unocss/reset@0.31.5":
   version "0.31.5"
   resolved "https://registry.npmjs.org/@unocss/reset/-/reset-0.31.5.tgz"
   integrity sha512-IdAEKdeTVwBKteYu/w/qOiUDOrwgORod8NhxQOEJr0xUbZn13A4wKFqiU6jqoY8VXnb4hqddafe6q96LcU6XuA==
