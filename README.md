@@ -15,6 +15,7 @@ Facile (French word for "easy", pronounced `fa·sil`) is an HTML form validator 
 
 **[DEMO](https://upjs.github.io/facile-validator/)**
 
+
 ## Table of Contents
 
 - [Installation](#installation)
@@ -27,8 +28,13 @@ Facile (French word for "easy", pronounced `fa·sil`) is an HTML form validator 
 
 ## Installation
 
+> ⚠ This package does not include any polyfills. If you want to support older environments, please add this package to the project config transpiling list. ⚠
+
 ```bash
-$ npm i @upjs/facile-validator
+npm i @upjs/facile-validator
+
+# or
+yarn add @upjs/facile-validator
 ```
 
 <br/>
