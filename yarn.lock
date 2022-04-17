@@ -545,6 +545,11 @@
   resolved "https://registry.npmjs.org/@unocss/core/-/core-0.31.3.tgz"
   integrity sha512-0xnRatssQzXs44qC9vuvJXBL6vDAEhTOuvH2Yp0cQhowsdrf6W6iC1fw/v8DNr6NJraBOwJIMKcD1nxoiXpNJA==
 
+"@unocss/core@0.31.5":
+  version "0.31.5"
+  resolved "https://registry.npmjs.org/@unocss/core/-/core-0.31.5.tgz"
+  integrity sha512-3W/bqqa+xGvoVY+FdlyMikwflCJvKvUAGzQUxQtF+/c5y7iTzMiZDKdDLSDrRLqBZQrseViXXCWEx71UtCRXUg==
+
 "@unocss/inspector@0.31.3":
   version "0.31.3"
   resolved "https://registry.npmjs.org/@unocss/inspector/-/inspector-0.31.3.tgz"
@@ -575,6 +580,13 @@
   dependencies:
     "@unocss/core" "0.31.3"
 
+"@unocss/preset-mini@0.31.5":
+  version "0.31.5"
+  resolved "https://registry.npmjs.org/@unocss/preset-mini/-/preset-mini-0.31.5.tgz"
+  integrity sha512-xsvCaok8+kHHq4FlcISOdzZrbfBJeUS+D66y37TtYbmMvxXtIhuJaP1fBLDNLPsHjpyCQ9dPXpUn0wUH1O4n2A==
+  dependencies:
+    "@unocss/core" "0.31.5"
+
 "@unocss/preset-typography@0.31.3":
   version "0.31.3"
   resolved "https://registry.npmjs.org/@unocss/preset-typography/-/preset-typography-0.31.3.tgz"
@@ -599,13 +611,21 @@
     "@unocss/core" "0.31.3"
     axios "^0.26.1"
 
-"@unocss/preset-wind@0.31.3", "@unocss/preset-wind@^0.31.3":
+"@unocss/preset-wind@0.31.3":
   version "0.31.3"
   resolved "https://registry.npmjs.org/@unocss/preset-wind/-/preset-wind-0.31.3.tgz"
   integrity sha512-UnfZXW8Gj5u2vZ77kx+OndAPMG9dFSX74vtbfspE5HQM74xURLLz+aF1zQKXnxNS+faLIOCoQoGaS98cZCaWuA==
   dependencies:
     "@unocss/core" "0.31.3"
     "@unocss/preset-mini" "0.31.3"
+
+"@unocss/preset-wind@0.31.5":
+  version "0.31.5"
+  resolved "https://registry.npmjs.org/@unocss/preset-wind/-/preset-wind-0.31.5.tgz"
+  integrity sha512-ZX8NNFeMy+y93n2BUjETvIfbuvezRnuJUPLEIlaWk+PaHEC2Y4kkZ7KK2XWdWDENp8oiS6qoX4pv/x4itng5zA==
+  dependencies:
+    "@unocss/core" "0.31.5"
+    "@unocss/preset-mini" "0.31.5"
 
 "@unocss/reset@0.31.3", "@unocss/reset@^0.31.3":
   version "0.31.3"
