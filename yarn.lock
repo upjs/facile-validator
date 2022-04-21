@@ -613,11 +613,6 @@
   resolved "https://registry.npmjs.org/@unocss/reset/-/reset-0.31.12.tgz"
   integrity sha512-SXQUcMsC1q4uSoetmna8LRDycTwbVIJqjG3Yk78SvXYW8iywiHxUyIcUbmd1Eb9bVL4mZ2SpXF4tGrKE59OwrA==
 
-"@unocss/reset@0.31.8":
-  version "0.31.8"
-  resolved "https://registry.npmjs.org/@unocss/reset/-/reset-0.31.8.tgz"
-  integrity sha512-JHkcATXn1fDeNT8ntp3UQDN4EOsr49acdT93eK5dq1nCu3BN28CUfFI1fupMkRWD+SYwiQgfz4QgxYAbU4namA==
-
 "@unocss/scope@0.31.12":
   version "0.31.12"
   resolved "https://registry.npmjs.org/@unocss/scope/-/scope-0.31.12.tgz"
