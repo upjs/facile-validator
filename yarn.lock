@@ -541,11 +541,6 @@
     "@unocss/core" "0.31.16"
     unconfig "^0.3.3"
 
-"@unocss/core@0.31.13":
-  version "0.31.13"
-  resolved "https://registry.npmjs.org/@unocss/core/-/core-0.31.13.tgz"
-  integrity sha512-mrhFmnbSVgUDrSH22WEHwKPFXOSHe10lEsE++7VsnEKpVAlYYnk+LxEjCNCm7GhiikWGuWI8oPLg50qQoBW3XQ==
-
 "@unocss/core@0.31.16":
   version "0.31.16"
   resolved "https://registry.npmjs.org/@unocss/core/-/core-0.31.16.tgz"
@@ -573,13 +568,6 @@
   dependencies:
     "@iconify/utils" "^1.0.32"
     "@unocss/core" "0.31.16"
-
-"@unocss/preset-mini@0.31.13":
-  version "0.31.13"
-  resolved "https://registry.npmjs.org/@unocss/preset-mini/-/preset-mini-0.31.13.tgz"
-  integrity sha512-SEvDjE7hOLLmi+kvGAafBJtQUicAZJOHMeHmnjvQBOUHkBRUaHf9Qd/JgRaiUFC3lyKyQnxhzOSBk+22uonMJg==
-  dependencies:
-    "@unocss/core" "0.31.13"
 
 "@unocss/preset-mini@0.31.16":
   version "0.31.16"
@@ -611,14 +599,6 @@
   dependencies:
     "@unocss/core" "0.31.16"
     axios "^0.26.1"
-
-"@unocss/preset-wind@0.31.13":
-  version "0.31.13"
-  resolved "https://registry.npmjs.org/@unocss/preset-wind/-/preset-wind-0.31.13.tgz"
-  integrity sha512-DT73rIGN/qYIyhY6qcmvw5bdlnsR53+o/gUKZiOWimkjUf9G/lRPL4ScDL3GUW/mcG6bl5lwkhb75np3NtVOfA==
-  dependencies:
-    "@unocss/core" "0.31.13"
-    "@unocss/preset-mini" "0.31.13"
 
 "@unocss/preset-wind@0.31.16":
   version "0.31.16"
