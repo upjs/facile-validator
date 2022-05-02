@@ -608,11 +608,6 @@
     "@unocss/core" "0.32.8"
     "@unocss/preset-mini" "0.32.8"
 
-"@unocss/reset@0.32.1":
-  version "0.32.1"
-  resolved "https://registry.npmjs.org/@unocss/reset/-/reset-0.32.1.tgz"
-  integrity sha512-tC2gCYY2isEDfBo1LWfcPAnxuM3my29fWtFUQRGvViZVTwYFjVIGD8BgIfiioifGumLunRW78qN7LT22fXoxgg==
-
 "@unocss/reset@0.32.8":
   version "0.32.8"
   resolved "https://registry.npmjs.org/@unocss/reset/-/reset-0.32.8.tgz"
