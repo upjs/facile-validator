@@ -52,25 +52,28 @@
     "dist"
   ],
   "devDependencies": {
-    "@babel/types": "7.17.0",
+    "@babel/types": "7.17.10",
     "@types/node": "17.0.17",
     "@types/ws": "8.5.3",
-    "@typescript-eslint/eslint-plugin": "5.18.0",
-    "@typescript-eslint/parser": "5.18.0",
-    "c8": "7.11.0",
-    "eslint": "8.12.0",
+    "@typescript-eslint/eslint-plugin": "5.22.0",
+    "@typescript-eslint/parser": "5.22.0",
+    "@unocss/preset-wind": "0.33.1",
+    "@unocss/reset": "0.33.1",
+    "c8": "7.11.2",
+    "eslint": "8.15.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-prettier": "4.0.0",
     "husky": "7.0.4",
     "jsdom": "19.0.0",
-    "lint-staged": "12.3.7",
+    "lint-staged": "12.4.1",
     "path": "0.12.7",
     "prettier": "2.6.2",
     "standard-version": "9.3.2",
-    "typescript": "4.6.3",
-    "unbuild": "0.7.2",
-    "vite": "2.9.1",
-    "vitest": "0.9.2"
+    "typescript": "4.6.4",
+    "unbuild": "0.7.4",
+    "unocss": "0.33.1",
+    "vite": "2.9.8",
+    "vitest": "0.11.0"
   },
   "bugs": {
     "url": "https://github.com/upjs/facile-validator/issues"

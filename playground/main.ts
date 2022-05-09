@@ -1,4 +1,5 @@
-import './style.css';
+import '@unocss/reset/tailwind.css';
+import 'uno.css';
 import { Validator, enLang } from '@/index';
 
 const form = document.querySelector('form') as HTMLElement;

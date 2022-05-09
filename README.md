@@ -15,6 +15,7 @@ Facile (French word for "easy", pronounced `fa·sil`) is an HTML form validator 
 
 **[DEMO](https://upjs.github.io/facile-validator/)**
 
+
 ## Table of Contents
 
 - [Installation](#installation)
@@ -23,12 +24,15 @@ Facile (French word for "easy", pronounced `fa·sil`) is an HTML form validator 
 - [Available Validation Rules](#available-validation-rules)
 - [Localization](#localization)
 
+> Note: This package does not include any polyfills. If you want to use in old environments, add this package to your project's config transpiling list.
 <br/>
 
 ## Installation
-
 ```bash
-$ npm i @upjs/facile-validator
+npm i @upjs/facile-validator
+
+# or
+yarn add @upjs/facile-validator
 ```
 
 <br/>
@@ -160,7 +164,7 @@ v.on('validation:failed', (form) => {
 #### `field:error`
 When a particular field has errors, you can handle the errors with this event:
 ```javascript
-v.on('field:error', (form, input, errors) => {
+v.on('field:error', (form, field, errors) => {
   errors.forEach(error => {
     console.log(error.args);
     console.log(error.message);
@@ -470,6 +474,8 @@ _Only red or green or blue are valid inputs._
 _Only 1, 3 or both are accepted._
 
 ---
+
+<br/>
 
 ## Localization
 When instantiating the `Validator` class, importing a language is mandatory. This allows you to keep the bundle size as minimal as possible by including only the desired language:
