@@ -11,6 +11,9 @@ form.onsubmit = (e) => {
 
 const v = new Validator(form, {
   lang: enLang,
+  xRules: {
+    regex: '/^[a-zA-Z0-9]*$/',
+  },
   on: {
     'validation:success': () => {
       alert('Success! Form validated with no errors');

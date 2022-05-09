@@ -1,6 +1,6 @@
 import EventBus from '@/modules/events';
 import Language from '@/modules/language';
-import { LangKeys, FormInputElement } from '@/types';
+import { LangKeys, FormInputElement, ValidatorOptions } from '@/types';
 import { TYPE_CHECKBOX, TYPE_RADIO } from '@/types/elements';
 
 export function toCamelCase(value: string) {
@@ -29,8 +29,20 @@ export function format(message: string, ...toReplace: string[]) {
   return message.replace(/\$(\d)/g, (_, index) => toReplace?.[index - 1] || '');
 }
 
-export function processRule(rule: string): { name: string; argsText: string; args: string[] } {
-  const [name, argsText = ''] = rule.split(':');
+export function processRule(
+  rule: string,
+  options?: ValidatorOptions
+): { name: string; argsText: string; args: string[] } {
+  // eslint-disable-next-line prefer-const
+  let [name, argsText = ''] = rule.split(':');
+
+  if (isXRule(name)) {
+    name = name.substring(2);
+  }
+
+  if (options?.xRules?.[name]) {
+    argsText = options.xRules[name];
+  }
 
   return {
     name,
@@ -82,4 +94,8 @@ export function defaultErrorListeners(events: EventBus) {
       el.remove();
     });
   });
+}
+
+export function isXRule(rule: string): boolean {
+  return rule.startsWith('x-');
 }

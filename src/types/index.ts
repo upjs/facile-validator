@@ -13,6 +13,7 @@ export interface ValidatorOptions {
   lang?: Lang;
   on?: Partial<Events>;
   renderErrors?: boolean;
+  xRules?: any;
 }
 
 export interface Rule {
