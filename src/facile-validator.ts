@@ -1,7 +1,7 @@
 import * as rules from '@/rules';
 import { ValidatorOptions, EventsName, Events, FormInputElement } from '@/types';
 import ValidatorError from '@/modules/validator-error';
-import { getValue, toCamelCase, defaultErrorListeners, processRule, isXRule } from '@/utils/helpers';
+import { getValue, toCamelCase, defaultErrorListeners, processRule } from '@/utils/helpers';
 import EventBus from './modules/events';
 import Language from './modules/language';
 import { RuleError } from './modules/rule-error';
@@ -112,7 +112,7 @@ class Validator {
   }
 
   private getComputedFieldRules(givenRules: string[], field: FormInputElement): string[] {
-    return givenRules.map((rule) => adaptRule(rule, givenRules, field, this.parentEl));
+    return givenRules.map((rule) => adaptRule(rule, givenRules, field, this.parentEl, this.options));
   }
 
   private errorEventTrigger() {

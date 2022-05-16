@@ -31,17 +31,17 @@ export function format(message: string, ...toReplace: string[]) {
 
 export function processRule(
   rule: string,
-  options?: ValidatorOptions
+  options: ValidatorOptions
 ): { name: string; argsText: string; args: string[] } {
-  // eslint-disable-next-line prefer-const
   let [name, argsText = ''] = rule.split(':');
 
-  if (isXRule(name)) {
-    name = name.substring(2);
-  }
+  if (isXRule(rule)) {
+    if (!hasArgument(rule)) {
+      throw new Error(`${rule}: x-rules require an argument that is defined in the config.xRules object`);
+    }
 
-  if (options?.xRules?.[name]) {
-    argsText = options.xRules[name];
+    name = name.substring(2);
+    argsText = options.xRules?.[argsText] || '';
   }
 
   return {
@@ -94,6 +94,10 @@ export function defaultErrorListeners(events: EventBus) {
       el.remove();
     });
   });
+}
+
+export function hasArgument(rule: string) {
+  return rule.includes(':') && rule.split(':').length === 2;
 }
 
 export function isXRule(rule: string): boolean {
