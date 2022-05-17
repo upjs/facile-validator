@@ -68,7 +68,7 @@
     "lint-staged": "12.4.1",
     "path": "0.12.7",
     "prettier": "2.6.2",
-    "standard-version": "9.3.2",
+    "standard-version": "9.5.0",
     "typescript": "4.6.4",
     "unbuild": "0.7.4",
     "unocss": "0.33.1",

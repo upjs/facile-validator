@@ -1107,10 +1107,10 @@ conventional-changelog-config-spec@2.1.0:
   resolved "https://registry.npmjs.org/conventional-changelog-config-spec/-/conventional-changelog-config-spec-2.1.0.tgz"
   integrity sha512-IpVePh16EbbB02V+UA+HQnnPIohgXvJRxHcS5+Uwk4AT5LjzCZJm5sp/yqs5C6KZJ1jMsV4paEV13BN1pvDuxQ==
 
-conventional-changelog-conventionalcommits@4.6.1, conventional-changelog-conventionalcommits@^4.5.0:
-  version "4.6.1"
-  resolved "https://registry.npmjs.org/conventional-changelog-conventionalcommits/-/conventional-changelog-conventionalcommits-4.6.1.tgz"
-  integrity sha512-lzWJpPZhbM1R0PIzkwzGBCnAkH5RKJzJfFQZcl/D+2lsJxAwGnDKBqn/F4C1RD31GJNn8NuKWQzAZDAVXPp2Mw==
+conventional-changelog-conventionalcommits@4.6.3, conventional-changelog-conventionalcommits@^4.5.0:
+  version "4.6.3"
+  resolved "https://registry.npmjs.org/conventional-changelog-conventionalcommits/-/conventional-changelog-conventionalcommits-4.6.3.tgz"
+  integrity sha512-LTTQV4fwOM4oLPad317V/QNQ1FY4Hju5qeBIM1uTHbrnCE+Eg4CdRZ3gO2pUeR+tzWdp80M2j3qFFEDWVqOV4g==
   dependencies:
     compare-func "^2.0.0"
     lodash "^4.17.15"
@@ -1192,10 +1192,10 @@ conventional-changelog-writer@^5.0.0:
     split "^1.0.0"
     through2 "^4.0.0"
 
-conventional-changelog@3.1.24:
-  version "3.1.24"
-  resolved "https://registry.npmjs.org/conventional-changelog/-/conventional-changelog-3.1.24.tgz"
-  integrity sha512-ed6k8PO00UVvhExYohroVPXcOJ/K1N0/drJHx/faTH37OIZthlecuLIRX/T6uOp682CAoVoFpu+sSEaeuH6Asg==
+conventional-changelog@3.1.25:
+  version "3.1.25"
+  resolved "https://registry.npmjs.org/conventional-changelog/-/conventional-changelog-3.1.25.tgz"
+  integrity sha512-ryhi3fd1mKf3fSjbLXOfK2D06YwKNic1nC9mWqybBHdObPd8KJ2vjaXZfYj1U23t+V8T8n0d7gwnc9XbIdFbyQ==
   dependencies:
     conventional-changelog-angular "^5.0.12"
     conventional-changelog-atom "^2.0.8"
@@ -2006,13 +2006,6 @@ formdata-polyfill@^4.0.10:
   integrity sha512-buewHzMvYL29jdeQTVILecSaZKnt/RJWjoZCF5OW60Z67/GmSLBkOFM7qh1PI3zFNtJbaZL5eQu1vLfazOwj4g==
   dependencies:
     fetch-blob "^3.1.2"
-
-fs-access@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.npmjs.org/fs-access/-/fs-access-1.0.1.tgz"
-  integrity sha1-1qh/JiJxzv6+wwxVNAf7mV2od3o=
-  dependencies:
-    null-check "^1.0.0"
 
 fs-extra@^10.0.0:
   version "10.0.1"
@@ -2923,11 +2916,6 @@ npm-run-path@^4.0.1:
   dependencies:
     path-key "^3.0.0"
 
-null-check@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.npmjs.org/null-check/-/null-check-1.0.0.tgz"
-  integrity sha1-l33/1xdgErnsMNKjnbXPcqBDnt0=
-
 nwsapi@^2.2.0:
   version "2.2.0"
   resolved "https://registry.npmjs.org/nwsapi/-/nwsapi-2.2.0.tgz"
@@ -3576,22 +3564,21 @@ split@^1.0.0:
   dependencies:
     through "2"
 
-standard-version@9.3.2:
-  version "9.3.2"
-  resolved "https://registry.npmjs.org/standard-version/-/standard-version-9.3.2.tgz"
-  integrity sha512-u1rfKP4o4ew7Yjbfycv80aNMN2feTiqseAhUhrrx2XtdQGmu7gucpziXe68Z4YfHVqlxVEzo4aUA0Iu3VQOTgQ==
+standard-version@9.5.0:
+  version "9.5.0"
+  resolved "https://registry.npmjs.org/standard-version/-/standard-version-9.5.0.tgz"
+  integrity sha512-3zWJ/mmZQsOaO+fOlsa0+QK90pwhNd042qEcw6hKFNoLFs7peGyvPffpEBbK/DSGPbyOvli0mUIFv5A4qTjh2Q==
   dependencies:
     chalk "^2.4.2"
-    conventional-changelog "3.1.24"
+    conventional-changelog "3.1.25"
     conventional-changelog-config-spec "2.1.0"
-    conventional-changelog-conventionalcommits "4.6.1"
+    conventional-changelog-conventionalcommits "4.6.3"
     conventional-recommended-bump "6.1.0"
     detect-indent "^6.0.0"
     detect-newline "^3.1.0"
     dotgitignore "^2.1.0"
     figures "^3.1.0"
     find-up "^5.0.0"
-    fs-access "^1.0.1"
     git-semver-tags "^4.0.0"
     semver "^7.1.1"
     stringify-package "^1.0.1"
