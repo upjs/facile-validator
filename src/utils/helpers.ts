@@ -1,6 +1,6 @@
 import EventBus from '@/modules/events';
 import Language from '@/modules/language';
-import { LangKeys, FormInputElement, ValidatorOptions } from '@/types';
+import { LangKeys, FormInputElement, XRules } from '@/types';
 import { TYPE_CHECKBOX, TYPE_RADIO } from '@/types/elements';
 
 export function toCamelCase(value: string) {
@@ -29,10 +29,7 @@ export function format(message: string, ...toReplace: string[]) {
   return message.replace(/\$(\d)/g, (_, index) => toReplace?.[index - 1] || '');
 }
 
-export function processRule(
-  rule: string,
-  options: ValidatorOptions
-): { name: string; argsText: string; args: string[] } {
+export function processRule(rule: string, xRules?: XRules): { name: string; argsText: string; args: string[] } {
   let [name, argsText = ''] = rule.split(':');
 
   if (isXRule(rule)) {
@@ -41,7 +38,7 @@ export function processRule(
     }
 
     name = name.substring(2);
-    argsText = options.xRules?.[argsText] || '';
+    argsText = String(xRules?.[argsText]) || '';
   }
 
   return {

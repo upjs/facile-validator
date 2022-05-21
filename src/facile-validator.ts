@@ -74,7 +74,7 @@ class Validator {
         const computedFieldRules = this.getComputedFieldRules(fieldRules, field);
 
         for (const fieldRule of computedFieldRules) {
-          const { name: ruleName, argsText: ruleArgs } = processRule(fieldRule, this.options);
+          const { name: ruleName, argsText: ruleArgs } = processRule(fieldRule, this.options.xRules);
           const ruleKey = toCamelCase(ruleName) as RuleKey;
 
           if (this.isNullable(ruleKey) && value === '') {
@@ -112,7 +112,7 @@ class Validator {
   }
 
   private getComputedFieldRules(givenRules: string[], field: FormInputElement): string[] {
-    return givenRules.map((rule) => adaptRule(rule, givenRules, field, this.parentEl, this.options));
+    return givenRules.map((rule) => adaptRule(rule, givenRules, field, this.parentEl, this.options.xRules));
   }
 
   private errorEventTrigger() {

@@ -1,4 +1,4 @@
-import { AdapterFn, FormInputElement, ValidatorOptions } from '@/types';
+import { AdapterFn, FormInputElement, XRules } from '@/types';
 import { getValue, processRule, toCamelCase } from '@/utils/helpers';
 
 const mapMethods: Record<string, AdapterFn> = {
@@ -15,11 +15,11 @@ export function adaptRule(
   rules: string[],
   field: FormInputElement,
   parentEl: HTMLElement,
-  options: ValidatorOptions
+  xRules?: XRules
 ): string {
-  const ruleName = toCamelCase(processRule(rule, options).name);
+  const ruleName = toCamelCase(processRule(rule, xRules).name);
 
-  return mapMethods[ruleName]?.(rule, rules, field, parentEl, options) || rule;
+  return mapMethods[ruleName]?.(rule, rules, field, parentEl, xRules) || rule;
 }
 
 export function prependType(
@@ -27,9 +27,9 @@ export function prependType(
   rules: string[],
   _field: FormInputElement,
   _parentEl: HTMLElement,
-  options: ValidatorOptions
+  xRules?: XRules
 ): string {
-  const { name, argsText } = processRule(rule, options);
+  const { name, argsText } = processRule(rule, xRules);
 
   const indexOfRule = rules.indexOf(rule);
   const rulesBeforeRule = rules.slice(0, indexOfRule);
@@ -49,9 +49,9 @@ function prependTargetValue(
   _rules: string[],
   _field: FormInputElement,
   _parentEl: HTMLElement,
-  options: ValidatorOptions
+  xRules?: XRules
 ): string {
-  const { name, args } = processRule(rule, options);
+  const { name, args } = processRule(rule, xRules);
 
   if (args.length === 0) return name;
 
