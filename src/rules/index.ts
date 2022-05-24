@@ -11,6 +11,7 @@ export { default as integer, default as int } from './int';
 export { default as max } from './max';
 export { default as number } from './number';
 export { default as numDash } from './num-dash';
+export { default as regex } from './regex';
 export { default as required } from './required';
 export { default as requiredIf } from './required-if';
 export { default as size } from './size';

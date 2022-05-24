@@ -8,11 +8,14 @@ export type ArrayOfValues<T> = {
 type ErrorCause = typeof rules;
 export type LangKeys = ErrorCause[keyof ErrorCause];
 export type Lang = Partial<Record<LangKeys, string>>;
+export type RuleName = typeof rules[keyof typeof rules];
+export type XRules = Record<string, any>;
 
 export interface ValidatorOptions {
   lang?: Lang;
   on?: Partial<Events>;
   renderErrors?: boolean;
+  xRules?: XRules;
 }
 
 export interface Rule {
@@ -41,6 +44,12 @@ export type EventsList = {
   [P in EventsName]?: Events[P][];
 };
 
-export type AdapterFn = (rule: string, rules: string[], field: FormInputElement, parentEl: HTMLElement) => string;
+export type AdapterFn = (
+  rule: string,
+  rules: string[],
+  field: FormInputElement,
+  parentEl: HTMLElement,
+  xRules?: XRules
+) => string;
 
 export type FormInputElement = HTMLInputElement | HTMLSelectElement;

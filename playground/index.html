@@ -14,6 +14,15 @@
         class="bg-white px-4 py-4 rounded-lg w-full max-w-sm mt-8 flex flex-col border border-px border-gray-100"
       >
         <div class="form-control">
+          <label for="email" class="label">Zipcode</label>
+          <input
+            class="input"
+            placeholder="xxxxx-xxxxx"
+            type="text"
+            data-rules="x-regex:zipcode|x-min:min-from-server"
+          />
+        </div>
+        <div class="form-control mt-4">
           <label for="email" class="label"> Email </label>
           <input
             name="email"

@@ -1,6 +1,6 @@
 import EventBus from '@/modules/events';
 import Language from '@/modules/language';
-import { LangKeys, FormInputElement } from '@/types';
+import { LangKeys, FormInputElement, XRules } from '@/types';
 import { TYPE_CHECKBOX, TYPE_RADIO } from '@/types/elements';
 
 export function toCamelCase(value: string) {
@@ -29,8 +29,17 @@ export function format(message: string, ...toReplace: string[]) {
   return message.replace(/\$(\d)/g, (_, index) => toReplace?.[index - 1] || '');
 }
 
-export function processRule(rule: string): { name: string; argsText: string; args: string[] } {
-  const [name, argsText = ''] = rule.split(':');
+export function processRule(rule: string, xRules?: XRules): { name: string; argsText: string; args: string[] } {
+  let [name, argsText = ''] = rule.split(':');
+
+  if (isXRule(rule)) {
+    if (!hasArgument(rule)) {
+      throw new Error(`${rule}: x-rules require an argument that is defined in the config.xRules object`);
+    }
+
+    name = name.substring(2);
+    argsText = String(xRules?.[argsText]) || '';
+  }
 
   return {
     name,
@@ -82,4 +91,12 @@ export function defaultErrorListeners(events: EventBus) {
       el.remove();
     });
   });
+}
+
+export function hasArgument(rule: string) {
+  return rule.includes(':') && rule.split(':').length === 2;
+}
+
+export function isXRule(rule: string): boolean {
+  return rule.startsWith('x-');
 }
