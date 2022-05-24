@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto" />
     <title>Facile Validator - Demo</title>
     <meta name="description" content="Laravel-inspired validation for HTML forms, built for simplicity of use" />
-    <script type="module" crossorigin src="https://upjs.github.io/facile-validator/assets/index.a98d962c.js"></script>
+    <script type="module" crossorigin src="https://upjs.github.io/facile-validator/assets/index.fb318c0f.js"></script>
     <link rel="stylesheet" href="https://upjs.github.io/facile-validator/assets/index.d07d7aac.css">
   </head>
   <body class="font-roboto min-h-screen w-full flex flex-col bg-gray-100 select-none">
@@ -16,6 +16,15 @@
         class="bg-white px-4 py-4 rounded-lg w-full max-w-sm mt-8 flex flex-col border border-px border-gray-100"
       >
         <div class="form-control">
+          <label for="email" class="label">Zipcode</label>
+          <input
+            class="input"
+            placeholder="xxxxx-xxxxx"
+            type="text"
+            data-rules="x-regex:zipcode|x-min:min-from-server"
+          />
+        </div>
+        <div class="form-control mt-4">
           <label for="email" class="label"> Email </label>
           <input
             name="email"
