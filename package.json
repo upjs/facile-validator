@@ -59,7 +59,7 @@
     "@typescript-eslint/parser": "5.25.0",
     "@unocss/preset-wind": "0.34.1",
     "@unocss/reset": "0.33.5",
-    "c8": "7.11.2",
+    "c8": "7.11.3",
     "eslint": "8.16.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-prettier": "4.0.0",
