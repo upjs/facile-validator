@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/upjs/facile-validator/compare/v1.0.0...v1.1.0) (2022-05-25)
+
+### Features
+
+- add support for `regex` rule ([0390a52](https://github.com/upjs/facile-validator/commit/0390a52ca7bfa79dfc3993d148abec79abe0b71a))
+- add UnoCSS to playground ([44769b9](https://github.com/upjs/facile-validator/commit/44769b997b12348fb73bab9a8bff301fc4c1afaf))
+- add validator test ([c56495f](https://github.com/upjs/facile-validator/commit/c56495f9fb17964b4efb1f3f813c96d5244adc5b))
+- enahnce x-rules feature ([8a40071](https://github.com/upjs/facile-validator/commit/8a400713121c9a9cb04cb41deb7fe4d373a82d53))
+- improve `regex-rule` rule ([68f2990](https://github.com/upjs/facile-validator/commit/68f2990466174913ceabadb1ff3e63c17529293b))
+
 ## [1.0.0](https://github.com/upjs/facile-validator/compare/v0.2.0...v1.0.0) (2022-04-07)
 
 ### Features
