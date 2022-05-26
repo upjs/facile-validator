@@ -495,7 +495,7 @@ In some situations, passing the rule argument in HTML is not a good idea. For ex
 ```html
 <input data-rules="regex:/^([0-9]{5})-([0-9]{5})$/" />
 ```
-So instead of passing rules arguments in HTML, you can pass them in JavaScript code with the help of **X-Prefixed Rules**. All available rules can be prefixed with a `x-`. For example the `regex` rule can be written as `x-regex`. In this situation, the only argument for these rules points a key in `xRules` object in the configuration object:
+So instead of passing rules arguments in HTML, you can pass them in JavaScript code with the help of **X-Prefixed Rules**. All available rules can be prefixed with an `x-`. For example the `regex` rule can be written as `x-regex`. In this situation, the only argument for these rules points a key in `xRules` object in the configuration object:
 ```html
 <input data-rules="x-regex:zipcode" />
 ```
