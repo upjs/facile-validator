@@ -22,7 +22,7 @@ Facile (French word for "easy", pronounced `fa·sil`) is an HTML form validator 
 - [Usage](#usage)
 - [Handling Events](#handling-events)
 - [Available Validation Rules](#available-validation-rules)
-- [x-Prefixed Rules](#x-prefixed-rules)
+- [X-Prefixed Rules](#x-prefixed-rules)
 - [Localization](#localization)
 
 > Note: This package does not include any polyfills. If you want to use in old environments, add this package to your project's config transpiling list.
