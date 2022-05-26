@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/upjs/facile-validator/compare/v1.1.1...v1.2.0) (2022-05-26)
+
+### Features
+
+- add lang for regex rule ([c6e2183](https://github.com/upjs/facile-validator/commit/c6e2183e17611ace4e7d9f5dbeae37369da8626d))
+
 ### [1.1.1](https://github.com/upjs/facile-validator/compare/v1.1.0...v1.1.1) (2022-05-26)
 
 ## [1.1.0](https://github.com/upjs/facile-validator/compare/v1.0.0...v1.1.0) (2022-05-25)
