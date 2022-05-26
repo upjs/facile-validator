@@ -18,6 +18,7 @@ const faLang: Record<LangKeys, string> = {
   [rules.LESS_EQUAL]: 'لطفا یک عدد کوچکتر یا مساوی $1 وارد کنید',
   [rules.MAX_LENGTH]: 'حداکثر طول مجاز این فیلد $1 است',
   [rules.MIN_LENGTH]: 'حداقل طول مجاز این فیلد $1 است',
+  [rules.REGEX]: 'مقدار وارد شده با الگوی مشخص شده همخوانی ندارد',
   [rules.REQUIRED]: 'این فیلد الزامی است',
   [rules.NUM_DASH]: 'لطفاً فقط اعداد با زیرخط و خط فاصله وارد کنید',
   [rules.NUMBER]: 'لطفا یک عدد معتبر وارد کنید',

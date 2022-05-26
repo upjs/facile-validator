@@ -2,6 +2,7 @@ import { Rule } from '@/types';
 import { RuleError } from '@/modules/rule-error';
 import { when } from '@/utils/helpers';
 import { ARGUMENT_MUST_BE_PROVIDED, INVALID_PATTERN } from '@/types/error-dev';
+import { REGEX } from '@/types/rules';
 
 const isValidPattern = (pattern: string) => {
   try {
@@ -23,13 +24,13 @@ const stringToRegex = (str: string) => {
   return new RegExp(main, options);
 };
 
-function required(value: string, pattern: string): true | RuleError {
+function regex(value: string, pattern: string): true | RuleError {
   when(!pattern).throwError(ARGUMENT_MUST_BE_PROVIDED);
   when(isValidPattern(pattern) === false).throwError(INVALID_PATTERN);
 
   const regExp = stringToRegex(pattern);
 
-  return regExp.test(value) || new RuleError("The value doesn't match the pattern");
+  return regExp.test(value) || new RuleError(REGEX);
 }
 
-export default required as Rule;
+export default regex as Rule;
