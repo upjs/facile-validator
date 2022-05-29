@@ -3,6 +3,8 @@
     "config:base"
   ],
   "schedule": "every weekend",
-  "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
-  "automerge": true
+  "packageRule": {
+    "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+    "automerge": true 
+  }
 }
