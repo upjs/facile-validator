@@ -2,5 +2,7 @@
   "extends": [
     "config:base"
   ],
-  "schedule": "every weekend"
+  "schedule": "every weekend",
+  "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+  "automerge": true
 }
