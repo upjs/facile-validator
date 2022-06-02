@@ -2,9 +2,5 @@
   "extends": [
     "config:base"
   ],
-  "schedule": "every weekend",
-  "packageRules": {
-    "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
-    "automerge": true 
-  }
+  "schedule": "every weekend"
 }
