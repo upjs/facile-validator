@@ -636,15 +636,15 @@
     "@unocss/core" "0.37.2"
     "@unocss/preset-mini" "0.37.2"
 
-"@unocss/reset@0.34.1":
-  version "0.34.1"
-  resolved "https://registry.npmjs.org/@unocss/reset/-/reset-0.34.1.tgz"
-  integrity sha512-KbDzfB+CLcyNPOjm5g/sNhIvZn5LVlGTYvsxkCj3kzNKsNcuwK0QttDiR2Eo4/Zwtm8VJi0nWH6Oeg5lKyvV6w==
-
 "@unocss/reset@0.37.2":
   version "0.37.2"
   resolved "https://registry.npmjs.org/@unocss/reset/-/reset-0.37.2.tgz"
   integrity sha512-if143ODCgOTL884lYwFmyJD38kon8BmbuzDPoEiGx6gXnuaRMQmOQZy9K8XIkpiHgfhzozvUTFOgjMM6lUo4nw==
+
+"@unocss/reset@0.37.4":
+  version "0.37.4"
+  resolved "https://registry.npmjs.org/@unocss/reset/-/reset-0.37.4.tgz"
+  integrity sha512-rIUs0KiQRmx/+iIjhEQ+LzVCNuT+APuJ0WG3SpPmOwWdONyA16H80SOopXwsXYkvrAbH+Yz2MoIWTsPfxFgQNQ==
 
 "@unocss/scope@0.37.2":
   version "0.37.2"
