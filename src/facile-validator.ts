@@ -37,22 +37,43 @@ class Validator {
 
     this.events.on('validation:start', () => this.validatorError.clearErrors());
     this.events.on('validation:failed', () => this.errorEventTrigger());
+
+    if (options.vpi) {
+      let timeout: number;
+
+      container.addEventListener('keyup', (event: KeyboardEvent) => {
+        window.clearTimeout(timeout);
+        timeout = window.setTimeout(() => {
+          const target = event.target as FormInputElement;
+
+          if (target.matches('[data-rules]')) {
+            this.validate([target], false);
+          }
+        }, 500);
+      });
+    }
   }
 
-  public validate(): boolean {
+  public validate(fields?: NodeListOf<FormInputElement> | FormInputElement[], shouldCallEndEvent = true): boolean {
     this.events.call('validation:start', this.container);
     let isSuccessful = true;
     let status = 'success';
 
-    const fields = this.container.querySelectorAll<FormInputElement>('[data-rules]');
+    if (fields === undefined) {
+      fields = this.container.querySelectorAll<FormInputElement>('[data-rules]');
+    }
 
     if (fields.length > 0) {
       isSuccessful = this.validateFields(Array.from(fields));
       status = isSuccessful ? 'success' : 'failed';
     }
 
-    this.events.call(`validation:${status}` as keyof Events, this.container);
-    this.events.call('validation:end', this.container, isSuccessful);
+    if (status === 'success' && shouldCallEndEvent) {
+      this.events.call('validation:end', this.container, isSuccessful);
+      this.events.call(`validation:success`, this.container);
+    } else {
+      this.events.call(`validation:failed`, this.container);
+    }
 
     return isSuccessful;
   }
