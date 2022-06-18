@@ -86,8 +86,8 @@ export function defaultErrorListeners(events: EventBus) {
     });
   });
 
-  events.on('validation:start', (parentEl) => {
-    parentEl.querySelectorAll('.validator-err').forEach((el) => {
+  events.on('validation:start', (container) => {
+    container.querySelectorAll('.validator-err').forEach((el) => {
       el.remove();
     });
   });

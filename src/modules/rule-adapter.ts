@@ -14,12 +14,12 @@ export function adaptRule(
   rule: string,
   rules: string[],
   field: FormInputElement,
-  parentEl: HTMLElement,
+  container: HTMLElement,
   xRules?: XRules
 ): string {
   const ruleName = toCamelCase(processRule(rule, xRules).name);
 
-  return mapMethods[ruleName]?.(rule, rules, field, parentEl, xRules) || rule;
+  return mapMethods[ruleName]?.(rule, rules, field, container, xRules) || rule;
 }
 
 export function prependType(

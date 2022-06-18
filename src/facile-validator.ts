@@ -17,17 +17,17 @@ class Validator {
   private validatorError: ValidatorError;
   private events: EventBus;
   private options: ValidatorOptions;
-  private parentEl: HTMLElement;
+  private container: HTMLElement;
 
-  constructor(parentEl: HTMLElement, options: ValidatorOptions = {}) {
-    if (parentEl === null || !(parentEl instanceof HTMLElement)) {
-      throw new Error('Invalid parentEl element');
+  constructor(container: HTMLElement, options: ValidatorOptions = {}) {
+    if (container === null || !(container instanceof HTMLElement)) {
+      throw new Error('Invalid container element');
     }
 
     this.options = Object.assign(defaultOptions, options);
     this.validatorError = new ValidatorError();
     this.events = new EventBus(this.options.on);
-    this.parentEl = parentEl;
+    this.container = container;
 
     Language.set(this.options.lang);
 
@@ -40,18 +40,19 @@ class Validator {
   }
 
   public validate(): boolean {
-    this.events.call('validation:start', this.parentEl);
+    this.events.call('validation:start', this.container);
     let isSuccessful = true;
     let status = 'success';
 
-    const fields = this.parentEl.querySelectorAll<FormInputElement>('[data-rules]');
+    const fields = this.container.querySelectorAll<FormInputElement>('[data-rules]');
+
     if (fields.length > 0) {
       isSuccessful = this.validateFields(Array.from(fields));
       status = isSuccessful ? 'success' : 'failed';
     }
 
-    this.events.call(`validation:${status}` as keyof Events, this.parentEl);
-    this.events.call('validation:end', this.parentEl, isSuccessful);
+    this.events.call(`validation:${status}` as keyof Events, this.container);
+    this.events.call('validation:end', this.container, isSuccessful);
 
     return isSuccessful;
   }
@@ -112,7 +113,7 @@ class Validator {
   }
 
   private getComputedFieldRules(givenRules: string[], field: FormInputElement): string[] {
-    return givenRules.map((rule) => adaptRule(rule, givenRules, field, this.parentEl, this.options.xRules));
+    return givenRules.map((rule) => adaptRule(rule, givenRules, field, this.container, this.options.xRules));
   }
 
   private errorEventTrigger() {
@@ -121,7 +122,7 @@ class Validator {
     errors.forEach((errors) => {
       if (errors.length === 0) return;
 
-      this.events.call('field:error', this.parentEl, errors[0].element, errors);
+      this.events.call('field:error', this.container, errors[0].element, errors);
     });
   }
 }

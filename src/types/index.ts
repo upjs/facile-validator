@@ -16,6 +16,7 @@ export interface ValidatorOptions {
   on?: Partial<Events>;
   renderErrors?: boolean;
   xRules?: XRules;
+  vpi?: boolean;
 }
 
 export interface Rule {
@@ -31,11 +32,11 @@ export interface ErrorDetail {
 }
 
 export interface Events {
-  'validation:start': (parentEl: HTMLElement) => void;
-  'validation:end': (parentEl: HTMLElement, isSuccessful: boolean) => void;
-  'validation:success': (parentEl: HTMLElement) => void;
-  'validation:failed': (parentEl: HTMLElement) => void;
-  'field:error': (parentEl: HTMLElement, element: FormInputElement, errors: ErrorDetail[]) => void;
+  'validation:start': (container: HTMLElement) => void;
+  'validation:end': (container: HTMLElement, isSuccessful: boolean) => void;
+  'validation:success': (container: HTMLElement) => void;
+  'validation:failed': (container: HTMLElement) => void;
+  'field:error': (container: HTMLElement, element: FormInputElement, errors: ErrorDetail[]) => void;
 }
 
 export type EventsName = keyof Events;
@@ -48,7 +49,7 @@ export type AdapterFn = (
   rule: string,
   rules: string[],
   field: FormInputElement,
-  parentEl: HTMLElement,
+  container: HTMLElement,
   xRules?: XRules
 ) => string;
 
