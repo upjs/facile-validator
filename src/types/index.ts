@@ -16,7 +16,8 @@ export interface ValidatorOptions {
   on?: Partial<Events>;
   renderErrors?: boolean;
   xRules?: XRules;
-  vpi?: boolean;
+  onFieldChangeValidation?: boolean;
+  onFieldChangeValidationDelay?: number;
 }
 
 export interface Rule {

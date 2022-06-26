@@ -11,6 +11,7 @@ type RuleKey = keyof typeof rules;
 
 const defaultOptions: ValidatorOptions = {
   renderErrors: true,
+  onFieldChangeValidationDelay: 500,
 };
 
 class Validator {
@@ -38,19 +39,8 @@ class Validator {
     this.events.on('validation:start', () => this.validatorError.clearErrors());
     this.events.on('validation:failed', () => this.errorEventTrigger());
 
-    if (options.vpi) {
-      let timeout: number;
-
-      container.addEventListener('keyup', (event: KeyboardEvent) => {
-        window.clearTimeout(timeout);
-        timeout = window.setTimeout(() => {
-          const target = event.target as FormInputElement;
-
-          if (target.matches('[data-rules]')) {
-            this.validate([target], false);
-          }
-        }, 500);
-      });
+    if (options.onFieldChangeValidation) {
+      this.liveValidation();
     }
   }
 
@@ -68,11 +58,13 @@ class Validator {
       status = isSuccessful ? 'success' : 'failed';
     }
 
-    if (status === 'success' && shouldCallEndEvent) {
-      this.events.call('validation:end', this.container, isSuccessful);
-      this.events.call(`validation:success`, this.container);
+    if (status === 'success') {
+      if (shouldCallEndEvent) {
+        this.events.call('validation:end', this.container, isSuccessful);
+        this.events.call('validation:success', this.container);
+      }
     } else {
-      this.events.call(`validation:failed`, this.container);
+      this.events.call('validation:failed', this.container);
     }
 
     return isSuccessful;
@@ -138,12 +130,27 @@ class Validator {
   }
 
   private errorEventTrigger() {
-    const errors = this.validatorError.errors;
+    const totalErrors = this.validatorError.errors;
 
-    errors.forEach((errors) => {
-      if (errors.length === 0) return;
+    totalErrors.forEach((fieldErrors) => {
+      if (fieldErrors.length === 0) return;
 
-      this.events.call('field:error', this.container, errors[0].element, errors);
+      this.events.call('field:error', this.container, fieldErrors[0].element, fieldErrors);
+    });
+  }
+
+  private liveValidation() {
+    let timeout: number;
+
+    this.container.addEventListener('input', (event: Event) => {
+      window.clearTimeout(timeout);
+      timeout = window.setTimeout(() => {
+        const target = event.target as FormInputElement;
+
+        if (target.matches('[data-rules]')) {
+          this.validate([target], false);
+        }
+      }, this.options.onFieldChangeValidationDelay);
     });
   }
 }
