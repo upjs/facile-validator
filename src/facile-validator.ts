@@ -44,7 +44,7 @@ class Validator {
     }
   }
 
-  public validate(fields?: NodeListOf<FormInputElement> | FormInputElement[], shouldCallEndEvent = true): boolean {
+  public validate(fields?: NodeListOf<FormInputElement> | FormInputElement[], shouldFireEndEvents = true): boolean {
     this.events.call('validation:start', this.container);
     let isSuccessful = true;
     let status = 'success';
@@ -59,7 +59,7 @@ class Validator {
     }
 
     if (status === 'success') {
-      if (shouldCallEndEvent) {
+      if (shouldFireEndEvents) {
         this.events.call('validation:end', this.container, isSuccessful);
         this.events.call('validation:success', this.container);
       }
@@ -144,13 +144,15 @@ class Validator {
 
     this.container.addEventListener('input', (event: Event) => {
       window.clearTimeout(timeout);
+      const delay = this.options.onFieldChangeValidationDelay;
+
       timeout = window.setTimeout(() => {
         const target = event.target as FormInputElement;
 
         if (target.matches('[data-rules]')) {
           this.validate([target], false);
         }
-      }, this.options.onFieldChangeValidationDelay);
+      }, delay);
     });
   }
 }

@@ -12,7 +12,7 @@ form.onsubmit = (e) => {
 const v = new Validator(form, {
   lang: enLang,
   onFieldChangeValidation: true,
-  onFieldChangeValidationDelay: 100,
+  onFieldChangeValidationDelay: 500,
   xRules: {
     zipcode: '/^([0-9]{5})-([0-9]{5})$/',
     'min-from-server': (() => '2')(),
