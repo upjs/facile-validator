@@ -40,7 +40,7 @@ class Validator {
     this.events.on('validation:failed', () => this.errorEventTrigger());
 
     if (options.onFieldChangeValidation) {
-      this.liveValidation();
+      this.validateOnFieldChange();
     }
   }
 
@@ -139,7 +139,7 @@ class Validator {
     });
   }
 
-  private liveValidation() {
+  private validateOnFieldChange() {
     let timeout: number;
 
     this.container.addEventListener('input', (event: Event) => {
