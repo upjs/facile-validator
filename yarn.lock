@@ -4034,7 +4034,7 @@ validate-npm-package-license@^3.0.1:
     spdx-correct "^3.0.0"
     spdx-expression-parse "^3.0.0"
 
-vite@2.9.13, vite@^2.9.12:
+vite@2.9.13, "vite@^2.9.12 || ^3.0.0-0":
   version "2.9.13"
   resolved "https://registry.npmjs.org/vite/-/vite-2.9.13.tgz"
   integrity sha512-AsOBAaT0AD7Mhe8DuK+/kE4aWYFMx/i0ZNi98hJclxb4e0OhQcZYUrvLjIaQ8e59Ui7txcvKMiJC1yftqpQoDw==
@@ -4046,10 +4046,10 @@ vite@2.9.13, vite@^2.9.12:
   optionalDependencies:
     fsevents "~2.3.2"
 
-vitest@0.16.0:
-  version "0.16.0"
-  resolved "https://registry.npmjs.org/vitest/-/vitest-0.16.0.tgz"
-  integrity sha512-Ntp6jrM8wf2NMtamMBLkRBBdeqHkgAH/WMh5Xryts1j2ft2D8QZQbiSVFkSl4WmEQzcPP0YM069g/Ga1vtnEtg==
+vitest@0.17.0:
+  version "0.17.0"
+  resolved "https://registry.npmjs.org/vitest/-/vitest-0.17.0.tgz"
+  integrity sha512-5YO9ubHo0Zg35mea3+zZAr4sCku32C3usvIH5COeJB48TZV/R0J9aGNtGOOqEWZYfOKP0pGZUvTokne3x/QEFg==
   dependencies:
     "@types/chai" "^4.3.1"
     "@types/chai-subset" "^1.3.3"
@@ -4059,7 +4059,7 @@ vitest@0.16.0:
     local-pkg "^0.4.1"
     tinypool "^0.2.1"
     tinyspy "^0.3.3"
-    vite "^2.9.12"
+    vite "^2.9.12 || ^3.0.0-0"
 
 w3c-hr-time@^1.0.2:
   version "1.0.2"
