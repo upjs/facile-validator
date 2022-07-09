@@ -4021,10 +4021,10 @@ vite@2.9.13, "vite@^2.9.12 || ^3.0.0-0":
   optionalDependencies:
     fsevents "~2.3.2"
 
-vitest@0.17.0:
-  version "0.17.0"
-  resolved "https://registry.npmjs.org/vitest/-/vitest-0.17.0.tgz"
-  integrity sha512-5YO9ubHo0Zg35mea3+zZAr4sCku32C3usvIH5COeJB48TZV/R0J9aGNtGOOqEWZYfOKP0pGZUvTokne3x/QEFg==
+vitest@0.18.0:
+  version "0.18.0"
+  resolved "https://registry.npmjs.org/vitest/-/vitest-0.18.0.tgz"
+  integrity sha512-ryAtlh5Gvg3+aLNuOQ8YOHxgQCCu46jx40X5MBL0K0/ejB9i5zsr8fV8LTGXbXex80UMHlzceI9F+ouGaiR+mQ==
   dependencies:
     "@types/chai" "^4.3.1"
     "@types/chai-subset" "^1.3.3"
