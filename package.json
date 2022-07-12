@@ -71,7 +71,7 @@
     "standard-version": "9.5.0",
     "typescript": "4.7.4",
     "unbuild": "0.7.4",
-    "unocss": "0.43.0",
+    "unocss": "0.44.1",
     "vite": "2.9.13",
     "vitest": "0.17.0"
   },
