@@ -9,7 +9,7 @@ type ErrorCause = typeof rules;
 export type LangKeys = ErrorCause[keyof ErrorCause];
 export type Lang = Partial<Record<LangKeys, string>>;
 export type RuleName = typeof rules[keyof typeof rules];
-export type XRules = Record<string, any>;
+export type XRules = Record<string, unknown>;
 export type RuleKey = keyof typeof rules;
 
 export interface ValidatorOptions {
