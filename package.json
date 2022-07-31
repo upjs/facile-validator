@@ -1,6 +1,6 @@
 {
   "name": "@upjs/facile-validator",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "Easy HTML form validator written in TypeScript with tree-shaking",
   "repository": {
     "type": "git",

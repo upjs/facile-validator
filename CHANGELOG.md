@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/upjs/facile-validator/compare/v1.2.0...v1.4.0) (2022-07-31)
+
+### Features
+
+- add support for validate per field ([3f508ff](https://github.com/upjs/facile-validator/commit/3f508ff2ce29475f23951051bf11aa284253facf))
+- before release refactor ([7a9ef8a](https://github.com/upjs/facile-validator/commit/7a9ef8a7f0163053b108c5d6070f7229b04043f0))
+- fix events trigger order ([c5536ab](https://github.com/upjs/facile-validator/commit/c5536abe999b1e6b33bf046a1d44e92745445b86))
+- refactor project ([7bad2f5](https://github.com/upjs/facile-validator/commit/7bad2f5e9c4da35251f55d5b3eaa07ec75f26eb0))
+- rename function ([a65c223](https://github.com/upjs/facile-validator/commit/a65c223a8e1758e16f72bd34eac2d545eb26a923))
+- update renovate configs ([618a80b](https://github.com/upjs/facile-validator/commit/618a80bb4dcea9b41c9759c06dccea8b254c00dd))
+- update version ([38ba534](https://github.com/upjs/facile-validator/commit/38ba5341a2346dda756fc9c4c758769273302edf))
+- use name `container` for parent element ([570d6ff](https://github.com/upjs/facile-validator/commit/570d6ff475d85e78973b1bcdfb5171f7bce3d2cc))
+
 ## [1.2.0](https://github.com/upjs/facile-validator/compare/v1.1.1...v1.2.0) (2022-05-26)
 
 ### Features
