@@ -22,6 +22,7 @@ Facile (French word for "easy", pronounced `fa·sil`) is an HTML form validator 
 - [Usage](#usage)
 - [Handling Events](#handling-events)
 - [Available Validation Rules](#available-validation-rules)
+- [X-Prefixed Rules](#x-prefixed-rules)
 - [Localization](#localization)
 
 > Note: This package does not include any polyfills. If you want to use in old environments, add this package to your project's config transpiling list.
@@ -199,6 +200,7 @@ const v = new Validator(form, {
 - [num-dash](#num-dash)
 - [number](#number)
 - [nullable](#nullable)
+- [regex](#regex)
 - [required](#required)
 - [size](#size)
 - [starts-with](#starts-with)
@@ -407,6 +409,16 @@ The field under validation must be a number:
 
 ---
 
+### regex
+_New in version 1.1_  
+The field under validation must match the given regular expression:
+```html
+<input data-rules="regex:/^[0-9]+$/" />
+```
+To handle the regex rule in a more convenient way, see [#x-prefixed-rules](#x-prefixed-rules).
+
+---
+
 ### required
 
 The field under validation must not be empty:
@@ -472,6 +484,29 @@ _Only red or green or blue are valid inputs._
 ```
 
 _Only 1, 3 or both are accepted._
+
+---
+
+<br/>
+
+## X-Prefixed Rules
+_New in version 1.1_  
+In some situations, passing the rule argument in HTML is not a good idea. For example for a complex argument for `regex` rule that can make the HTML code less legible:
+```html
+<input data-rules="regex:/^([0-9]{5})-([0-9]{5})$/" />
+```
+So instead of passing rules arguments in HTML, you can pass them in JavaScript code with the help of **X-Prefixed Rules**. All available rules can be prefixed with an `x-`. For example the `regex` rule can be written as `x-regex`. In this situation, the only argument for these rules points a key in `xRules` object in the configuration object:
+```html
+<input data-rules="x-regex:zipcode" />
+```
+```js
+const v = new Validator(form, {
+  xRules: {
+    zipcode: /^([0-9]{5})-([0-9]{5})$/,
+  }
+});
+```
+In this example, the final argument for `x-regex` rule is the value of `zipcode` property in `xRules` object.
 
 ---
 

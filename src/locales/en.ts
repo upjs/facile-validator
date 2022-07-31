@@ -20,6 +20,7 @@ const enLang: Record<LangKeys, string> = {
   [rules.MIN_LENGTH]: 'Min length is $1',
   [rules.NUM_DASH]: 'Please enter numbers with dashes and underscores',
   [rules.NUMBER]: 'Please enter a valid number',
+  [rules.REGEX]: "The value doesn't match the pattern",
   [rules.REQUIRED]: 'This field is required',
   [rules.STARTS_WITH]: 'The value must start with "$1"',
   [rules.WITHIN]: 'The value is incorrect',

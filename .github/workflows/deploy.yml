@@ -18,7 +18,7 @@ jobs:
         run: yarn deploy
 
       - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@v4.3.2
+        uses: JamesIves/github-pages-deploy-action@v4.4.0
         with:
           branch: gh-pages # The branch the action should deploy to.
           folder: playground/dist # The folder the action should deploy.

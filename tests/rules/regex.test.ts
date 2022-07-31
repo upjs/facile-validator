@@ -42,7 +42,6 @@ describe('rules: regex', () => {
   it('should throw error on invalid argument', () => {
     expect(() => regex('...')).toThrowError(ARGUMENT_MUST_BE_PROVIDED);
     expect(() => regex('...', '')).toThrowError(ARGUMENT_MUST_BE_PROVIDED);
-    expect(() => regex()).toThrowError(ARGUMENT_MUST_BE_PROVIDED);
 
     // Invalid Patterns
     expect(() => regex('...', '^/[a-z')).toThrowError(INVALID_PATTERN);
