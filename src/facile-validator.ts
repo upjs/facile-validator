@@ -37,17 +37,17 @@ class Validator {
     }
 
     this.events.on('validation:start', () => this.validatorError.clearErrors());
-    this.events.on('validation:failed', () => this.errorEventTrigger());
+    this.events.on('validation:failed', () => this.triggerFieldErrorEvent());
 
     if (options.onFieldChangeValidation) {
       this.validateOnFieldChange();
     }
   }
 
-  public validate(fields?: NodeListOf<FormInputElement> | FormInputElement[], shouldFireEndEvents = true): boolean {
+  public validate(fields?: NodeListOf<FormInputElement> | FormInputElement[], shouldFireResultsEvent = true): boolean {
     this.events.call('validation:start', this.container);
     let isSuccessful = true;
-    let status = 'success';
+    let status: 'success' | 'failed' = 'success';
 
     if (fields === undefined) {
       fields = this.container.querySelectorAll<FormInputElement>('[data-rules]');
@@ -58,13 +58,10 @@ class Validator {
       status = isSuccessful ? 'success' : 'failed';
     }
 
-    if (status === 'success') {
-      if (shouldFireEndEvents) {
-        this.events.call('validation:end', this.container, isSuccessful);
-        this.events.call('validation:success', this.container);
-      }
-    } else {
-      this.events.call('validation:failed', this.container);
+    this.events.call('validation:end', this.container, isSuccessful);
+
+    if (shouldFireResultsEvent) {
+      this.events.call(`validation:${status}`, this.container);
     }
 
     return isSuccessful;
@@ -129,7 +126,7 @@ class Validator {
     return givenRules.map((rule) => adaptRule(rule, givenRules, field, this.container, this.options.xRules));
   }
 
-  private errorEventTrigger() {
+  private triggerFieldErrorEvent() {
     const totalErrors = this.validatorError.errors;
 
     totalErrors.forEach((fieldErrors) => {
@@ -141,7 +138,6 @@ class Validator {
 
   private validateOnFieldChange() {
     let timeout: number;
-
     this.container.addEventListener('input', (event: Event) => {
       window.clearTimeout(timeout);
       const delay = this.options.onFieldChangeValidationDelay;
@@ -150,7 +146,10 @@ class Validator {
         const target = event.target as FormInputElement;
 
         if (target.matches('[data-rules]')) {
-          this.validate([target], false);
+          const result = this.validate([target], false);
+          if (result === false) {
+            this.triggerFieldErrorEvent();
+          }
         }
       }, delay);
     });

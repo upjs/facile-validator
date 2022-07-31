@@ -19,7 +19,19 @@ const v = new Validator(form, {
   },
   on: {
     'validation:success': () => {
-      alert('Success! Form validated with no errors');
+      alert('Success! Form validated without any errors');
+    },
+    'validation:end': () => {
+      console.log('validation:end');
+    },
+    'validation:start': () => {
+      console.log('validation:start');
+    },
+    'validation:failed': () => {
+      console.log('validation:failed');
+    },
+    'field:error': () => {
+      console.log('field:error');
     },
   },
 });
