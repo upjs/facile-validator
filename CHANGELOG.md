@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0](https://github.com/upjs/facile-validator/compare/v1.4.0...v1.5.0) (2022-08-09)
+
+### Features
+
+- add support for textarea validation ([76482eb](https://github.com/upjs/facile-validator/commit/76482eb8fe4dab0372b27a82f6765277eaec93fb))
+
+### Bug Fixes
+
+- use `unknown` instead of `any` ([41baeb5](https://github.com/upjs/facile-validator/commit/41baeb505a32c3b09b02c133080a5bdc8fa71b97))
+
 ## [1.4.0](https://github.com/upjs/facile-validator/compare/v1.2.0...v1.4.0) (2022-07-31)
 
 ### Features
