@@ -16,6 +16,10 @@ export function getValue(element: FormInputElement): string {
     return element.value;
   }
 
+  if (element instanceof HTMLTextAreaElement) {
+    return element.value;
+  }
+
   if (element instanceof HTMLSelectElement) {
     return Array.from(element.selectedOptions)
       .map((option) => option.value)
