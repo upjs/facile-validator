@@ -1,5 +1,5 @@
 import * as rules from '@/rules';
-import { ValidatorOptions, EventsName, Events, FormInputElement } from '@/types';
+import { ValidatorOptions, EventsName, Events, FormInputElement, Lang } from '@/types';
 import ValidatorError from '@/modules/validator-error';
 import { getValue, toCamelCase, defaultErrorListeners, processRule } from '@/utils/helpers';
 import EventBus from './modules/events';
@@ -153,6 +153,10 @@ class Validator {
         }
       }, delay);
     });
+  }
+
+  public setLanguage(lang: Lang) {
+    Language.set(lang);
   }
 }
 
