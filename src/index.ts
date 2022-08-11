@@ -1,2 +1,10 @@
 export { default as Validator } from '@/facile-validator';
-export { en as enLang, fa as faLang, createLang } from '@/locales';
+export {
+  en as enLang,
+  fa as faLang,
+  fr as frLang,
+  de as deLang,
+  it as itLang,
+  zh as zhLang,
+  createLang,
+} from '@/locales';
