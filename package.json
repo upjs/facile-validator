@@ -72,7 +72,7 @@
     "typescript": "4.7.4",
     "unbuild": "0.7.6",
     "unocss": "0.45.5",
-    "vite": "3.0.4",
+    "vite": "3.0.7",
     "vitest": "0.21.1"
   },
   "bugs": {
