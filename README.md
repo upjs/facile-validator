@@ -20,6 +20,7 @@ Facile (French word for "easy", pronounced `fa·sil`) is an HTML form validator 
 
 - [Installation](#installation)
 - [Usage](#usage)
+  - [Validate on Field Change](#validate-on-field-change)
 - [Handling Events](#handling-events)
 - [Available Validation Rules](#available-validation-rules)
 - [X-Prefixed Rules](#x-prefixed-rules)
@@ -91,6 +92,21 @@ v.on('validation:failed', () => {
 
 Now every input with `data-rules` attribute in the `form` will be validated.
 
+<br/>
+
+### Validate on Field Change
+_New in version 1.6_  
+By default, the validation starts when the `validate` method is called. If you want to validate a field as soon as it changes (e.g. when user starts typing) you can set the value of `onFieldChangeValidation` option to `true` in the validator's options:
+```js
+const v = new Validator(form, {
+  onFieldChangeValidation: true,
+```
+By doing this, the validation starts for the field that being changed after 500ms delay. However, you can change this delay by setting `onFieldChangeValidationDelay` in the options:
+```js
+const v = new Validator(form, {
+  onFieldChangeValidation: true,
+  onFieldChangeValidationDelay: 1000 // 1 Second
+```
 <br/>
 
 ## Handling Events
