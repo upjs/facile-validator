@@ -100,12 +100,14 @@ By default, the validation starts when the `validate` method is called. If you w
 ```js
 const v = new Validator(form, {
   onFieldChangeValidation: true,
+}
 ```
 By doing this, the validation starts for the field that being changed after 500ms delay. However, you can change this delay by setting `onFieldChangeValidationDelay` in the options:
 ```js
 const v = new Validator(form, {
   onFieldChangeValidation: true,
   onFieldChangeValidationDelay: 1000 // 1 Second
+}
 ```
 <br/>
 
@@ -542,6 +544,10 @@ const v = new Validator(form, {
 Facile Validator currently supports these languages by default:
 - English (import with `enLang`)
 - Persian (import with `faLang`)
+- Italian (import with `itLang`) (Since v1.8)
+- Chinese (import with `zhLang`) (Since v1.8)
+- French (import with `frLang`) (Since v1.8)
+- German (import with `deLang`) (Since v1.8)
 
 We welcome any contributions for other languages. The languages are located in [this path](https://github.com/upjs/facile-validator/blob/main/src/locales). Just copy any file, translate it into your own language and then make a **PR**.
 
@@ -571,6 +577,23 @@ const myLang = createLang({
   accepted: 'Please accept this field',
 });
 ```
+
+<br>
+
+### Change the Language on the fly
+_New in version 1.8_  
+You can change the current language on runtime by using `setLanguage` method from the validator:
+```javascript
+import { Validator, enLang as en, frLang as fr } from '@upjs/facile-validator';
+
+const v = new Validator(form, {
+  lang: en,
+});
+
+// e.g. onclick
+v.setLanguage(fr);
+```
+
 
 ## License
 
