@@ -6,5 +6,6 @@ export {
   de as deLang,
   it as itLang,
   zh as zhLang,
+  cs as csLang,
   createLang,
 } from '@/locales';
