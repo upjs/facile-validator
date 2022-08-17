@@ -20,7 +20,7 @@ const csLang: Record<LangKeys, string> = {
   [rules.MIN_LENGTH]: 'Minimální délka je $1',
   [rules.NUM_DASH]: 'Zadejte čísla s pomlčkami a podtržítky',
   [rules.NUMBER]: 'Zadejte platné číslo',
-  [rules.REGEX]: "Hodnota neodpovídá vzoru",
+  [rules.REGEX]: 'Hodnota neodpovídá vzoru',
   [rules.REQUIRED]: 'Toto pole je povinné',
   [rules.STARTS_WITH]: 'Hodnota musí začínat znaky „$1“',
   [rules.WITHIN]: 'Hodnota je nesprávná',
