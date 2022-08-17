@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.9.0](https://github.com/upjs/facile-validator/compare/v1.8.0...v1.9.0) (2022-08-17)
+
+### Features
+
+- add cs lang ([f171b46](https://github.com/upjs/facile-validator/commit/f171b4610de4d61c9952a3d79c6de7bd2e194a95))
+
 ## [1.8.0](https://github.com/upjs/facile-validator/compare/v1.7.0...v1.8.0) (2022-08-11)
 
 ### Features
