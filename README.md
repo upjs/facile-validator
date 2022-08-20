@@ -548,6 +548,8 @@ Facile Validator currently supports these languages by default:
 - Chinese (import with `zhLang`) (Since v1.8)
 - French (import with `frLang`) (Since v1.8)
 - German (import with `deLang`) (Since v1.8)
+- Czech (import with `csLang`) (Since v1.9)
+- Dutch (import with `nlLang`) (Since v1.10)
 
 We welcome any contributions for other languages. The languages are located in [this path](https://github.com/upjs/facile-validator/blob/main/src/locales). Just copy any file, translate it into your own language and then make a **PR**.
 
