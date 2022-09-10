@@ -598,6 +598,11 @@
   resolved "https://registry.npmjs.org/@unocss/core/-/core-0.45.15.tgz"
   integrity sha512-NM/l/+6sg4+qQqnzbpaGDEswfkH7c1oyRA+L+gYIFPAfehQMEdKkXXJozBdFy78kLjfPVLL6iMnDhcojdZvOSg==
 
+"@unocss/core@0.45.18":
+  version "0.45.18"
+  resolved "https://registry.npmjs.org/@unocss/core/-/core-0.45.18.tgz"
+  integrity sha512-506GHQX8/TpKNZ96k4ujSWp5SpcsZZnwwTg9NcLf7M3y5BXEwv0dE7Jfz7eJiFm2G+RYEgrXwYk7y7dFF8evxA==
+
 "@unocss/inspector@0.45.15":
   version "0.45.15"
   resolved "https://registry.npmjs.org/@unocss/inspector/-/inspector-0.45.15.tgz"
@@ -628,6 +633,13 @@
   integrity sha512-z/GZmJFjnHAGA9vUMsieOfwAAMJe7awnnAA4pYKspDo3U9aa68qjZSSZ60s+qM7okCvL3xNFHuyipzLr/CVhEQ==
   dependencies:
     "@unocss/core" "0.45.15"
+
+"@unocss/preset-mini@0.45.18":
+  version "0.45.18"
+  resolved "https://registry.npmjs.org/@unocss/preset-mini/-/preset-mini-0.45.18.tgz"
+  integrity sha512-wmWn2E811nEEOhA2AZ2Tjz8IcL8gw77cmxnsDRRx30RD9PZkC7zJ+yahrK9/hjhaIFGCPVvcv0doJPkw4nkdEA==
+  dependencies:
+    "@unocss/core" "0.45.18"
 
 "@unocss/preset-tagify@0.45.15":
   version "0.45.15"
@@ -667,6 +679,14 @@
   dependencies:
     "@unocss/core" "0.45.15"
     "@unocss/preset-mini" "0.45.15"
+
+"@unocss/preset-wind@0.45.18":
+  version "0.45.18"
+  resolved "https://registry.npmjs.org/@unocss/preset-wind/-/preset-wind-0.45.18.tgz"
+  integrity sha512-eZikLyVv5q1Xr/nuWMa3cmp4Sfb1t/uiuMZ73mcs6R0epJ66ZnHeYPfPc/x2qmJQMg9FPOR8/+log73BgZ+OHA==
+  dependencies:
+    "@unocss/core" "0.45.18"
+    "@unocss/preset-mini" "0.45.18"
 
 "@unocss/reset@0.45.15":
   version "0.45.15"
