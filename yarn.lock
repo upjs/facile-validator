@@ -693,6 +693,11 @@
   resolved "https://registry.npmjs.org/@unocss/reset/-/reset-0.45.21.tgz"
   integrity sha512-9JyC8P8qci1fuUvIOZXfO0jsug2YOUlFq8bx904J4sQ33qFl4NhkrpXAU+kFs0HS5SvgUx7BDfLY7W7BGG3RxQ==
 
+"@unocss/reset@0.45.22":
+  version "0.45.22"
+  resolved "https://registry.npmjs.org/@unocss/reset/-/reset-0.45.22.tgz"
+  integrity sha512-jNLWr5tZ2X+fMCNXYXJe5/AUeTPeWcXke0XpWSXrQ7f5Bbk1TpbUFcV7ln4DvUwRkQsmcDYxdj7em/wN1U0mSQ==
+
 "@unocss/scope@0.45.21":
   version "0.45.21"
   resolved "https://registry.npmjs.org/@unocss/scope/-/scope-0.45.21.tgz"
