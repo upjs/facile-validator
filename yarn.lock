@@ -676,11 +676,6 @@
     "@unocss/core" "0.45.29"
     "@unocss/preset-mini" "0.45.29"
 
-"@unocss/reset@0.45.26":
-  version "0.45.26"
-  resolved "https://registry.npmjs.org/@unocss/reset/-/reset-0.45.26.tgz"
-  integrity sha512-9X0cSvGPXdZ1KAuiWzFWtcoyfC7b8j4GYHr4lDXRkPC5oI3CJhw4WcdvzTHVPqOX2CKqq731H4GhcQ5c5LBuHA==
-
 "@unocss/reset@0.45.29":
   version "0.45.29"
   resolved "https://registry.npmjs.org/@unocss/reset/-/reset-0.45.29.tgz"
