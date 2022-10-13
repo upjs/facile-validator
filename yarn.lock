@@ -3951,10 +3951,10 @@ strip-json-comments@^3.1.0, strip-json-comments@^3.1.1:
   resolved "https://registry.npmjs.org/strip-json-comments/-/strip-json-comments-3.1.1.tgz"
   integrity sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig==
 
-strip-literal@^0.4.1:
-  version "0.4.1"
-  resolved "https://registry.npmjs.org/strip-literal/-/strip-literal-0.4.1.tgz"
-  integrity sha512-z+F/xmDM8GOdvA5UoZXFxEnxdvMOZ+XEBIwjfLfc8hMSuHpGxjXAUCfuEo+t1GOHSb8+qgI/IBRpxXVMaABYWA==
+strip-literal@^0.4.2:
+  version "0.4.2"
+  resolved "https://registry.npmjs.org/strip-literal/-/strip-literal-0.4.2.tgz"
+  integrity sha512-pv48ybn4iE1O9RLgCAN0iU4Xv7RlBTiit6DKmMiErbs9x1wH6vXBs45tWc0H5wUIF6TLTrKweqkmYF/iraQKNw==
   dependencies:
     acorn "^8.8.0"
 
@@ -4021,10 +4021,10 @@ through@2, "through@>=2.2.7 <3", through@^2.3.8:
   resolved "https://registry.npmjs.org/through/-/through-2.3.8.tgz"
   integrity sha1-DdTJ/6q8NXlgsbckEV1+Doai4fU=
 
-tinybench@^2.1.5:
-  version "2.1.5"
-  resolved "https://registry.npmjs.org/tinybench/-/tinybench-2.1.5.tgz"
-  integrity sha512-ak+PZZEuH3mw6CCFOgf5S90YH0MARnZNhxjhjguAmoJimEMAJuNip/rJRd6/wyylHItomVpKTzZk9zrhTrQCoQ==
+tinybench@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.npmjs.org/tinybench/-/tinybench-2.3.0.tgz"
+  integrity sha512-zs1gMVBwyyG2QbVchYIbnabRhMOCGvrwZz/q+SV+LIMa9q5YDQZi2kkI6ZRqV2Bz7ba1uvrc7ieUoE4KWnGeKg==
 
 tinypool@^0.3.0:
   version "0.3.0"
@@ -4299,7 +4299,7 @@ validate-npm-package-license@^3.0.1:
     spdx-correct "^3.0.0"
     spdx-expression-parse "^3.0.0"
 
-vite@3.1.7, "vite@^2.9.12 || ^3.0.0-0":
+vite@3.1.7, vite@^3.0.0:
   version "3.1.7"
   resolved "https://registry.npmjs.org/vite/-/vite-3.1.7.tgz"
   integrity sha512-5vCAmU4S8lyVdFCInu9M54f/g8qbOMakVw5xJ4pjoaDy5wgy9sLLZkGdSLN52dlsBqh0tBqxjaqqa8LgPqwRAA==
@@ -4311,10 +4311,10 @@ vite@3.1.7, "vite@^2.9.12 || ^3.0.0-0":
   optionalDependencies:
     fsevents "~2.3.2"
 
-vitest@0.23.4:
-  version "0.23.4"
-  resolved "https://registry.npmjs.org/vitest/-/vitest-0.23.4.tgz"
-  integrity sha512-iukBNWqQAv8EKDBUNntspLp9SfpaVFbmzmM0sNcnTxASQZMzRw3PsM6DMlsHiI+I6GeO5/sYDg3ecpC+SNFLrQ==
+vitest@0.24.1:
+  version "0.24.1"
+  resolved "https://registry.npmjs.org/vitest/-/vitest-0.24.1.tgz"
+  integrity sha512-NKkK1xnDIOOr42pKBfGQQl6b6IWdFVBpG6ZS1T+nUlJuqcOiZ7lxjVwHy9wrtTYpJ0BWww9y6bSGYXubD29Nag==
   dependencies:
     "@types/chai" "^4.3.3"
     "@types/chai-subset" "^1.3.3"
@@ -4322,11 +4322,11 @@ vitest@0.23.4:
     chai "^4.3.6"
     debug "^4.3.4"
     local-pkg "^0.4.2"
-    strip-literal "^0.4.1"
-    tinybench "^2.1.5"
+    strip-literal "^0.4.2"
+    tinybench "^2.3.0"
     tinypool "^0.3.0"
     tinyspy "^1.0.2"
-    vite "^2.9.12 || ^3.0.0-0"
+    vite "^3.0.0"
 
 w3c-xmlserializer@^3.0.0:
   version "3.0.0"
