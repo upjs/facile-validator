@@ -562,15 +562,6 @@
     "@typescript-eslint/types" "5.40.0"
     eslint-visitor-keys "^3.3.0"
 
-"@unjsio/rollup-plugin-dts@^5.0.0-rc.1":
-  version "5.0.0-rc.1"
-  resolved "https://registry.npmjs.org/@unjsio/rollup-plugin-dts/-/rollup-plugin-dts-5.0.0-rc.1.tgz"
-  integrity sha512-ygcyY5+1PfKjxO6mNlfFWrA1hv9GaMIJMppL+zKqp1zRsDag9jmf7D3isnRWiiE0DSlBHjGGCiKFZ5c5XcWzTA==
-  dependencies:
-    magic-string "^0.26.7"
-  optionalDependencies:
-    "@babel/code-frame" "^7.18.6"
-
 "@unocss/astro@0.45.29":
   version "0.45.29"
   resolved "https://registry.npmjs.org/@unocss/astro/-/astro-0.45.29.tgz"
@@ -1846,7 +1837,7 @@ esbuild@^0.14.47:
     esbuild-windows-64 "0.14.49"
     esbuild-windows-arm64 "0.14.49"
 
-esbuild@^0.15.10:
+esbuild@^0.15.11:
   version "0.15.11"
   resolved "https://registry.npmjs.org/esbuild/-/esbuild-0.15.11.tgz"
   integrity sha512-OgHGuhlfZ//mToxjte1D5iiiQgWfJ2GByVMwEC/IuoXsBGkuyK1+KrjYu0laSpnN/L1UmLUCv0s25vObdc1bVg==
@@ -2426,7 +2417,7 @@ has@^1.0.3:
   dependencies:
     function-bind "^1.1.1"
 
-hookable@^5.4.0:
+hookable@^5.4.1:
   version "5.4.1"
   resolved "https://registry.npmjs.org/hookable/-/hookable-5.4.1.tgz"
   integrity sha512-i808BglQ1OuSIcgPSZoWsDapCMLXKe5wLS6XZvIXpaBWdWLUZARM8vOLayu6cXewj5TSbaZaMzKnq+pRnfscEQ==
@@ -3631,7 +3622,16 @@ rimraf@^3.0.2:
   dependencies:
     glob "^7.1.3"
 
-rollup@^3.1.0:
+rollup-plugin-dts@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.npmjs.org/rollup-plugin-dts/-/rollup-plugin-dts-5.0.0.tgz"
+  integrity sha512-OO8ayCvuJCKaQSShyVTARxGurVVk4ulzbuvz+0zFd1f93vlnWFU5pBMT7HFeS6uj7MvvZLx4kUAarGATSU1+Ng==
+  dependencies:
+    magic-string "^0.26.7"
+  optionalDependencies:
+    "@babel/code-frame" "^7.18.6"
+
+rollup@^3.2.0:
   version "3.2.0"
   resolved "https://registry.npmjs.org/rollup/-/rollup-3.2.0.tgz"
   integrity sha512-0ZkFPyBNvx717KvC700NoxUD31aEEX675u6INJVAmBgKtQuCL8jmmJCj1b9B/qDSnILAvASVKa7UpGS+FLN6AQ==
@@ -4133,10 +4133,10 @@ uglify-js@^3.1.4:
   resolved "https://registry.npmjs.org/uglify-js/-/uglify-js-3.15.3.tgz"
   integrity sha512-6iCVm2omGJbsu3JWac+p6kUiOpg3wFO2f8lIXjfEb8RrmLjzog1wTPMmwKB7swfzzqxj9YM+sGUM++u1qN4qJg==
 
-unbuild@0.9.2:
-  version "0.9.2"
-  resolved "https://registry.npmjs.org/unbuild/-/unbuild-0.9.2.tgz"
-  integrity sha512-DQeN06/+V7JIOC3i0sTDYB6spRsTLuE0tdld2y0tXMvbzIEl+oEGL6JaIjVcjQ3CF9j2CqfVvLAXiPe2ZoZePA==
+unbuild@0.9.4:
+  version "0.9.4"
+  resolved "https://registry.npmjs.org/unbuild/-/unbuild-0.9.4.tgz"
+  integrity sha512-IkKPqzazcCNfwTSs5bDRS2bOvg1Zh9gPYQq/ruVarCoM4f7KXclSrcb0jyJiSU/5qhakZ8K5B2CzwX4ZaaVKdQ==
   dependencies:
     "@rollup/plugin-alias" "^4.0.0"
     "@rollup/plugin-commonjs" "^23.0.0"
@@ -4144,13 +4144,12 @@ unbuild@0.9.2:
     "@rollup/plugin-node-resolve" "^15.0.0"
     "@rollup/plugin-replace" "^5.0.0"
     "@rollup/pluginutils" "^5.0.1"
-    "@unjsio/rollup-plugin-dts" "^5.0.0-rc.1"
     chalk "^5.1.2"
     consola "^2.15.3"
     defu "^6.1.0"
-    esbuild "^0.15.10"
+    esbuild "^0.15.11"
     globby "^13.1.2"
-    hookable "^5.4.0"
+    hookable "^5.4.1"
     jiti "^1.16.0"
     magic-string "^0.26.7"
     mkdirp "^1.0.4"
@@ -4161,7 +4160,8 @@ unbuild@0.9.2:
     pkg-types "^0.3.5"
     pretty-bytes "^6.0.0"
     rimraf "^3.0.2"
-    rollup "^3.1.0"
+    rollup "^3.2.0"
+    rollup-plugin-dts "^5.0.0"
     scule "^0.3.2"
     typescript "^4.8.4"
     untyped "^0.5.0"
