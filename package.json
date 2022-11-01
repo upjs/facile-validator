@@ -73,7 +73,7 @@
     "unbuild": "0.9.2",
     "unocss": "0.45.29",
     "vite": "3.1.8",
-    "vitest": "0.24.3"
+    "vitest": "0.24.5"
   },
   "bugs": {
     "url": "https://github.com/upjs/facile-validator/issues"
