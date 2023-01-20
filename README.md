@@ -138,6 +138,9 @@ const v = new Validator(form, {
     'validation:success': () => {
       alert('Success! Form validated with no errors');
     },
+    'validation:failed': () => {
+      alert('failed.');
+    },
   },
 });
 ```
