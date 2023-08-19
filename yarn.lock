@@ -800,6 +800,11 @@
   resolved "https://registry.npmjs.org/@unocss/reset/-/reset-0.45.29.tgz"
   integrity sha512-ytnKxyJdjvhjHrZ9yQUnQwiuL4hiXvjZUj88F2JkwgFJX6Y8jEz3V2xU1BPZNOv20/F6P1ngzEPRfrWHG8XG6A==
 
+"@unocss/reset@0.55.2":
+  version "0.55.2"
+  resolved "https://registry.npmjs.org/@unocss/reset/-/reset-0.55.2.tgz"
+  integrity sha512-paInTGIhtI96fcJGZWbkPLW/7qiTlHxSbEIs1HGHcbf3WbwNuKrJUvKlQAhUs2HILNKhvsTXQl05Os8gtinLEA==
+
 "@unocss/scope@0.45.29":
   version "0.45.29"
   resolved "https://registry.npmjs.org/@unocss/scope/-/scope-0.45.29.tgz"
