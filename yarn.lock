@@ -725,6 +725,18 @@
   resolved "https://registry.npmjs.org/@unocss/core/-/core-0.45.29.tgz"
   integrity sha512-ElnT15Hqb1PZY293HI1CSE73/I76Wsc4sczQCQRHlMrAb73JeB5iM3XOWJFGWqChb7Z5dP+mwDExXgNpRxCQjQ==
 
+"@unocss/core@0.55.2":
+  version "0.55.2"
+  resolved "https://registry.npmjs.org/@unocss/core/-/core-0.55.2.tgz"
+  integrity sha512-ZLEES8RDgWoK/vttUzl3PM2bZqL3HvhLgj8xdDa09Xw+JiTlR4c66s+hLn52oCoJTnT9lGsD2j7tTGN9ToSiTA==
+
+"@unocss/extractor-arbitrary-variants@0.55.2":
+  version "0.55.2"
+  resolved "https://registry.npmjs.org/@unocss/extractor-arbitrary-variants/-/extractor-arbitrary-variants-0.55.2.tgz"
+  integrity sha512-mHEoFx+ITe3OgFoIUhkCQxRgUjvOJeHtI1Z3Sm8NDMy2vTqOlkSf7NLWEyFfQsSFYqpWGTkaW1XiMZujGMoB/g==
+  dependencies:
+    "@unocss/core" "0.55.2"
+
 "@unocss/inspector@0.45.29":
   version "0.45.29"
   resolved "https://registry.npmjs.org/@unocss/inspector/-/inspector-0.45.29.tgz"
@@ -755,6 +767,14 @@
   integrity sha512-3Js/6GVg8B4MRl6lL9/px+Znk/8LO508/+HUQJBSymBriowio9kQjN6WXHosQMQMeEVCRfQnkSl9LHEmKPQs5A==
   dependencies:
     "@unocss/core" "0.45.29"
+
+"@unocss/preset-mini@0.55.2":
+  version "0.55.2"
+  resolved "https://registry.npmjs.org/@unocss/preset-mini/-/preset-mini-0.55.2.tgz"
+  integrity sha512-jwUsrwtPwMvFVJUP+FVFjq+sp+xQPyFLRPSb89ZI34F1a3EwJ2wioDICLqWjOjY7zei9UgtSY0owBM9vwxw/kg==
+  dependencies:
+    "@unocss/core" "0.55.2"
+    "@unocss/extractor-arbitrary-variants" "0.55.2"
 
 "@unocss/preset-tagify@0.45.29":
   version "0.45.29"
@@ -794,6 +814,14 @@
   dependencies:
     "@unocss/core" "0.45.29"
     "@unocss/preset-mini" "0.45.29"
+
+"@unocss/preset-wind@0.55.2":
+  version "0.55.2"
+  resolved "https://registry.npmjs.org/@unocss/preset-wind/-/preset-wind-0.55.2.tgz"
+  integrity sha512-th/aOokb10ApaiVLNI093mvko4XryJ70oEhzz4tHdSuhnQWf5eY7+k7y9EEYFz8i1OOrKuer0HzUV27llZaufw==
+  dependencies:
+    "@unocss/core" "0.55.2"
+    "@unocss/preset-mini" "0.55.2"
 
 "@unocss/reset@0.45.29":
   version "0.45.29"
