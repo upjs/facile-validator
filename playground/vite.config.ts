@@ -21,7 +21,7 @@ export default defineConfig({
           heading: '#023047',
         },
         fontFamily: {
-          roboto: ['Roboto, sans-serif'],
+          roboto: 'Roboto, sans-serif',
         },
       },
       shortcuts: {
