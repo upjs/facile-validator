@@ -63,7 +63,7 @@
     "c8": "8.0.1",
     "eslint": "8.25.0",
     "eslint-config-prettier": "8.10.0",
-    "eslint-plugin-prettier": "4.2.1",
+    "eslint-plugin-prettier": "5.0.1",
     "husky": "8.0.3",
     "lint-staged": "13.0.3",
     "path": "0.12.7",
