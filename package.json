@@ -61,7 +61,7 @@
     "@unocss/preset-wind": "0.57.1",
     "@unocss/reset": "0.57.1",
     "c8": "8.0.1",
-    "eslint": "8.25.0",
+    "eslint": "8.52.0",
     "eslint-config-prettier": "9.0.0",
     "eslint-plugin-prettier": "4.2.1",
     "husky": "8.0.3",
