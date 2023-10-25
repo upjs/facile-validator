@@ -7,6 +7,7 @@
     <title>Facile Validator - Demo</title>
     <meta name="description" content="Laravel-inspired validation for HTML forms, built for simplicity of use" />
   </head>
+
   <body class="font-roboto min-h-screen w-full flex flex-col bg-gray-100 select-none">
     <main class="w-full flex-auto flex flex-col items-center justify-center px-3 sm:px-12 py-8">
       <form
@@ -32,6 +33,25 @@
             type="text"
             data-rules="required-if:password|nullable|email"
           />
+        </div>
+
+        <div class="form-control mt-4">
+          <label for="gender-male" class="label">
+            <input name="gender" id="gender-male" class="input" type="radio" data-rules="accepted" />
+            Male
+          </label>
+        </div>
+        <div class="form-control mt-4">
+          <label for="gender-female" class="label">
+            <input name="gender" id="gender-female" class="input" type="radio" data-rules="accepted" />
+            Female
+          </label>
+        </div>
+        <div class="form-control mt-4">
+          <label for="gender-unknown" class="label">
+            <input name="gender" id="gender-unknown" class="input" type="radio" data-rules="accepted" />
+            Prefer not to say
+          </label>
         </div>
 
         <div class="form-control mt-4">
