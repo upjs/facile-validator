@@ -20,3 +20,4 @@ export const REGEX = 'regex';
 export const REQUIRED = 'required';
 export const STARTS_WITH = 'starts-with';
 export const WITHIN = 'within';
+export const NOTIN = 'not-in';

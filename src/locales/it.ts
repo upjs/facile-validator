@@ -24,6 +24,7 @@ const itLang: Record<LangKeys, string> = {
   [rules.REQUIRED]: 'Questo campo è obbligatorio',
   [rules.STARTS_WITH]: 'Il valore deve iniziare con "$1"',
   [rules.WITHIN]: 'Il valore non è corretto',
+  [rules.NOTIN]: 'Il valore non è corretto',
 };
 
 export default itLang;

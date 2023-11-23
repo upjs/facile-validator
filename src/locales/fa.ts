@@ -24,6 +24,7 @@ const faLang: Record<LangKeys, string> = {
   [rules.NUMBER]: 'لطفا یک عدد معتبر وارد کنید',
   [rules.STARTS_WITH]: 'مقدار این فیلد باید با "$1" شروع شود',
   [rules.WITHIN]: 'مقدار این فیلد نادرست است',
+  [rules.NOTIN]: 'مقدار این فیلد نادرست است',
 };
 
 export default faLang;

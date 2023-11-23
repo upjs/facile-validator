@@ -24,6 +24,7 @@ const deLang: Record<LangKeys, string> = {
   [rules.REQUIRED]: 'Dieses Feld ist erforderlich',
   [rules.STARTS_WITH]: 'Der Wert muss mit "$1" beginnen',
   [rules.WITHIN]: 'Der Wert ist falsch',
+  [rules.NOTIN]: 'Der Wert ist falsch',
 };
 
 export default deLang;

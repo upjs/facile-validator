@@ -24,6 +24,7 @@ const csLang: Record<LangKeys, string> = {
   [rules.REQUIRED]: 'Toto pole je povinné',
   [rules.STARTS_WITH]: 'Hodnota musí začínat znaky „$1“',
   [rules.WITHIN]: 'Hodnota je nesprávná',
+  [rules.NOTIN]: 'Hodnota je nesprávná',
 };
 
 export default csLang;

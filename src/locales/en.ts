@@ -24,6 +24,7 @@ const enLang: Record<LangKeys, string> = {
   [rules.REQUIRED]: 'This field is required',
   [rules.STARTS_WITH]: 'The value must start with "$1"',
   [rules.WITHIN]: 'The value is incorrect',
+  [rules.NOTIN]: 'The value is incorrect',
 };
 
 export default enLang;

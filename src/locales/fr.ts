@@ -25,6 +25,7 @@ const frLang: Record<LangKeys, string> = {
   [rules.REQUIRED]: 'Ce champ est obligatoire',
   [rules.STARTS_WITH]: 'La valeur doit commencer par "$1"',
   [rules.WITHIN]: 'La valeur est incorrecte',
+  [rules.NOTIN]: 'La valeur est incorrecte',
 };
 
 export default frLang;

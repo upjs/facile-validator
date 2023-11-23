@@ -7,6 +7,7 @@
     <title>Facile Validator - Demo</title>
     <meta name="description" content="Laravel-inspired validation for HTML forms, built for simplicity of use" />
   </head>
+
   <body class="font-roboto min-h-screen w-full flex flex-col bg-gray-100 select-none">
     <main class="w-full flex-auto flex flex-col items-center justify-center px-3 sm:px-12 py-8">
       <form
@@ -46,6 +47,21 @@
             placeholder="Enter your age"
             type="text"
             data-rules="nullable|number|between:3,100"
+          />
+        </div>
+
+        <div class="form-control mt-4">
+          <label for="colors" class="label">
+            Colors
+            <small class="text-slate-600">(Not in: Yellow, Black, Gray)</small>
+          </label>
+          <input
+            name="colors"
+            id="colors"
+            class="input"
+            placeholder="Enter color (case sensitive)"
+            type="text"
+            data-rules="nullable|array|not-in:Yellow,Black,Gray"
           />
         </div>
 

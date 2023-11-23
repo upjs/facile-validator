@@ -24,6 +24,7 @@ const zhLang: Record<LangKeys, string> = {
   [rules.REQUIRED]: '此字段是必需的',
   [rules.STARTS_WITH]: '值必须以“$1”开头',
   [rules.WITHIN]: '值不正确',
+  [rules.NOTIN]: '值不正确',
 };
 
 export default zhLang;

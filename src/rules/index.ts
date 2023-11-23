@@ -17,3 +17,4 @@ export { default as requiredIf } from './required-if';
 export { default as size } from './size';
 export { default as startsWith } from './starts-with';
 export { default as within, default as in } from './within';
+export { default as notIn } from './not-in';

@@ -8,6 +8,7 @@ const mapMethods: Record<string, AdapterFn> = {
   min: prependType,
   max: prependType,
   in: prependType,
+  notIn: prependType,
 };
 
 export function adaptRule(

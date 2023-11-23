@@ -24,6 +24,7 @@ const nlLang: Record<LangKeys, string> = {
   [rules.REQUIRED]: 'Dit veld is verplicht',
   [rules.STARTS_WITH]: 'De waarde moet beginnen met "$1"',
   [rules.WITHIN]: 'De waarde is onjuist',
+  [rules.NOTIN]: 'De waarde is onjuist',
 };
 
 export default nlLang;
