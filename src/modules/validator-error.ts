@@ -12,7 +12,7 @@ export default class ValidatorError {
     this.errorsList = [];
   }
 
-  public setError(element: FormInputElement, rule: string, ruleError: RuleError) {
+  public setError(element: FormInputElement, rule: string, ruleError: RuleError, customMessage = '') {
     let errors = this.errorsList.find((error) => error[0].element === element);
 
     if (!errors) {
@@ -20,7 +20,7 @@ export default class ValidatorError {
       this.errorsList.push(errors);
     }
 
-    const errorMessage = lang(ruleError.message, ...ruleError.args);
+    const errorMessage = customMessage || lang(ruleError.message, ...ruleError.args);
 
     const errorDetail: ErrorDetail = {
       message: errorMessage,

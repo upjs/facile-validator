@@ -1,6 +1,6 @@
 import EventBus from '@/modules/events';
 import Language from '@/modules/language';
-import { LangKeys, FormInputElement, XRules } from '@/types';
+import { LangKeys, FormInputElement, XRules, RichXRule } from '@/types';
 import { TYPE_CHECKBOX, TYPE_RADIO } from '@/types/elements';
 
 export function toCamelCase(value: string) {
@@ -33,8 +33,17 @@ export function format(message: string, ...toReplace: string[]) {
   return message.replace(/\$(\d)/g, (_, index) => toReplace?.[index - 1] || '');
 }
 
-export function processRule(rule: string, xRules?: XRules): { name: string; argsText: string; args: string[] } {
-  let [name, argsText = ''] = rule.split(':');
+export function processRule(
+  rule: string,
+  xRules?: XRules
+): {
+  name: string;
+  argsValue: string;
+  args: string[];
+  customErrorText?: string;
+} {
+  let [name, argsValue = ''] = rule.split(':');
+  let customErrorText = '';
 
   if (isXRule(rule)) {
     if (!hasArgument(rule)) {
@@ -42,13 +51,21 @@ export function processRule(rule: string, xRules?: XRules): { name: string; args
     }
 
     name = name.substring(2);
-    argsText = String(xRules?.[argsText]) || '';
+
+    if (isObject(xRules?.[argsValue])) {
+      const rule = xRules?.[argsValue] as RichXRule;
+      customErrorText = rule.errorText || '';
+      argsValue = String(rule.pattern);
+    } else {
+      argsValue = String(xRules?.[argsValue]) || '';
+    }
   }
 
   return {
     name,
-    argsText,
-    args: processArgs(argsText),
+    argsValue,
+    args: processArgs(argsValue),
+    customErrorText,
   };
 }
 
@@ -103,4 +120,8 @@ export function hasArgument(rule: string) {
 
 export function isXRule(rule: string): boolean {
   return rule.startsWith('x-');
+}
+
+export function isObject(obj: unknown) {
+  return typeof obj === 'object' && obj !== null && Object.getPrototypeOf(obj) === Object.prototype;
 }

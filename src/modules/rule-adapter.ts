@@ -29,7 +29,7 @@ export function prependType(
   _parentEl: HTMLElement,
   xRules?: XRules
 ): string {
-  const { name, argsText } = processRule(rule, xRules);
+  const { name, argsValue } = processRule(rule, xRules);
 
   const indexOfRule = rules.indexOf(rule);
   const rulesBeforeRule = rules.slice(0, indexOfRule);
@@ -41,7 +41,7 @@ export function prependType(
     type = 'array';
   }
 
-  return `${name}:${type},${argsText}`;
+  return `${name}:${type},${argsValue}`;
 }
 
 function prependTargetValue(

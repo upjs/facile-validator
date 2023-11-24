@@ -85,7 +85,7 @@ class Validator {
         const computedFieldRules = this.getComputedFieldRules(fieldRules, field);
 
         for (const fieldRule of computedFieldRules) {
-          const { name: ruleName, argsText: ruleArgs } = processRule(fieldRule, this.options.xRules);
+          const { name: ruleName, argsValue: ruleArgs, customErrorText } = processRule(fieldRule, this.options.xRules);
           const ruleKey = toCamelCase(ruleName) as RuleKey;
 
           if (this.isNullable(ruleKey) && value === '') {
@@ -97,7 +97,7 @@ class Validator {
               const result = rules[ruleKey](value, ruleArgs);
 
               if (result instanceof RuleError) {
-                this.validatorError.setError(field, ruleName, result);
+                this.validatorError.setError(field, ruleName, result, customErrorText);
                 if (shouldStopOnFirstFailure) {
                   break;
                 }
