@@ -97,7 +97,12 @@ class Validator {
               const result = rules[ruleKey](value, ruleArgs);
 
               if (result instanceof RuleError) {
-                this.validatorError.setError(field, ruleName, result, customErrorText);
+                let customMessage = '';
+
+                if (customErrorText) {
+                  customMessage = typeof customErrorText === 'function' ? customErrorText(field) : customErrorText;
+                }
+                this.validatorError.setError(field, ruleName, result, customMessage);
                 if (shouldStopOnFirstFailure) {
                   break;
                 }

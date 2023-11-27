@@ -16,7 +16,10 @@ const v = new Validator(form, {
   xRules: {
     zipcode: /^([0-9]{5})-([0-9]{5})$/,
     myZipCode: {
-      errorText: 'Please enter a valid zip code',
+      errorText: (field) => {
+        console.log(field.value);
+        return 'My custom error message';
+      },
       pattern: '/^([0-9]{5})-([0-9]{5})$/',
     },
     'min-from-server': (() => '2')(),

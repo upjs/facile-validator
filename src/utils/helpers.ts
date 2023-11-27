@@ -7,7 +7,7 @@ export function toCamelCase(value: string) {
   return value.replace(/-./g, (match) => match[1].toUpperCase());
 }
 
-export function getValue(element: FormInputElement): string {
+export function getValue(element: FormInputElement) {
   if (element instanceof HTMLInputElement) {
     if (element.type === TYPE_CHECKBOX || element.type === TYPE_RADIO) {
       return element.checked ? 'checked' : '';
@@ -33,17 +33,9 @@ export function format(message: string, ...toReplace: string[]) {
   return message.replace(/\$(\d)/g, (_, index) => toReplace?.[index - 1] || '');
 }
 
-export function processRule(
-  rule: string,
-  xRules?: XRules
-): {
-  name: string;
-  argsValue: string;
-  args: string[];
-  customErrorText?: string;
-} {
+export function processRule(rule: string, xRules?: XRules) {
   let [name, argsValue = ''] = rule.split(':');
-  let customErrorText = '';
+  let customErrorText: RichXRule['errorText'] = '';
 
   if (isXRule(rule)) {
     if (!hasArgument(rule)) {
@@ -69,11 +61,11 @@ export function processRule(
   };
 }
 
-export function processArgs(args: string): string[] {
+export function processArgs(args: string) {
   return args ? args.split(',') : [];
 }
 
-export function lang(key: string, ...args: string[]): string {
+export function lang(key: string, ...args: string[]) {
   const languages = Language.get();
   let item = key;
 
@@ -118,7 +110,7 @@ export function hasArgument(rule: string) {
   return rule.includes(':') && rule.split(':').length === 2;
 }
 
-export function isXRule(rule: string): boolean {
+export function isXRule(rule: string) {
   return rule.startsWith('x-');
 }
 

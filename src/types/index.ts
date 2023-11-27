@@ -6,7 +6,7 @@ export type ArrayOfValues<T> = {
 };
 
 type ErrorCause = typeof rules;
-export type RichXRule = { errorText?: string; pattern: string };
+export type RichXRule = { errorText?: string | ((field: FormInputElement) => string); pattern: string };
 export type LangKeys = ErrorCause[keyof ErrorCause];
 export type Lang = Partial<Record<LangKeys, string>>;
 export type RuleName = typeof rules[keyof typeof rules];
