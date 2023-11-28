@@ -529,6 +529,43 @@ const v = new Validator(form, {
 ```
 In this example, the final argument for `x-regex` rule is the value of `zipcode` property in `xRules` object.
 
+### Custom error messages
+_New in version 1.12.0_ 
+
+Previously, if an x-regex rule failed, a generic error message 'The value doesn't match the pattern' was displayed. For more convenience, you can now show your own error messages based an arbitrary conditions. To do so, use the `x-regex` rule like the below (see `password`):
+```js
+const v = new Validator(form, {
+  xRules: {
+    // Simple x-regex rule with pre-defined error
+    zipcode: /^([0-9]{5})-([0-9]{5})$/,
+
+    // An x-regex rule with customized errors
+    password: {
+      value: /^(?=.*[A-Z])(?=.*[a-z])(?=.*[@#$%^&*]).{8,}$/,
+      errorMessage: (field) => {
+        if (field.value.length < 8) {
+          return "Password must be at least 8 characters";
+        }
+  
+        if (!/[A-Z]/.test(field.value)) {
+          return "Password must contain at least one uppercase letter";
+        }
+  
+        if (!/[a-z]/.test(field.value)) {
+          return "Password must contain at least one lowercase letter";
+        }
+  
+        if (!/[@#$%^&*]/.test(field.value)) {
+          return "Password must contain at least one special character";
+        }
+  
+        return "My custom error message";
+      },
+    },
+  }
+});
+```
+
 ---
 
 <br/>
@@ -586,7 +623,7 @@ const myLang = createLang({
 <br>
 
 ### Change the Language on the fly
-_New in version 1.8_  
+_New in version 1.8.0_  
 You can change the current language on runtime by using `setLanguage` method from the validator:
 ```javascript
 import { Validator, enLang as en, frLang as fr } from '@upjs/facile-validator';
