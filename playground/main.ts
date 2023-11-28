@@ -14,8 +14,32 @@ const v = new Validator(form, {
   onFieldChangeValidation: true,
   onFieldChangeValidationDelay: 500,
   xRules: {
-    zipcode: '/^([0-9]{5})-([0-9]{5})$/',
-    'min-from-server': (() => '2')(),
+    zipcode: {
+      value: '/^([0-9]{5})-([0-9]{5})$/',
+      errorMessage: 'Invalid zipcode',
+    },
+    password: {
+      value: /^(?=.*[A-Z])(?=.*[a-z])(?=.*[@#$%^&*]).{8,}$/,
+      errorMessage: (field) => {
+        if (field.value.length < 8) {
+          return 'Password must be at least 8 characters';
+        }
+
+        if (!/[A-Z]/.test(field.value)) {
+          return 'Password must contain at least one uppercase letter';
+        }
+
+        if (!/[a-z]/.test(field.value)) {
+          return 'Password must contain at least one lowercase letter';
+        }
+
+        if (!/[@#$%^&*]/.test(field.value)) {
+          return 'Password must contain at least one special character';
+        }
+
+        return 'My custom error message';
+      },
+    },
   },
   on: {
     'validation:success': () => {

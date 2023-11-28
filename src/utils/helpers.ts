@@ -1,13 +1,13 @@
 import EventBus from '@/modules/events';
 import Language from '@/modules/language';
-import { LangKeys, FormInputElement, XRules } from '@/types';
+import { LangKeys, FormInputElement, XRules, RichXRule } from '@/types';
 import { TYPE_CHECKBOX, TYPE_RADIO } from '@/types/elements';
 
 export function toCamelCase(value: string) {
   return value.replace(/-./g, (match) => match[1].toUpperCase());
 }
 
-export function getValue(element: FormInputElement): string {
+export function getValue(element: FormInputElement) {
   if (element instanceof HTMLInputElement) {
     if (element.type === TYPE_CHECKBOX || element.type === TYPE_RADIO) {
       return element.checked ? 'checked' : '';
@@ -33,8 +33,9 @@ export function format(message: string, ...toReplace: string[]) {
   return message.replace(/\$(\d)/g, (_, index) => toReplace?.[index - 1] || '');
 }
 
-export function processRule(rule: string, xRules?: XRules): { name: string; argsText: string; args: string[] } {
-  let [name, argsText = ''] = rule.split(':');
+export function processRule(rule: string, xRules?: XRules) {
+  let [name, argsValue = ''] = rule.split(':');
+  let customErrorMessage: RichXRule['errorMessage'] = '';
 
   if (isXRule(rule)) {
     if (!hasArgument(rule)) {
@@ -42,21 +43,32 @@ export function processRule(rule: string, xRules?: XRules): { name: string; args
     }
 
     name = name.substring(2);
-    argsText = String(xRules?.[argsText]) || '';
+
+    if (isObject(xRules?.[argsValue])) {
+      const rule = xRules?.[argsValue] as RichXRule;
+      customErrorMessage = rule.errorMessage || '';
+      argsValue = String(rule.value);
+    } else {
+      argsValue = String(xRules?.[argsValue]) || '';
+    }
   }
+  console.log(rule, customErrorMessage);
+  // const stack = new Error().stack;
+  // console.log(stack);
 
   return {
     name,
-    argsText,
-    args: processArgs(argsText),
+    argsValue,
+    args: processArgs(argsValue),
+    customErrorMessage,
   };
 }
 
-export function processArgs(args: string): string[] {
+export function processArgs(args: string) {
   return args ? args.split(',') : [];
 }
 
-export function lang(key: string, ...args: string[]): string {
+export function lang(key: string, ...args: string[]) {
   const languages = Language.get();
   let item = key;
 
@@ -101,6 +113,10 @@ export function hasArgument(rule: string) {
   return rule.includes(':') && rule.split(':').length === 2;
 }
 
-export function isXRule(rule: string): boolean {
+export function isXRule(rule: string) {
   return rule.startsWith('x-');
+}
+
+export function isObject(obj: unknown) {
+  return typeof obj === 'object' && obj !== null && Object.getPrototypeOf(obj) === Object.prototype;
 }

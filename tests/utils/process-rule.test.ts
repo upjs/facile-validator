@@ -6,7 +6,7 @@ it('should process "accepted" correctly', () => {
   const result = processRule(rule);
 
   expect(result.name).toBe('accepted');
-  expect(result.argsText).toBe('');
+  expect(result.argsValue).toBe('');
   expect(result.args).toHaveLength(0);
 });
 
@@ -15,7 +15,7 @@ it('should process "accepted:" correctly', () => {
   const result = processRule(rule);
 
   expect(result.name).toBe('accepted');
-  expect(result.argsText).toBe('');
+  expect(result.argsValue).toBe('');
   expect(result.args).toHaveLength(0);
 });
 
@@ -24,7 +24,7 @@ it('should process "accepted:arg1" correctly', () => {
   const result = processRule(rule);
 
   expect(result.name).toBe('accepted');
-  expect(result.argsText).toBe('arg1');
+  expect(result.argsValue).toBe('arg1');
   expect(result.args).toEqual(['arg1']);
 });
 
@@ -33,7 +33,7 @@ it('should process "accepted:arg1,arg2" correctly', () => {
   const result = processRule(rule);
 
   expect(result.name).toBe('accepted');
-  expect(result.argsText).toBe('arg1,arg2');
+  expect(result.argsValue).toBe('arg1,arg2');
   expect(result.args).toEqual(['arg1', 'arg2']);
 });
 
@@ -42,7 +42,7 @@ it('should process "accepted:,arg2" correctly', () => {
   const result = processRule(rule);
 
   expect(result.name).toBe('accepted');
-  expect(result.argsText).toBe(',arg2');
+  expect(result.argsValue).toBe(',arg2');
   expect(result.args).toEqual(['', 'arg2']);
 });
 
@@ -51,6 +51,6 @@ it('should process "accepted:arg1," correctly', () => {
   const result = processRule(rule);
 
   expect(result.name).toBe('accepted');
-  expect(result.argsText).toBe('arg1,');
+  expect(result.argsValue).toBe('arg1,');
   expect(result.args).toEqual(['arg1', '']);
 });
