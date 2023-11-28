@@ -565,6 +565,7 @@ const v = new Validator(form, {
   }
 });
 ```
+Open [the demo](https://upjs.github.io/facile-validator/) and play with the password field.
 
 ---
 
