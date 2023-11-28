@@ -85,7 +85,11 @@ class Validator {
         const computedFieldRules = this.getComputedFieldRules(fieldRules, field);
 
         for (const fieldRule of computedFieldRules) {
-          const { name: ruleName, argsValue: ruleArgs, customErrorText } = processRule(fieldRule, this.options.xRules);
+          const {
+            name: ruleName,
+            argsValue: ruleArgs,
+            customErrorMessage,
+          } = processRule(fieldRule, this.options.xRules);
           const ruleKey = toCamelCase(ruleName) as RuleKey;
 
           if (this.isNullable(ruleKey) && value === '') {
@@ -99,8 +103,9 @@ class Validator {
               if (result instanceof RuleError) {
                 let customMessage = '';
 
-                if (customErrorText) {
-                  customMessage = typeof customErrorText === 'function' ? customErrorText(field) : customErrorText;
+                if (customErrorMessage) {
+                  customMessage =
+                    typeof customErrorMessage === 'function' ? customErrorMessage(field) : customErrorMessage;
                 }
                 this.validatorError.setError(field, ruleName, result, customMessage);
                 if (shouldStopOnFirstFailure) {

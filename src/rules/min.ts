@@ -8,7 +8,6 @@ function min(value: string, args = ''): true | RuleError {
   const [type, min] = processArgs(args);
   when(!type).throwError(ARGUMENT_MUST_BE_PROVIDED);
   when(!min).throwError(ARGUMENT_MUST_BE_PROVIDED);
-
   const minInNumber = Number(min);
   when(Number.isNaN(minInNumber)).throwError(ARGUMENT_MUST_BE_A_NUMBER);
 

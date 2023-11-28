@@ -35,7 +35,7 @@ export function format(message: string, ...toReplace: string[]) {
 
 export function processRule(rule: string, xRules?: XRules) {
   let [name, argsValue = ''] = rule.split(':');
-  let customErrorText: RichXRule['errorText'] = '';
+  let customErrorMessage: RichXRule['errorMessage'] = '';
 
   if (isXRule(rule)) {
     if (!hasArgument(rule)) {
@@ -46,18 +46,21 @@ export function processRule(rule: string, xRules?: XRules) {
 
     if (isObject(xRules?.[argsValue])) {
       const rule = xRules?.[argsValue] as RichXRule;
-      customErrorText = rule.errorText || '';
-      argsValue = String(rule.pattern);
+      customErrorMessage = rule.errorMessage || '';
+      argsValue = String(rule.value);
     } else {
       argsValue = String(xRules?.[argsValue]) || '';
     }
   }
+  console.log(rule, customErrorMessage);
+  // const stack = new Error().stack;
+  // console.log(stack);
 
   return {
     name,
     argsValue,
     args: processArgs(argsValue),
-    customErrorText,
+    customErrorMessage,
   };
 }
 
