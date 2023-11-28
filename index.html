@@ -6,9 +6,10 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto" />
     <title>Facile Validator - Demo</title>
     <meta name="description" content="Laravel-inspired validation for HTML forms, built for simplicity of use" />
-    <script type="module" crossorigin src="https://upjs.github.io/facile-validator/assets/index-0720ebcf.js"></script>
-    <link rel="stylesheet" href="https://upjs.github.io/facile-validator/assets/index-c13f2304.css">
+    <script type="module" crossorigin src="https://upjs.github.io/facile-validator/assets/index-649a27b8.js"></script>
+    <link rel="stylesheet" href="https://upjs.github.io/facile-validator/assets/index-85c269a2.css">
   </head>
+
   <body class="font-roboto min-h-screen w-full flex flex-col bg-gray-100 select-none">
     <main class="w-full flex-auto flex flex-col items-center justify-center px-3 sm:px-12 py-8">
       <form
@@ -17,12 +18,7 @@
       >
         <div class="form-control">
           <label for="email" class="label">Zipcode</label>
-          <input
-            class="input"
-            placeholder="xxxxx-xxxxx"
-            type="text"
-            data-rules="nullable|x-regex:zipcode|x-min:min-from-server"
-          />
+          <input class="input" placeholder="xxxxx-xxxxx" type="text" data-rules="nullable|x-regex:zipcode" />
         </div>
         <div class="form-control mt-4">
           <label for="email" class="label"> Email </label>
@@ -72,8 +68,17 @@
             placeholder="Enter your password"
             class="input"
             type="password"
-            data-rules="required|string|min:5"
+            data-rules="required|string|x-regex:password"
           />
+          <small class="ml-2 mt-1 text-gray-500">
+            • 8 Characters minimum
+            <br />
+            • At least one uppercase letter
+            <br />
+            • At least one lowercase letter
+            <br />
+            • At least one special character (e.g. @, #, $, %, &, *, etc.)
+          </small>
         </div>
 
         <div class="mt-4">
