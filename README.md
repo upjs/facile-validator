@@ -2,7 +2,7 @@
 
 [![npm version][npm-version-src]][npm-version-href]
 [![npm downloads][npm-downloads-src]][npm-downloads-href]
-[![verify](https://github.com/upjs/facile-validator/actions/workflows/verify.yml/badge.svg)](https://github.com/upjs/facile-validator/actions/workflows/verify.yml)
+[![verify](https://github.com/upjs/facile-validator/actions/workflows/verify.yml/badge.svg?branch=main)](https://github.com/upjs/facile-validator/actions/workflows/verify.yml)
 [![License][license-src]][license-href]
 
 Laravel-inspired validation for HTML forms, built for simplicity of use: 😋
