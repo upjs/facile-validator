@@ -22,7 +22,7 @@ const v = new Validator(form, {
       },
       pattern: '/^([0-9]{5})-([0-9]{5})$/',
     },
-    'min-from-server': (() => '2')(),
+    'min-from-server': 5,
   },
   on: {
     'validation:success': () => {

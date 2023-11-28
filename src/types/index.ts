@@ -10,7 +10,7 @@ export type RichXRule = { errorText?: string | ((field: FormInputElement) => str
 export type LangKeys = ErrorCause[keyof ErrorCause];
 export type Lang = Partial<Record<LangKeys, string>>;
 export type RuleName = typeof rules[keyof typeof rules];
-export type XRules = Record<string, string | RegExp | RichXRule>;
+export type XRules = Record<string, number | string | RegExp | RichXRule>;
 export type RuleKey = keyof typeof rules;
 
 export interface ValidatorOptions {
