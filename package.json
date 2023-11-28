@@ -55,7 +55,7 @@
   "devDependencies": {
     "@babel/types": "7.23.3",
     "@types/node": "20.9.0",
-    "@types/ws": "8.5.9",
+    "@types/ws": "8.5.10",
     "@typescript-eslint/eslint-plugin": "6.10.0",
     "@typescript-eslint/parser": "6.10.0",
     "@unocss/preset-wind": "0.57.3",
