@@ -43,16 +43,16 @@ const v = new Validator(form, {
       alert('Success! Form validated without any errors');
     },
     'validation:end': () => {
-      // console.log('validation:end');
+      console.log('validation:end');
     },
     'validation:start': () => {
-      // console.log('validation:start');
+      console.log('validation:start');
     },
     'validation:failed': () => {
-      // console.log('validation:failed');
+      console.log('validation:failed');
     },
     'field:error': () => {
-      // console.log('field:error');
+      console.log('field:error');
     },
   },
 });
