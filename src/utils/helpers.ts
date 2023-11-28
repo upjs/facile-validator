@@ -52,9 +52,6 @@ export function processRule(rule: string, xRules?: XRules) {
       argsValue = String(xRules?.[argsValue]) || '';
     }
   }
-  console.log(rule, customErrorMessage);
-  // const stack = new Error().stack;
-  // console.log(stack);
 
   return {
     name,
