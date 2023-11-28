@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.12.0](https://github.com/upjs/facile-validator/compare/v1.11.9...v1.12.0) (2023-11-28)
+
+### Features
+
+- add possibility to use functions for custom error message ([025b42e](https://github.com/upjs/facile-validator/commit/025b42e30b8fbc4f201bf96e4a7c99516b63c0e5))
+
 ### [1.11.9](https://github.com/upjs/facile-validator/compare/v1.11.8...v1.11.9) (2023-10-14)
 
 ### [1.11.8](https://github.com/upjs/facile-validator/compare/v1.11.7...v1.11.8) (2023-10-14)
