@@ -14,7 +14,10 @@ const v = new Validator(form, {
   onFieldChangeValidation: true,
   onFieldChangeValidationDelay: 500,
   xRules: {
-    zipcode: '/^([0-9]{5})-([0-9]{5})$/',
+    zipcode: {
+      value: '/^([0-9]{5})-([0-9]{5})$/',
+      errorMessage: 'Invalid zipcode',
+    },
     password: {
       value: /^(?=.*[A-Z])(?=.*[a-z])(?=.*[@#$%^&*]).{8,}$/,
       errorMessage: (field) => {
