@@ -8,7 +8,7 @@ You can add Facile Validator to an existing React project simply by using `useEf
 import { Validator, enLang as en } from '@upjs/facile-validator';
 import { useEffect, useRef } from 'react';
 
-function App() {
+function MyReactComponent() {
   const form = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
