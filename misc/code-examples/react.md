@@ -2,7 +2,7 @@ You can add Facile Validator to an existing React project simply by using `useEf
 
 1. Create a ref object by using `useRef` hook
 2. Attach the ref to the container element (e.g. `<form>` element)
-3. Add implementation logics inside a useEffect hook with the ref object as a dependency
+3. Add implementation logic inside a `useEffect` hook with the ref object as a dependency
 
 ```tsx
 import { Validator, enLang as en } from '@upjs/facile-validator';
