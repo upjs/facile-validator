@@ -21,7 +21,7 @@ Facile (French word for "easy", pronounced `fa·sil`) is an HTML form validator 
 - [Installation](#installation)
 - [Usage](#usage)
   - [Validate on Field Change](#validate-on-field-change)
-  - [Implementation in React.js](#implementation-in-reactjs)
+  - [Implementation in Frameworks](#implementation-in-frameworks)
 - [Handling Events](#handling-events)
 - [Available Validation Rules](#available-validation-rules)
 - [X-Prefixed Rules](#x-prefixed-rules)
@@ -111,8 +111,9 @@ const v = new Validator(form, {
 ```
 <br/>
 
-### Implementation in React.js
-See [this guide](/misc/code-examples/react.md).
+### Implementation in Frameworks
+- [React.js](/misc/code-examples/react.md)
+- _Others soon..._
 
 <br/>
 
