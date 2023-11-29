@@ -21,6 +21,7 @@ Facile (French word for "easy", pronounced `fa·sil`) is an HTML form validator 
 - [Installation](#installation)
 - [Usage](#usage)
   - [Validate on Field Change](#validate-on-field-change)
+  - [Implementation in React.js](#implementation-in-react.js)
 - [Handling Events](#handling-events)
 - [Available Validation Rules](#available-validation-rules)
 - [X-Prefixed Rules](#x-prefixed-rules)
@@ -40,7 +41,6 @@ yarn add @upjs/facile-validator
 <br/>
 
 ## Usage
-
 HTML:
 
 ```html
@@ -109,6 +109,11 @@ const v = new Validator(form, {
   onFieldChangeValidationDelay: 1000 // 1 Second
 }
 ```
+<br/>
+
+### Implementation in React.js
+See [this guide](/misc/code-examples/react.md)
+
 <br/>
 
 ## Handling Events
