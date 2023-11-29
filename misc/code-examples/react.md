@@ -1,4 +1,4 @@
-You can add Facile Validator to an existing React project simply by using `useEffect` and `useRef` hooks.
+You can easily integrate Facile Validator into an existing React project by utilizing the `useEffect` and `useRef` hooks
 
 1. Create a ref object by using `useRef` hook
 2. Attach the ref to the container element (e.g. `<form>` element)
