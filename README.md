@@ -538,7 +538,7 @@ In this example, the final argument for `x-regex` rule is the value of `zipcode`
 ### Custom error messages
 _New in version 1.12.0_ 
 
-Previously, if an x-regex rule failed, a generic error message 'The value doesn't match the pattern' was displayed. For more convenience, you can now show your own error messages based an arbitrary conditions. To do so, use the `x-regex` rule like the below (see `password`):
+Previously, if an x-regex rule failed, a generic error message 'The value doesn't match the pattern' was displayed. For more convenience, you can now show your own error messages based on arbitrary conditions. To do so, use the `x-regex` rule like the below (see `password`):
 ```js
 const v = new Validator(form, {
   xRules: {
