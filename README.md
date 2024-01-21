@@ -5,7 +5,7 @@
 [![verify](https://github.com/upjs/facile-validator/actions/workflows/verify.yml/badge.svg?branch=main)](https://github.com/upjs/facile-validator/actions/workflows/verify.yml)
 [![License][license-src]][license-href]
 
-Laravel-inspired validation for HTML forms, built for simplicity of use: 😋
+ Robust Frontend Form Validation, inspired by Laravel Validation, Built for Simplicity of Use 😋
 
 <p align="center">
   <img src="./misc/intro.jpg" />
