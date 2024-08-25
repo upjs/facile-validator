@@ -103,7 +103,7 @@ class Validator {
                   break;
                 }
               } else if(this.options.renderSuccess) {
-                this.events.call("field:success", this.container, field);
+                this.events.call('field:success', this.container, field);
               }
             } catch (error) {
               console.error(new Error(`${ruleName}: ${(error as Error).message}`));
