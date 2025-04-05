@@ -41,6 +41,7 @@ export interface Events {
   'validation:end': (container: HTMLElement, isSuccessful: boolean) => void;
   'validation:success': (container: HTMLElement) => void;
   'validation:failed': (container: HTMLElement) => void;
+  'field:success': (container: HTMLElement, element: FormInputElement) => void;
   'field:error': (container: HTMLElement, element: FormInputElement, errors: ErrorDetail[]) => void;
 }
 
