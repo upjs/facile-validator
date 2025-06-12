@@ -67,6 +67,20 @@ class Validator {
     return isSuccessful;
   }
 
+  public values(): Record<string, string> {
+    const values: Record<string, string> = {};
+    const fields = this.container.querySelectorAll<FormInputElement>('[data-rules]');
+
+    fields.forEach((field) => {
+      const name = field.getAttribute('name');
+      if (name) {
+        values[name] = getValue(field);
+      }
+    });
+
+    return values;
+  }
+
   public on<K extends EventsName>(event: K, callback: Events[K]): void {
     this.events.on(event, callback);
   }
