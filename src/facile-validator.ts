@@ -69,7 +69,7 @@ class Validator {
 
   public values(): Record<string, string> {
     const values: Record<string, string> = {};
-    const fields = this.container.querySelectorAll<FormInputElement>('[data-rules]');
+    const fields = this.container.querySelectorAll<FormInputElement>('input, textarea, select');
 
     fields.forEach((field) => {
       const name = field.getAttribute('name');
