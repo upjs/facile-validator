@@ -62,7 +62,7 @@
     "@unocss/reset": "0.57.7",
     "c8": "8.0.1",
     "eslint": "8.54.0",
-    "eslint-config-prettier": "9.0.0",
+    "eslint-config-prettier": "10.1.5",
     "eslint-plugin-prettier": "4.2.1",
     "husky": "8.0.3",
     "lint-staged": "13.0.3",
