@@ -10,3 +10,5 @@ export {
   nl as nlLang,
   createLang,
 } from '@/locales';
+
+export * from '@/types';
