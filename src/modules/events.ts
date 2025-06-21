@@ -24,12 +24,18 @@ export default class EventBus {
     events.push(callback);
   }
 
-  public off<K extends EventsName>(event: K, callback: Events[K]): void {
+  public off<K extends EventsName>(event: K, callback: Events[K] | null = null): void {
     if (typeof this.events[event] === 'undefined') {
       return;
     }
 
     const events = this.events[event] as Events[K][];
+
+    if (callback === null) {
+      this.events[event] = [];
+      return;
+    }
+
     const index = events.indexOf(callback);
 
     if (index !== -1) {
