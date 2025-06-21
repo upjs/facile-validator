@@ -85,7 +85,7 @@ class Validator {
     this.events.on(event, callback);
   }
 
-  public off<K extends EventsName>(event: K, callback: Events[K]): void {
+  public off<K extends EventsName>(event: K, callback: Events[K] | null = null): void {
     this.events.off(event, callback);
   }
 
