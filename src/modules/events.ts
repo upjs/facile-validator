@@ -31,6 +31,7 @@ export default class EventBus {
 
     const events = this.events[event] as Events[K][];
 
+    // If callback is null, remove all listeners for the event
     if (callback === null) {
       this.events[event] = [];
       return;
