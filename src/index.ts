@@ -12,3 +12,4 @@ export {
 } from '@/locales';
 
 export * from '@/types';
+export { RuleError } from '@/modules/rule-error';
