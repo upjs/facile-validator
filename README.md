@@ -145,6 +145,7 @@ There are five type of events that can be handled with the hooks:
 - [`validation:end`](#validationend)
 - [`validation:success`](#validationsuccess)
 - [`validation:failed`](#validationfailed)
+- [`field:success`](#fieldsuccess)
 - [`field:error`](#fielderror)
 
 To attach a hook to these events, use `on` method:
@@ -221,6 +222,20 @@ v.on('validation:failed', (form) => {
 
 ---
 
+#### `field:success`
+This event will occur when the validation of a field was successful and no errors are thrown:
+```javascript
+v.on('field:success', (form, field) => {
+  // Do something like add a success class to display the result
+});
+```
+This feature can be disabled by set the option `renderSuccess` to false while initialization in the config object:
+```javascript
+const v = new Validator(form, {
+  renderSuccess: false,
+});
+```
+---
 #### `field:error`
 
 When a particular field has errors, you can handle the errors with this event:
